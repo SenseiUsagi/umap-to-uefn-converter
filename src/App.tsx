@@ -1,26 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { Icon, Menu, MenuItem } from "semantic-ui-react";
+import { Column, Container, Row } from "./components/gridsystem";
+import NavigationBar from "./components/navigationBar";
+import ConverterPage from "./components/pages/converterPage";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const convertionPage = ConverterPage();
+
+    return (
+        <>
+            <NavigationBar />
+            <div style={{ minHeight: "2.85714286em" }}></div>
+            {convertionPage}
+        </>
+    );
 }
 
 export default App;

@@ -1,0 +1,7 @@
+{
+    "defaultSeverity": "warning",
+    "extends": ["tslint:recommended", "tslint-consistent-codestyle"],
+    "rules": {
+        "no-unused-variable": [true, { "ignore-pattern": "^_" }]
+    }
+}

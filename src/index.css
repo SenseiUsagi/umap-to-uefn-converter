@@ -1,13 +1,138 @@
+* {
+    box-sizing: border-box;
+}
+html {
+    font-size: 16px;
+    width: 100%;
+    height: 100%;
+}
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    width: 100%;
+    height: 100%;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Grid System copy pasted from original html/css course */
+
+/*===Grid System===*/
+
+/*===Grid System (VISIBILITY; DEV CHECK)===*/
+
+/* p {
+  background-color: #91c4ff;
+  padding: 0;
+  margin: 0;
+  color: #ffffff;
+  text-align: center;
+} */
+
+/*Container*/
+.container {
+    width: 95%;
+    height: 100%;
+    margin-left: auto; /*Makes them look centered.*/
+    margin-right: auto;
+    /* Dev check if it works at all */
+    /* background-color: grey; */
+}
+
+/*Rows; Only Clearfix Hack*/
+.row::after {
+    content: "";
+    clear: both;
+    display: block; /*Makes it so the content doesnt overlap*/
+}
+/* Dev check if it works at all */
+/* .row {
+  background-color: green;
+} */
+
+/*Colums*/
+[class*="col-"] {
+    float: left; /*Makes sure they are next to each other*/
+    min-height: 1px; /*Height is required, dont know why.*/
+    padding: 0.8rem;
+    /* Dev check if it works at all */
+    /* background-color: aqua; */
+}
+
+.col-1 {
+    width: 16.666%;
+} /*Makes all Colum 1   take up 1/6 of rows space.*/
+.col-1-5 {
+    width: 25%;
+} /*Makes all Colum 1.5 take up 1/4 of rows space*/
+.col-2 {
+    width: 33.333%;
+} /*Makes all Colum 2   take up 1/3 of rows space.*/
+.col-3 {
+    width: 50%;
+} /*Makes all Colum 3   take up 1/2 of rows space.*/
+.col-4 {
+    width: 66.666%;
+} /*Makes all Colum 4   take up 2/3 of rows space.*/
+.col-6 {
+    width: 100%;
+} /*Is obvious*/
+
+/*===Responsive Design===*/
+
+/*
+
+=== Important Breakpoints (Might be outdated) ===
+
+320     Pixel       iPhone Vertical
+480     Pixel       iPhone Horizontal
+768     Pixel       iPad Vertical
+1024    Pixel       iPad Horizontal
+1200    Pixel       Laptop
+>1200   Pixel       Everything else (Should still be accounted for
+                    because of higher resolution monitors;
+                    Still very broken, need further testing
+
+4K Resolution = 3840x2160
+*/
+
+/*>1200 Should be responsive enough for 4K monitors, requires testing.*/
+/*No need to change at Laptop screen-size.*/
+/*Design if iPad (Horizontal) screen-size is reached.*/
+
+@media (max-width: 1024px) {
+    /*If iPad (H) screen-size is reached*/
+    .col-1 {
+        width: 33.333%;
+    } /*change Colum 1 size to Colum 2 size.*/
+    .col-1-5 {
+        width: 33.333%;
+    } /*same for Colum 1.5*/
+}
+
+/*Design if iPad (Vertical) screen-size is reached*/
+
+@media (max-width: 768px) {
+    /*If iPad (V) screen-size is reached*/
+    .col-1 {
+        width: 100%;
+    } /*change Colum 1   size to Colum 6 size,*/
+    .col-1-5 {
+        width: 100%;
+    } /*change Colum 1.5 size to Colum 6 size,*/
+    .col-2 {
+        width: 100%;
+    } /*change Colum 2   size to Colum 6 size,*/
+    .col-3 {
+        width: 100%;
+    } /*change Colum 3   size to Colum 6 size.*/
+    .col-4 {
+        width: 100%;
+    }
+}
+
+.noDrag {
+    pointer-events: none;
 }
