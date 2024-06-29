@@ -197,6 +197,7 @@ export enum Pages {
 	"ABOUT",
 	"EXAMPLES",
 	"SETTINGS",
+	"HELP",
 }
 
 export enum PopUpTypes {

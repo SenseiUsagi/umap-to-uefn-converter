@@ -7,6 +7,7 @@ import SettingsPage from "./components/pages/settings";
 import NotifyPopUp from "./components/popUp";
 import GlobalStore, { GlobalState } from "./state/globalstate";
 import { Pages } from "./constants";
+import HelpPage from "./components/pages/helpPage";
 
 function App() {
 	const globalState: GlobalState = {
@@ -17,6 +18,7 @@ function App() {
 	const aboutPage = AboutPage();
 	const examplePage = ExamplesPage();
 	const settingsPage = SettingsPage();
+	const helpPage = HelpPage();
 	// TODO: Add a 404 page
 
 	return (
@@ -31,6 +33,8 @@ function App() {
 				? examplePage
 				: globalState.currentPage === Pages.SETTINGS
 				? settingsPage
+				: globalState.currentPage === Pages.HELP
+				? helpPage
 				: "Add 404"}
 			<NotifyPopUp />
 		</>

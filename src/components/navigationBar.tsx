@@ -15,7 +15,7 @@ function NavigationBar() {
 			</MenuItem>
 			<MenuItem as="a" onClick={globalState.changeCurrentPage.bind(null, Pages.ABOUT)}>
 				<Icon name="legal" />
-				About
+				Imprint
 			</MenuItem>
 			<MenuItem as="a" onClick={globalState.changeCurrentPage.bind(null, Pages.EXAMPLES)}>
 				<Icon name="file alternate outline" />
@@ -24,6 +24,10 @@ function NavigationBar() {
 			<MenuItem as="a" onClick={globalState.changeCurrentPage.bind(null, Pages.SETTINGS)}>
 				<Icon name="settings" />
 				Settings
+			</MenuItem>
+			<MenuItem as="a" onClick={globalState.changeCurrentPage.bind(null, Pages.HELP)}>
+				<Icon name="help" />
+				Help
 			</MenuItem>
 			<MenuItem position="right">.umap to UEFN converter</MenuItem>
 			<MenuItem
