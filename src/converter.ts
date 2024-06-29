@@ -363,7 +363,7 @@ export function convertToUEFN(parsedJSON: any[], folderName: string): convertedL
 		fileName: folderName,
 		fileContent: convertedMap,
 		dateCreated: new Date(),
-		warnings: "", // TODO Change this
+		warnings: [""], // TODO Change this
 	};
 }
 

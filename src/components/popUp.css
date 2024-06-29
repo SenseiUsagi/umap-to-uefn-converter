@@ -1,0 +1,22 @@
+.popUpContent {
+	z-index: 9000;
+	right: 0;
+	bottom: 0;
+}
+
+.popUpContent.popUpContentFixed {
+	position: fixed !important;
+}
+
+.popUpContent .popUpTitle {
+	display: inline-block;
+}
+
+.popUpContent .closeButton {
+	float: right;
+	cursor: pointer;
+}
+
+.popUpContent.popUpContentFixed.mobileSize {
+	width: 85%;
+}

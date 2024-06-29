@@ -2,8 +2,9 @@ import React, { useRef, useState } from "react";
 import { Button, ButtonGroup, Form, Header, Icon, Segment, TextArea } from "semantic-ui-react";
 import { Column, Container, Row } from "../gridsystem";
 import { convertToUEFN } from "../../converter";
-import { processJSON } from "../../constants";
+import { PopUpTypes, convertedLevel, processJSON } from "../../constants";
 import GlobalStore, { GlobalState } from "../../state/globalstate";
+import useMobileSize from "../../hooks/useMobileSize";
 
 function ConverterPage() {
 	const [file, setFile] = useState<File>();
@@ -12,15 +13,17 @@ function ConverterPage() {
 
 	const fileRef = useRef(null);
 	const textRef = useRef(null);
+	const isMobileSize = useMobileSize();
 
 	const [textCopied, setTextCopied] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
+	const [lastConvertedMap, setLastConvertedMap] = useState<convertedLevel | null>(null);
 
 	const globalState: GlobalState = {
 		...GlobalStore((state) => state),
 	};
 
-	function handleDragEnter(event: any) {
+	function handleDragEnter(event: React.DragEvent<HTMLDivElement>) {
 		event.preventDefault();
 		event.stopPropagation();
 		setDragging(true);
@@ -35,26 +38,44 @@ function ConverterPage() {
 		}
 	}
 
-	function handleDragOver(event: any) {
+	function handleDragOver(event: React.DragEvent<HTMLDivElement>) {
 		event.preventDefault();
 		event.stopPropagation();
 	}
 
-	function handleDrop(event: any) {
+	function handleDrop(event: React.DragEvent<HTMLDivElement>) {
 		event.preventDefault();
 		event.stopPropagation();
 		setDragging(false);
 
 		if (event.dataTransfer.files && event.dataTransfer.files.length > 0) {
-			setFile(event.dataTransfer.files[0]);
-			event.dataTransfer.clearData();
+			const tempFile = event.dataTransfer.files[0];
+			console.log(tempFile);
+			if (tempFile.type === "application/json") {
+				setFile(event.dataTransfer.files[0]);
+			} else {
+				globalState.openPopUp({
+					title: "Error!",
+					content: "Uploaded file isnt JSON format",
+					type: PopUpTypes.ERROR,
+				});
+			}
 		}
 	}
 
 	function handleChange(event: any) {
 		event.stopPropagation();
 		if (event.target.files && event.target.files.length > 0) {
-			setFile(event.target.files[0]);
+			const tempFile = event.target.files[0];
+			if (tempFile.type === "application/json") {
+				setFile(event.target.files[0]);
+			} else {
+				globalState.openPopUp({
+					title: "Error!",
+					content: "Uploaded file isnt JSON format",
+					type: PopUpTypes.ERROR,
+				});
+			}
 		}
 	}
 
@@ -71,10 +92,31 @@ function ConverterPage() {
 					? globalState.currentSettings.customFolderName
 					: file.name.split(".")[0];
 
-			const convertedLevel = convertToUEFN(processJSON(rawJson), folderName);
+			let convertedLevel: convertedLevel | undefined;
 
-			setIsLoading(false);
-			globalState.setLastConvertedFile(convertedLevel);
+			try {
+				convertedLevel = convertToUEFN(processJSON(rawJson), folderName);
+				if (convertedLevel.fileContent.length > 4718592) {
+					setLastConvertedMap(convertedLevel);
+					globalState.openPopUp({
+						title: "Warning!",
+						content:
+							"Converted Level is bigger than 10MB! If the map doesnt show up please refresh the page",
+						type: PopUpTypes.WARNING,
+					});
+				} else {
+					globalState.setLastConvertedFile(convertedLevel);
+				}
+				setIsLoading(false);
+			} catch (error) {
+				console.error(error);
+				globalState.openPopUp({
+					title: "Error!",
+					content: `${error}`,
+					type: PopUpTypes.ERROR,
+				});
+				setIsLoading(false);
+			}
 		}
 	}
 
@@ -83,6 +125,42 @@ function ConverterPage() {
 			navigator.clipboard.writeText(globalState.lastConvertedFile.fileContent);
 			setTextCopied(true);
 			setTimeout(() => setTextCopied(false), 3000);
+		} else if (lastConvertedMap) {
+			navigator.clipboard.writeText(lastConvertedMap.fileContent);
+			setTextCopied(true);
+			setTimeout(() => setTextCopied(false), 3000);
+		}
+	}
+
+	function handleDownload() {
+		if (globalState.lastConvertedFile) {
+			const blob = new Blob([globalState.lastConvertedFile.fileContent], {
+				type: "text/plain",
+			});
+			const url = URL.createObjectURL(blob);
+
+			const a = document.createElement("a");
+			a.href = url;
+			a.download = `${globalState.lastConvertedFile.fileName}.txt`;
+			document.body.appendChild(a);
+			a.click();
+
+			document.body.removeChild(a);
+			URL.revokeObjectURL(url);
+		} else if (lastConvertedMap) {
+			const blob = new Blob([lastConvertedMap.fileContent], {
+				type: "text/plain",
+			});
+			const url = URL.createObjectURL(blob);
+
+			const a = document.createElement("a");
+			a.href = url;
+			a.download = `${lastConvertedMap.fileName}.txt`;
+			document.body.appendChild(a);
+			a.click();
+
+			document.body.removeChild(a);
+			URL.revokeObjectURL(url);
 		}
 	}
 
@@ -114,7 +192,8 @@ function ConverterPage() {
 							<a href="https://itsnik.de/" target="_blank" rel="noopener noreferrer">
 								ItsNik
 							</a>
-							<a href="https://google.com/" target="_blank" rel="noopener noreferrer">
+							{/* TODO: Ask him what link he wanted here */}
+							<a href="https://itsnik.de/" target="_blank" rel="noopener noreferrer">
 								&#128011;
 							</a>
 						</Header>
@@ -176,22 +255,28 @@ function ConverterPage() {
 				</Column>
 			</Row>
 			<Row>
-				<Column size={6}>
+				<Column size={2}>
 					<Segment raised textAlign="center">
 						<Button
 							primary
-							disabled={typeof globalState.lastConvertedFile === "undefined"}
-							onClick={handleCopyClipboard}
-							loading={
-								typeof globalState.lastConvertedFile !== "undefined" && isLoading
+							disabled={
+								typeof globalState.lastConvertedFile === "undefined" &&
+								lastConvertedMap === null
 							}
+							onClick={handleCopyClipboard}
+							loading={isLoading}
 							size="big"
 							icon
 							labelPosition="right"
+							fluid
 						>
-							Copy to clipboard
+							{textCopied ? "Copied!" : "Copy to clipboard"}
 							<Icon name="copy" />
 						</Button>
+					</Segment>
+				</Column>
+				<Column size={2}>
+					<Segment raised textAlign="center">
 						<Button
 							primary
 							disabled={!file}
@@ -200,20 +285,27 @@ function ConverterPage() {
 							size="big"
 							icon
 							labelPosition="right"
+							fluid
 						>
 							Convert to UEFN format
 							<Icon name="code" />
 						</Button>
+					</Segment>
+				</Column>
+				<Column size={2}>
+					<Segment raised textAlign="center">
 						<Button
 							primary
-							disabled={typeof globalState.lastConvertedFile === "undefined"}
-							onClick={() => {}}
-							loading={
-								typeof globalState.lastConvertedFile !== "undefined" && isLoading
+							disabled={
+								typeof globalState.lastConvertedFile === "undefined" &&
+								lastConvertedMap === null
 							}
+							onClick={handleDownload}
+							loading={isLoading}
 							size="big"
 							icon
 							labelPosition="right"
+							fluid
 						>
 							Download .txt file
 							<Icon name="download" />
@@ -228,7 +320,11 @@ function ConverterPage() {
 							<TextArea
 								readOnly
 								placeholder="Copy the resulting text into UEFN"
-								value={globalState.lastConvertedFile?.fileContent}
+								value={
+									globalState.lastConvertedFile !== undefined
+										? globalState.lastConvertedFile.fileContent
+										: lastConvertedMap?.fileContent
+								}
 								rows={25}
 								ref={textRef}
 							/>

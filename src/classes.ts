@@ -1,4 +1,12 @@
-import { tabIndent, ObjectData, LODObj, UEFNLabelStrings, editorObject } from "./constants";
+import {
+	tabIndent,
+	ObjectData,
+	LODObj,
+	UEFNLabelStrings,
+	editorObject,
+	PopUpTypes,
+	rgbaToHex,
+} from "./constants";
 import GlobalStore, { GlobalState } from "./state/globalstate";
 
 export class RelativeLocation {
@@ -177,22 +185,43 @@ export class LODData {
 			if (element.OverrideVertexColors !== undefined) {
 				const numVertices: number = element.OverrideVertexColors.NumVertices;
 				let colorData: string = "";
-				if (typeof element.OverrideVertexColors.Data[0] === "string") {
-					element.OverrideVertexColors.Data.forEach((color, colorIndex) => {
-						colorData += `${color}${
-							colorIndex !== element.OverrideVertexColors!.Data.length - 1 ? "," : ""
-						}`;
-					});
+				if (typeof element.OverrideVertexColors.Data !== "undefined") {
+					if (typeof element.OverrideVertexColors.Data[0] === "string") {
+						element.OverrideVertexColors.Data.forEach((color, colorIndex) => {
+							colorData += `${color}${
+								colorIndex !== element.OverrideVertexColors!.Data.length - 1
+									? ","
+									: ""
+							}`;
+						});
 
-					tempLodData += `${tabIndent(
-						4
-					)}CustomProperties CustomLODData LOD=${index} ColorVertexData(${numVertices})=(${colorData})\n`;
-				} else if (typeof element.OverrideVertexColors.Data === "object") {
-					// TODO: Implement code here for FModels other vertex data
+						tempLodData += `${tabIndent(
+							4
+						)}CustomProperties CustomLODData LOD=${index} ColorVertexData(${numVertices})=(${colorData})\n`;
+					} else if (typeof element.OverrideVertexColors.Data[0] === "object") {
+						element.OverrideVertexColors.Data.forEach((color, colorIndex) => {
+							if (typeof color === "object") {
+								if (typeof color.Hex === "string") {
+									colorData += `${color.Hex}${
+										colorIndex !== element.OverrideVertexColors!.Data.length - 1
+											? ","
+											: ""
+									}`;
+								} else {
+									colorData += `${rgbaToHex(color.R, color.G, color.B, color.A)}${
+										colorIndex !== element.OverrideVertexColors!.Data.length - 1
+											? ","
+											: ""
+									}`;
+								}
+
+								tempLodData += `${tabIndent(
+									4
+								)}CustomProperties CustomLODData LOD=${index} ColorVertexData(${numVertices})=(${colorData})\n`;
+							}
+						});
+					}
 				}
-			} else {
-				// TODO: Add warning here so users knows meshes wont be painted
-				return "";
 			}
 		});
 
@@ -219,6 +248,10 @@ export class TextureData {
 				throw Error("Texture Index Out of bounds", {
 					cause: "Texture Index is greater than 3 or smaller than 0. Programming error",
 				});
+			}
+
+			if (element === null) {
+				continue;
 			}
 
 			let tempName = element.ObjectName.split("'")[1] + "'";

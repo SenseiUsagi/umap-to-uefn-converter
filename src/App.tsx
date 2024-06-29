@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import { Icon, Menu, MenuItem } from "semantic-ui-react";
-import { Column, Container, Row } from "./components/gridsystem";
+import React from "react";
 import NavigationBar from "./components/navigationBar";
 import ConverterPage from "./components/pages/converterPage";
 import AboutPage from "./components/pages/aboutPage";
 import ExamplesPage from "./components/pages/examplesPage";
 import SettingsPage from "./components/pages/settings";
+import NotifyPopUp from "./components/popUp";
 import GlobalStore, { GlobalState } from "./state/globalstate";
 import { Pages } from "./constants";
 
@@ -33,6 +32,7 @@ function App() {
 				: globalState.currentPage === Pages.SETTINGS
 				? settingsPage
 				: "Add 404"}
+			<NotifyPopUp />
 		</>
 	);
 }
