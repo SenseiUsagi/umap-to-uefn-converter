@@ -1,4 +1,15 @@
 import { ReactNode } from "react";
+import {
+	LODData,
+	OverrideMaterials,
+	RelativeLocation,
+	RelativeRotation,
+	RelativeScale,
+	ResourceType,
+	Sound,
+	StaticMesh,
+	TextureData,
+} from "./classes";
 // ===== General =====
 
 export function tabIndent(amount: number): string {
@@ -43,7 +54,10 @@ export const UEFNLabelStrings = {
 	beginMap: "Begin Map\n",
 	beginLevel: `${tabIndent(1)}Begin Level\n\n`,
 	beginActor: (objPath: string) => `${tabIndent(2)}Begin Actor Class="${objPath}"\n`,
-	beginObject: `${tabIndent(3)}Begin Object Name="StaticMeshComponent0"\n`,
+	beginObject: (name: string | undefined) =>
+		`${tabIndent(3)}Begin Object Name="${
+			name !== undefined ? name : "StaticMeshComponent0"
+		}"\n`,
 	staticMesh: (meshPathName: string) =>
 		`${tabIndent(4)}StaticMesh="/Script/Engine.StaticMesh'${meshPathName}"\n`,
 	endObject: `${tabIndent(3)}End Object\n`,
@@ -60,6 +74,9 @@ export const UEFNLabelStrings = {
 	endLevel: `${tabIndent(1)}End Level\n\n`,
 	surface: "Begin Surface\nEnd Surface\n",
 	endMap: "End Map\n\n",
+	resourceType: (type: string) => `${tabIndent(3)}ResourceType=${type}\n`,
+	sound: (path: string) => `${tabIndent(4)}Sound="/Script/Engine.SoundCue'${path}\n`,
+	customMaterial: `${tabIndent(3)}bAllowCustomMaterial=False\n`,
 };
 
 export function processJSON(rawJson: string): unknown[] {
@@ -140,10 +157,24 @@ export interface settings {
 	};
 }
 
+export interface editorObject {
+	actorLabel: string;
+	folderPath: string;
+	staticMesh: StaticMesh | null;
+	overrideMaterials: OverrideMaterials | null;
+	relativeLocation: RelativeLocation | null;
+	relativeRotation: RelativeRotation | null;
+	relativeScale: RelativeScale | null;
+	textureData: TextureData | null;
+	lodData: LODData | null;
+	resourceType: ResourceType | null;
+	sound: Sound | null;
+}
+
 export const defaultSettings: settings = {
 	exportOnlyTerrain: false,
 	exportNoTerrain: false,
-	tryToAutoFixTextureData: false,
+	tryToAutoFixTextureData: true,
 	customFolderName: "",
 	usePortedModels: false,
 	overrideBiome: {
