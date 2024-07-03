@@ -1,3 +1,5 @@
+[![.github/workflows/deploy.yml](https://github.com/SenseiUsagi/umap-to-uefn-converter/actions/workflows/deploy.yml/badge.svg)](https://github.com/SenseiUsagi/umap-to-uefn-converter/actions/workflows/deploy.yml)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
