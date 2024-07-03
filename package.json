@@ -2,7 +2,7 @@
 	"name": "umap-converter",
 	"version": "0.1.0",
 	"private": true,
-	"homepage": "https://senseiusagi.github.io/umap-to-uefn",
+	"homepage": "senseiusagi.github.io/umap-to-uefn-converter",
 	"dependencies": {
 		"@types/node": "^20.14.9",
 		"@types/react": "^18.3.3",
