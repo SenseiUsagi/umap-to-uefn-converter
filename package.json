@@ -2,6 +2,7 @@
     "name": "umap-converter",
     "version": "0.1.0",
     "private": true,
+    "homepage": "https://senseiusagi.github.io/umap-to-uefn"
     "dependencies": {
         "@types/node": "^20.14.9",
         "@types/react": "^18.3.3",
@@ -20,6 +21,8 @@
         "build:start": "cd dist && PORT=8080 npx serve",
         "start": "webpack serve --open --mode development",
         "start:live": "webpack serve --open --mode development --live-reload --hot"
+}
+
     },
     "eslintConfig": {
         "extends": [
