@@ -8,6 +8,7 @@ import {
 	settings,
 	voidFunciton,
 } from "../constants";
+import { json } from "stream/consumers";
 
 interface setFile {
 	(file: File): void;
@@ -52,16 +53,18 @@ export interface GlobalState {
 }
 
 const store = () => {
-	if (typeof window !== undefined) {
-		window.sessionStorage.removeItem("globalState");
-	}
+	window.sessionStorage.removeItem("globalState");
+	const saveSettings: settings | undefined =
+		window.localStorage.getItem("uefnConverterSettings") != null
+			? JSON.parse(window.localStorage.getItem("uefnConverterSettings")!)
+			: undefined;
 
 	return create<GlobalState>()(
 		persist(
 			(set) => ({
 				uploadedFile: undefined,
 				lastConvertedFile: undefined,
-				currentSettings: defaultSettings,
+				currentSettings: saveSettings == undefined ? defaultSettings : saveSettings,
 				currentPage: Pages.CONVERTER,
 				popUp: {
 					title: null,
@@ -93,6 +96,10 @@ const store = () => {
 				},
 				changeSettings: (updatedSetting) => {
 					set(() => {
+						window.localStorage.setItem(
+							"uefnConverterSettings",
+							JSON.stringify(updatedSetting)
+						);
 						return {
 							currentSettings: updatedSetting,
 						};

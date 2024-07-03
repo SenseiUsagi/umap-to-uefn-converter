@@ -1,8 +1,135 @@
 import React from "react";
-import { Segment } from "semantic-ui-react";
+import { Checkbox, Header, Input, Segment } from "semantic-ui-react";
+import GlobalStore, { GlobalState } from "../../state/globalstate";
+import { Column, Container, Row } from "../gridsystem";
 
 function SettingsPage() {
-	return <Segment>settings goes here</Segment>;
+	const globalState: GlobalState = {
+		...GlobalStore((state) => state),
+	};
+	return (
+		<Container>
+			<Row>
+				<Column size={6}>
+					<Segment raised padded="very" textAlign="center">
+						<Header size="huge">Settings</Header>
+					</Segment>
+				</Column>
+			</Row>
+			<Row>
+				<Column size={2}>
+					<Segment raised textAlign="center">
+						<div style={{ height: "15rem" }}>
+							<Header size="medium">Export only terrain</Header>
+							<Header size="small">Only export the terrain of a json file</Header>
+							<Checkbox
+								toggle
+								onChange={() => {
+									globalState.changeSettings({
+										...globalState.currentSettings,
+										exportOnlyTerrain:
+											!globalState.currentSettings.exportOnlyTerrain,
+										exportNoTerrain:
+											!globalState.currentSettings.exportNoTerrain,
+									});
+								}}
+								checked={globalState.currentSettings.exportOnlyTerrain}
+							/>
+						</div>
+					</Segment>
+				</Column>
+				<Column size={2}>
+					<Segment raised textAlign="center">
+						<div style={{ height: "15rem" }}>
+							<Header size="medium">Export only buildings</Header>
+							<Header size="small">Only export the buildings of a json file</Header>
+							<Checkbox
+								toggle
+								onChange={() => {
+									globalState.changeSettings({
+										...globalState.currentSettings,
+										exportNoTerrain:
+											!globalState.currentSettings.exportNoTerrain,
+										exportOnlyTerrain:
+											!globalState.currentSettings.exportOnlyTerrain,
+									});
+								}}
+								checked={globalState.currentSettings.exportNoTerrain}
+							/>
+						</div>
+					</Segment>
+				</Column>
+				<Column size={2}>
+					<Segment raised textAlign="center">
+						<div style={{ height: "15rem" }}>
+							<Header size="medium">Try to autofix broken texture data</Header>
+							<Header size="small">
+								Over the time the path for texture data has changed. This setting
+								will try to automatically fix the path for the newest version
+							</Header>
+							<Checkbox
+								toggle
+								onChange={() => {
+									globalState.changeSettings({
+										...globalState.currentSettings,
+										tryToAutoFixTextureData:
+											!globalState.currentSettings.tryToAutoFixTextureData,
+									});
+								}}
+								checked={globalState.currentSettings.tryToAutoFixTextureData}
+							/>
+						</div>
+					</Segment>
+				</Column>
+				{/* TODO: Fix folder name not saving in local storage */}
+				{/* <Column size={1.5}>
+					<Segment raised textAlign="center">
+						<div style={{ height: "15rem" }}>
+							<Header size="medium">Custom Folder name</Header>
+							<Header size="small">
+								The converted actors are automatically placed inside a folder
+								(usually the file name of the json). Here you can provide a custom
+								folder name.
+							</Header>
+							<Input
+								type="text"
+								placeholder="Default is filename"
+								value={globalState.currentSettings.customFolderName}
+								onChange={(event: any) => {
+									globalState.changeSettings({
+										...globalState.currentSettings,
+										customFolderName: event.value,
+									});
+								}}
+							/>
+						</div>
+					</Segment>
+				</Column> */}
+			</Row>
+			<Row>
+				<Column size={6}>
+					<Segment raised padded="very" textAlign="center">
+						<Header size="large">
+							Use recreated terrain instead of the one from the game (Coming soon)
+						</Header>
+						<Header size="medium">
+							This option tries to use the terrain models I have ported to UEFN
+							instead of the ones from the game. You can find them{" "}
+							<a
+								href="https://drive.google.com/file/d/1KAaowKJp-TpYEk4j0GPjBfEWraAf1sL9/view?usp=drive_link"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								here
+							</a>
+							.
+						</Header>
+						<Checkbox disabled toggle />
+					</Segment>
+				</Column>
+			</Row>
+		</Container>
+	);
 }
 
 export default SettingsPage;

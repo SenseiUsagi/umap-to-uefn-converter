@@ -4,7 +4,6 @@ import {
 	LODObj,
 	UEFNLabelStrings,
 	editorObject,
-	PopUpTypes,
 	rgbaToHex,
 } from "./constants";
 import GlobalStore, { GlobalState } from "./state/globalstate";
@@ -106,10 +105,22 @@ export class StaticMesh {
 	}
 
 	convertToUEFN(): string {
+		const globalState: GlobalState = GlobalStore.getState();
 		let tempMeshName: string = "";
 
 		if (!this.MeshData) {
 			return "";
+		}
+
+		if (globalState.currentSettings.exportNoTerrain) {
+			if (
+				this.MeshData.ObjectPath.includes("DS_Fortnite_Terrain_NoLOD") ||
+				this.MeshData.ObjectPath.includes("Environments/World/Sidewalks") ||
+				this.MeshData.ObjectPath.includes("S_Road") ||
+				this.MeshData.ObjectPath.includes("S_Asphalt")
+			) {
+				return "";
+			}
 		}
 
 		if (this.MeshData.ObjectName.includes("StaticMesh'")) {

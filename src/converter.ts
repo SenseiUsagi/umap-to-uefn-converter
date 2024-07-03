@@ -12,6 +12,7 @@ import {
 	UEFNObject,
 } from "./classes";
 import { ObjectData, UEFNLabelStrings, convertedLevel } from "./constants";
+import GlobalStore, { GlobalState } from "./state/globalstate";
 
 export function convertToUEFN(parsedJSON: any[], folderName: string): convertedLevel {
 	let convertedMap: string = UEFNLabelStrings.beginMap + UEFNLabelStrings.beginLevel;
@@ -19,6 +20,7 @@ export function convertToUEFN(parsedJSON: any[], folderName: string): convertedL
 	const alreadyProcessed: string[] = [];
 
 	parsedJSON.forEach((element) => {
+		const globalState: GlobalState = GlobalStore.getState();
 		let convertedActor: string = "";
 
 		const objName: string = element.Name;
@@ -148,6 +150,16 @@ export function convertToUEFN(parsedJSON: any[], folderName: string): convertedL
 
 			if (location !== undefined) {
 				if (template !== undefined) {
+					if (globalState.currentSettings.exportOnlyTerrain) {
+						if (
+							!template.ObjData.ObjectPath.includes("DS_Fortnite_Terrain_NoLOD") &&
+							!template.ObjData.ObjectPath.includes("Environments/World/Sidewalks") &&
+							!template.ObjData.ObjectPath.includes("S_Road") &&
+							!template.ObjData.ObjectPath.includes("S_Asphalt")
+						) {
+							return;
+						}
+					}
 					convertedActor += template.convertToUEFN(typeof staticMesh !== "undefined");
 				} else if (staticMesh !== undefined) {
 					convertedActor += new Template(staticMesh.MeshData).convertToUEFN(true);
@@ -278,6 +290,16 @@ export function convertToUEFN(parsedJSON: any[], folderName: string): convertedL
 					}
 				}
 				if (template !== undefined) {
+					if (globalState.currentSettings.exportOnlyTerrain) {
+						if (
+							!template.ObjData.ObjectPath.includes("DS_Fortnite_Terrain_NoLOD") &&
+							!template.ObjData.ObjectPath.includes("Environments/World/Sidewalks") &&
+							!template.ObjData.ObjectPath.includes("S_Road") &&
+							!template.ObjData.ObjectPath.includes("S_Asphalt")
+						) {
+							return;
+						}
+					}
 					if (!startedActor) {
 						convertedActor += template.convertToUEFN(typeof staticMesh !== "undefined");
 						startedActor = true;

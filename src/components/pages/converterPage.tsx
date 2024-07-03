@@ -188,13 +188,18 @@ function ConverterPage() {
 							</a>
 						</Header>
 						<Header size="tiny">
-							Hosted By:{" "}
+							Workflow By:{" "}
 							<a href="https://itsnik.de/" target="_blank" rel="noopener noreferrer">
-								ItsNik
+								ItsNik &#128011;
 							</a>
-							{/* TODO: Ask him what link he wanted here */}
-							<a href="https://itsnik.de/" target="_blank" rel="noopener noreferrer">
-								&#128011;
+						</Header>
+						<Header size="tiny">
+							<a
+								href="https://github.com/SenseiUsagi/umap-to-uefn-converter/blob/main/LICENSE"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								License
 							</a>
 						</Header>
 					</Segment>

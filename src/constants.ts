@@ -177,7 +177,7 @@ export interface voidFunciton {
 export const defaultSettings: settings = {
 	exportOnlyTerrain: false,
 	exportNoTerrain: false,
-	tryToAutoFixTextureData: true,
+	tryToAutoFixTextureData: false,
 	customFolderName: "",
 	usePortedModels: false,
 	overrideBiome: {
