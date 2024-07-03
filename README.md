@@ -1,4 +1,4 @@
-[![.github/workflows/deploy.yml](https://github.com/SenseiUsagi/umap-to-uefn-converter/actions/workflows/deploy.yml/badge.svg)](https://github.com/SenseiUsagi/umap-to-uefn-converter/actions/workflows/deploy.yml)
+[![.github/workflows/deploy.yml](https://github.com/SenseiUsagi/umap-to-uefn-converter/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/SenseiUsagi/umap-to-uefn-converter/actions/workflows/deploy.yml)
 
 [Visit](https://senseiusagi.github.io/umap-to-uefn-converter/)
 
