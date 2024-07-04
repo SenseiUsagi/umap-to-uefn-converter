@@ -9,11 +9,13 @@ module.exports = {
     mode: "development",
     devServer: {
         port: 3000,
+        historyApiFallback: true,
     },
     output: {
         filename: "[name].[contenthash].js",
         path: path.resolve(__dirname, "dist"),
         clean: true,
+        publicPath: "/",
     },
     resolve: {
         extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
