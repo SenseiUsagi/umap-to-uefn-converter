@@ -117,7 +117,8 @@ export class StaticMesh {
 				this.MeshData.ObjectPath.includes("DS_Fortnite_Terrain_NoLOD") ||
 				this.MeshData.ObjectPath.includes("Environments/World/Sidewalks") ||
 				this.MeshData.ObjectPath.includes("S_Road") ||
-				this.MeshData.ObjectPath.includes("S_Asphalt")
+				this.MeshData.ObjectPath.includes("S_Asphalt") ||
+				this.MeshData.ObjectPath.includes("S_Small_Street")
 			) {
 				return "";
 			}
