@@ -158,6 +158,7 @@ export interface settings {
     tryToAutoFixTextureData: boolean;
     customFolderName: string;
     usePortedModels: boolean;
+    darkMode: boolean;
     overrideBiome: {
         ad: boolean;
         volcano: boolean;
@@ -194,6 +195,7 @@ export const defaultSettings: settings = {
     tryToAutoFixTextureData: false,
     customFolderName: "",
     usePortedModels: false,
+    darkMode: false,
     overrideBiome: {
         ad: false,
         volcano: false,
