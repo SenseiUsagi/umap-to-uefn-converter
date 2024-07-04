@@ -150,7 +150,7 @@ function SettingsPage() {
                             <Header size="medium">
                                 This option tries to use the terrain models I
                                 have ported to UEFN instead of the ones from the
-                                game. You can find them{" "}
+                                game. You can find the recreated terrain{" "}
                                 <a
                                     href="https://drive.google.com/file/d/1KAaowKJp-TpYEk4j0GPjBfEWraAf1sL9/view?usp=drive_link"
                                     target="_blank"
