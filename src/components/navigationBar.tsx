@@ -9,7 +9,7 @@ function NavigationBar() {
     return (
         <>
             <Menu fixed="top" inverted size="huge" borderless>
-                <MenuItem as={Link} to="umap-to-uefn-converter">
+                <MenuItem as={Link} to="/">
                     <Icon name="file code outline" />
                     Converter
                 </MenuItem>
