@@ -23,11 +23,11 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage />,
         children: [
             {
-                path: "umap-to-uefn-converter/",
+                path: "",
                 element: <ConverterPage />,
             },
             {
-                path: "umap-to-uefn-converter/settings",
+                path: "settings",
                 element: <SettingsPage />,
             },
             {
