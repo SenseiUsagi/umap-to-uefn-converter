@@ -13,19 +13,19 @@ function NavigationBar() {
                     <Icon name="file code outline" />
                     Converter
                 </MenuItem>
-                <MenuItem as={Link} to="/imprint">
+                <MenuItem as={Link} to="umap-to-uefn-converter/imprint">
                     <Icon name="legal" />
                     Imprint
                 </MenuItem>
-                <MenuItem as={Link} to="/examples">
+                <MenuItem as={Link} to="umap-to-uefn-converter/examples">
                     <Icon name="file alternate outline" />
                     Examples
                 </MenuItem>
-                <MenuItem as={Link} to="/settings">
+                <MenuItem as={Link} to="umap-to-uefn-converter/settings">
                     <Icon name="settings" />
                     Settings
                 </MenuItem>
-                <MenuItem as={Link} to="/help">
+                <MenuItem as={Link} to="umap-to-uefn-converter/help">
                     <Icon name="help" />
                     Help
                 </MenuItem>

@@ -27,15 +27,15 @@ const router = createBrowserRouter([
                 element: <ConverterPage />,
             },
             {
-                path: "settings",
+                path: "umap-to-uefn-converter/settings",
                 element: <SettingsPage />,
             },
             {
-                path: "umap-to-uefn-converter/help",
+                path: "help",
                 element: <HelpPage />,
             },
             {
-                path: "umap-to-uefn-converter/imprint",
+                path: "imprint",
                 element: <AboutPage />,
             },
             {
