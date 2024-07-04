@@ -66,6 +66,14 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: "./public/index.html",
         }),
+        new HtmlWebpackPlugin({
+            template: "public/index.html",
+            filename: "404.html",
+            meta: {
+                "http-equiv": "refresh",
+                content: "0; url=./index.html",
+            },
+        }),
     ],
     optimization: {
         runtimeChunk: "single",

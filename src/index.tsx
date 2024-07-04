@@ -16,35 +16,38 @@ const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
 );
 
-const router = createBrowserRouter([
-    {
-        path: "umap-to-uefn-converter/",
-        element: <Layout />,
-        errorElement: <ErrorPage />,
-        children: [
-            {
-                path: "",
-                element: <ConverterPage />,
-            },
-            {
-                path: "settings",
-                element: <SettingsPage />,
-            },
-            {
-                path: "help",
-                element: <HelpPage />,
-            },
-            {
-                path: "imprint",
-                element: <AboutPage />,
-            },
-            {
-                path: "examples",
-                element: <ExamplesPage />,
-            },
-        ],
-    },
-]);
+const router = createBrowserRouter(
+    [
+        {
+            path: "/",
+            element: <Layout />,
+            errorElement: <ErrorPage />,
+            children: [
+                {
+                    path: "",
+                    element: <ConverterPage />,
+                },
+                {
+                    path: "settings",
+                    element: <SettingsPage />,
+                },
+                {
+                    path: "help",
+                    element: <HelpPage />,
+                },
+                {
+                    path: "imprint",
+                    element: <AboutPage />,
+                },
+                {
+                    path: "examples",
+                    element: <ExamplesPage />,
+                },
+            ],
+        },
+    ],
+    { basename: "/umap-to-uefn-converter" }
+);
 
 root.render(
     <React.StrictMode>
