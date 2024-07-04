@@ -156,7 +156,7 @@ export function convertToUEFN(parsedJSON: any[], folderName: string): convertedL
 							!template.ObjData.ObjectPath.includes("Environments/World/Sidewalks") &&
 							!template.ObjData.ObjectPath.includes("S_Road") &&
 							!template.ObjData.ObjectPath.includes("S_Asphalt") &&
-							!template.ObjData.ObjectPath.includes("S_Small_Street")
+							!template.ObjData.ObjectPath.includes("S_SmallStreet")
 						) {
 							return;
 						}
@@ -297,7 +297,7 @@ export function convertToUEFN(parsedJSON: any[], folderName: string): convertedL
 							!template.ObjData.ObjectPath.includes("Environments/World/Sidewalks") &&
 							!template.ObjData.ObjectPath.includes("S_Road") &&
 							!template.ObjData.ObjectPath.includes("S_Asphalt") &&
-							!template.ObjData.ObjectPath.includes("S_Small_Street")
+							!template.ObjData.ObjectPath.includes("S_SmallStreet")
 						) {
 							return;
 						}
