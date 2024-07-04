@@ -18,28 +18,28 @@ const root = ReactDOM.createRoot(
 
 const router = createBrowserRouter([
     {
-        path: "umap-to-uefn-converter/",
+        path: "/umap-to-uefn-converter/",
         element: <Layout />,
         errorElement: <ErrorPage />,
         children: [
             {
-                path: "",
+                path: "umap-to-uefn-converter/",
                 element: <ConverterPage />,
             },
             {
-                path: "settings",
+                path: "umap-to-uefn-converter/settings",
                 element: <SettingsPage />,
             },
             {
-                path: "help",
+                path: "umap-to-uefn-converter/help",
                 element: <HelpPage />,
             },
             {
-                path: "imprint",
+                path: "umap-to-uefn-converter/imprint",
                 element: <AboutPage />,
             },
             {
-                path: "examples",
+                path: "umap-to-uefn-converter/examples",
                 element: <ExamplesPage />,
             },
         ],
