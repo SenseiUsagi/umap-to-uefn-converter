@@ -12,7 +12,6 @@ import { convertToUEFN } from "../converter";
 import { PopUpTypes, convertedLevel, processJSON } from "../constants";
 import GlobalStore, { GlobalState } from "../state/globalstate";
 import useMobileSize from "../hooks/useMobileSize";
-import NavigationBar from "../components/navigationBar";
 
 function ConverterPage() {
     const [file, setFile] = useState<File>();
@@ -196,7 +195,6 @@ function ConverterPage() {
 
     return (
         <>
-            <NavigationBar />
             <div style={{ minHeight: "2.85714286em" }}></div>
             <Container>
                 <Row>
@@ -212,7 +210,11 @@ function ConverterPage() {
                             <div style={{ height: "7.5rem" }}>
                                 <Header size="huge">
                                     You have converted a total of{" "}
-                                    {globalState.totalFilesConverted} files!
+                                    {globalState.totalFilesConverted} file
+                                    {globalState.totalFilesConverted !== 1
+                                        ? "s"
+                                        : ""}
+                                    !
                                 </Header>
                             </div>
                         </Segment>

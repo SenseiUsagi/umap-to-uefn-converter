@@ -1,9 +1,7 @@
 import React from "react";
-import { Checkbox, Header, Input, Segment } from "semantic-ui-react";
+import { Checkbox, Header, Segment } from "semantic-ui-react";
 import GlobalStore, { GlobalState } from "../state/globalstate";
 import { Column, Container, Row } from "../components/gridsystem";
-import NavigationBar from "../components/navigationBar";
-import { Outlet } from "react-router-dom";
 
 function SettingsPage() {
     const globalState: GlobalState = {
@@ -11,7 +9,6 @@ function SettingsPage() {
     };
     return (
         <>
-            <NavigationBar />
             <div style={{ minHeight: "2.85714286em" }}></div>
 
             <Container>

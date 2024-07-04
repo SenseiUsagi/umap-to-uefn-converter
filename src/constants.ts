@@ -23,7 +23,6 @@ export function tabIndent(amount: number): string {
     return indents;
 }
 
-// TODO: Change this to actually use the model from FModel
 export function rgbaToHex(r: number, g: number, b: number, a: number): string {
     // Ensure each component is within the valid range
     if (
@@ -151,7 +150,6 @@ export interface convertedLevel {
     fileName: string;
     dateCreated: Date;
     fileContent: string;
-    warnings: string[];
 }
 
 export interface settings {

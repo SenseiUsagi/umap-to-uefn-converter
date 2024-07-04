@@ -1,12 +1,10 @@
 import React from "react";
 import { Header, Segment } from "semantic-ui-react";
 import { Column, Container, Row } from "../components/gridsystem";
-import NavigationBar from "../components/navigationBar";
 
 function AboutPage() {
     return (
         <>
-            <NavigationBar />
             <div style={{ minHeight: "2.85714286em" }}></div>
             <Container>
                 <Row>

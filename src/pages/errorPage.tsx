@@ -19,24 +19,28 @@ export default function ErrorPage() {
                         </Segment>
                     </Column>
                 </Row>
-                <Row>
-                    <Column size={6}>
-                        <Segment raised textAlign="center">
-                            <Header size="medium">
-                                Please do a screenshot of this page an create an
-                                issue on{" "}
-                                <a
-                                    href="https://github.com/SenseiUsagi/umap-to-uefn-converter/issues"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    Github.
-                                </a>
-                                (unless its just "Not Found")
-                            </Header>
-                        </Segment>
-                    </Column>
-                </Row>
+                {error.status !== 404 && (
+                    <Row>
+                        <Column size={6}>
+                            <Segment raised textAlign="center">
+                                <Header size="medium">
+                                    Please do a screenshot of this page an
+                                    create an issue on{" "}
+                                    <a
+                                        href="https://github.com/SenseiUsagi/umap-to-uefn-converter/issues"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        Github.
+                                    </a>{" "}
+                                    <br />
+                                    Please also provide details on how you got
+                                    the error
+                                </Header>
+                            </Segment>
+                        </Column>
+                    </Row>
+                )}
                 <Row>
                     <Column size={6}>
                         <Segment raised>

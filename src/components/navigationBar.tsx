@@ -1,15 +1,10 @@
 import React from "react";
 import { Icon, Menu, MenuItem } from "semantic-ui-react";
-import GlobalStore, { GlobalState } from "../state/globalstate";
-import useMobileSize from "../hooks/useMobileSize";
 import { Link, Outlet } from "react-router-dom";
+import useTabletSize from "../hooks/useTabletSize";
 
 function NavigationBar() {
-    const globalState: GlobalState = {
-        ...GlobalStore((state) => state),
-    };
-
-    const isMobileSize = useMobileSize();
+    const isTabletSize = useTabletSize();
 
     return (
         <>
@@ -34,21 +29,16 @@ function NavigationBar() {
                     <Icon name="help" />
                     Help
                 </MenuItem>
-                {/* TODO: Change this to use tablet size instead */}
-                {!isMobileSize && (
-                    <>
-                        <MenuItem position="right">
-                            .umap to UEFN converter
-                        </MenuItem>
-                        <MenuItem
-                            as="a"
-                            href="https://www.youtube.com/channel/UCbM-2vwIRZHfOxhVNU75bCQ"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            Created by: Sensei Usagi
-                        </MenuItem>
-                    </>
+                {!isTabletSize && (
+                    <MenuItem
+                        position="right"
+                        as="a"
+                        href="https://www.youtube.com/channel/UCbM-2vwIRZHfOxhVNU75bCQ"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Created by: Sensei Usagi
+                    </MenuItem>
                 )}
             </Menu>
             <Outlet />
