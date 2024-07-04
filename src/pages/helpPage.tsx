@@ -111,9 +111,18 @@ function HelpPage() {
 							<Header size="medium">
 								Your FModel doesnt export Vertex-Color-Data. I have a tutorial on
 								how you can modify FModel to export that data <a>here</a>, or you
-								use an already modified version <a>here</a>. <br /> (Note when using
-								the already modified one, it will be outdated. Also dont update it
-								if it asks you to update it)
+								use an already modified version{" "}
+								<a
+									href="https://drive.google.com/file/d/1FxLy1LdTkFn7dHzAX-b8t1QRwH1lp4i6/view?usp=drive_link"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									here
+								</a>
+								. <br /> (Note when using the already modified one, it will be
+								outdated, have a lot more files than just the .exe because its
+								technically a debugging version, be very unstable and crash
+								unexpectedly and also dont update it if it asks you to update it)
 							</Header>
 						</Segment>
 					</Column>
