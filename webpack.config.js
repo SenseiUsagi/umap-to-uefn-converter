@@ -15,7 +15,7 @@ module.exports = {
         filename: "[name].[contenthash].js",
         path: path.resolve(__dirname, "build"),
         clean: true,
-        publicPath: "/",
+        publicPath: "umap-to-uefn-converter/",
     },
     resolve: {
         extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
