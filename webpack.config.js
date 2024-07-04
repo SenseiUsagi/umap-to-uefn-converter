@@ -24,6 +24,10 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.txt$/,
+                use: "raw-loader",
+            },
+            {
                 test: /\.m?js$/,
                 enforce: "pre",
                 use: ["source-map-loader"],
