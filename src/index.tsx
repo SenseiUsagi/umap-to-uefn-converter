@@ -27,7 +27,7 @@ const router = createBrowserRouter([
                 element: <ConverterPage />,
             },
             {
-                path: "umap-to-uefn-converter/settings",
+                path: "settings",
                 element: <SettingsPage />,
             },
             {
@@ -39,7 +39,7 @@ const router = createBrowserRouter([
                 element: <AboutPage />,
             },
             {
-                path: "umap-to-uefn-converter/examples",
+                path: "examples",
                 element: <ExamplesPage />,
             },
         ],
