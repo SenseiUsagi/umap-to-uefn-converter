@@ -18,7 +18,7 @@ const root = ReactDOM.createRoot(
 
 const router = createBrowserRouter([
     {
-        path: "/",
+        path: "umap-to-uefn-converter/",
         element: <Layout />,
         errorElement: <ErrorPage />,
         children: [
