@@ -118,7 +118,10 @@ export class StaticMesh {
 				this.MeshData.ObjectPath.includes("Environments/World/Sidewalks") ||
 				this.MeshData.ObjectPath.includes("S_Road") ||
 				this.MeshData.ObjectPath.includes("S_Asphalt") ||
-				this.MeshData.ObjectPath.includes("S_Small_Street")
+				this.MeshData.ObjectPath.includes("S_SmallStreet") ||
+				this.MeshData.ObjectPath.includes("S_Water") ||
+				this.MeshData.ObjectPath.includes("BP_Athena_Water") ||
+				this.MeshData.ObjectPath.includes("S_Basketball")
 			) {
 				return "";
 			}

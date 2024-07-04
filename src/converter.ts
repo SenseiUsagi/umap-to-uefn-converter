@@ -25,6 +25,10 @@ export function convertToUEFN(parsedJSON: any[], folderName: string): convertedL
 
 		const objName: string = element.Name;
 
+		if (objName === "Durr_Watercooler_Jugrack_5") {
+			console.log("");
+		}
+
 		if (objName === "PersistentLevel") {
 			return;
 		}
@@ -156,7 +160,10 @@ export function convertToUEFN(parsedJSON: any[], folderName: string): convertedL
 							!template.ObjData.ObjectPath.includes("Environments/World/Sidewalks") &&
 							!template.ObjData.ObjectPath.includes("S_Road") &&
 							!template.ObjData.ObjectPath.includes("S_Asphalt") &&
-							!template.ObjData.ObjectPath.includes("S_SmallStreet")
+							!template.ObjData.ObjectPath.includes("S_SmallStreet") &&
+							!template.ObjData.ObjectPath.includes("S_Water") &&
+							!template.ObjData.ObjectPath.includes("BP_Athena_Water") &&
+							!template.ObjData.ObjectPath.includes("S_Basketball")
 						) {
 							return;
 						}
@@ -195,9 +202,27 @@ export function convertToUEFN(parsedJSON: any[], folderName: string): convertedL
 		} else if (moreDataObjs.length > 2) {
 			let startedActor: boolean = false;
 			const objects: UEFNObject[] = [];
-			moreDataObjs.forEach((dataObj, index) => {
+
+			for (let index = 0; index < moreDataObjs.length; index++) {
+				const dataObj = moreDataObjs[index];
+				if (globalState.currentSettings.exportNoTerrain) {
+					if (dataObj.Template) {
+						if (
+							dataObj.Template.ObjectPath.includes("DS_Fortnite_Terrain_NoLOD") ||
+							dataObj.Template.ObjectPath.includes("Environments/World/Sidewalks") ||
+							dataObj.Template.ObjectPath.includes("S_Road") ||
+							dataObj.Template.ObjectPath.includes("S_Asphalt") ||
+							dataObj.Template.ObjectPath.includes("S_SmallStreet") ||
+							dataObj.Template.ObjectPath.includes("S_Water") ||
+							dataObj.Template.ObjectPath.includes("BP_Athena_Water") ||
+							dataObj.Template.ObjectPath.includes("S_Basketball")
+						) {
+							break;
+						}
+					}
+				}
 				if (typeof dataObj.Properties === "undefined") {
-					return;
+					continue;
 				}
 				let template: Template | undefined;
 				const actorLabel = objName;
@@ -291,18 +316,25 @@ export function convertToUEFN(parsedJSON: any[], folderName: string): convertedL
 					}
 				}
 				if (template !== undefined) {
-					if (globalState.currentSettings.exportOnlyTerrain) {
-						if (
-							!template.ObjData.ObjectPath.includes("DS_Fortnite_Terrain_NoLOD") &&
-							!template.ObjData.ObjectPath.includes("Environments/World/Sidewalks") &&
-							!template.ObjData.ObjectPath.includes("S_Road") &&
-							!template.ObjData.ObjectPath.includes("S_Asphalt") &&
-							!template.ObjData.ObjectPath.includes("S_SmallStreet")
-						) {
-							return;
-						}
-					}
 					if (!startedActor) {
+						if (globalState.currentSettings.exportOnlyTerrain) {
+							if (
+								!template.ObjData.ObjectPath.includes(
+									"DS_Fortnite_Terrain_NoLOD"
+								) &&
+								!template.ObjData.ObjectPath.includes(
+									"Environments/World/Sidewalks"
+								) &&
+								!template.ObjData.ObjectPath.includes("S_Road") &&
+								!template.ObjData.ObjectPath.includes("S_Asphalt") &&
+								!template.ObjData.ObjectPath.includes("S_SmallStreet") &&
+								!template.ObjData.ObjectPath.includes("S_Water") &&
+								!template.ObjData.ObjectPath.includes("BP_Athena_Water") &&
+								!template.ObjData.ObjectPath.includes("S_Basketball")
+							) {
+								break;
+							}
+						}
 						convertedActor += template.convertToUEFN(typeof staticMesh !== "undefined");
 						startedActor = true;
 					}
@@ -312,7 +344,7 @@ export function convertToUEFN(parsedJSON: any[], folderName: string): convertedL
 						startedActor = true;
 					}
 				} else {
-					return;
+					continue;
 				}
 				if (
 					staticMesh === undefined &&
@@ -325,7 +357,7 @@ export function convertToUEFN(parsedJSON: any[], folderName: string): convertedL
 					resourceType === undefined &&
 					sound === undefined
 				) {
-					return;
+					continue;
 				}
 				objects.push(
 					new UEFNObject(
@@ -347,7 +379,7 @@ export function convertToUEFN(parsedJSON: any[], folderName: string): convertedL
 						dataObj.Name
 					)
 				);
-			});
+			}
 
 			objects.sort((a, b) => {
 				// Convert the objects to strings and check if they contain the target string
