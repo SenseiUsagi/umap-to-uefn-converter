@@ -25,10 +25,6 @@ export function convertToUEFN(parsedJSON: any[], folderName: string): convertedL
 
 		const objName: string = element.Name;
 
-		if (objName === "Durr_Watercooler_Jugrack_5") {
-			console.log("");
-		}
-
 		if (objName === "PersistentLevel") {
 			return;
 		}
@@ -163,7 +159,8 @@ export function convertToUEFN(parsedJSON: any[], folderName: string): convertedL
 							!template.ObjData.ObjectPath.includes("S_SmallStreet") &&
 							!template.ObjData.ObjectPath.includes("S_Water") &&
 							!template.ObjData.ObjectPath.includes("BP_Athena_Water") &&
-							!template.ObjData.ObjectPath.includes("S_Basketball")
+							!template.ObjData.ObjectPath.includes("S_Basketball") &&
+							!template.ObjData.ObjectPath.includes("S_Sidewalk")
 						) {
 							return;
 						}
@@ -215,7 +212,8 @@ export function convertToUEFN(parsedJSON: any[], folderName: string): convertedL
 							dataObj.Template.ObjectPath.includes("S_SmallStreet") ||
 							dataObj.Template.ObjectPath.includes("S_Water") ||
 							dataObj.Template.ObjectPath.includes("BP_Athena_Water") ||
-							dataObj.Template.ObjectPath.includes("S_Basketball")
+							dataObj.Template.ObjectPath.includes("S_Basketball") ||
+							dataObj.Template.ObjectPath.includes("S_Sidewalk")
 						) {
 							break;
 						}
@@ -330,7 +328,8 @@ export function convertToUEFN(parsedJSON: any[], folderName: string): convertedL
 								!template.ObjData.ObjectPath.includes("S_SmallStreet") &&
 								!template.ObjData.ObjectPath.includes("S_Water") &&
 								!template.ObjData.ObjectPath.includes("BP_Athena_Water") &&
-								!template.ObjData.ObjectPath.includes("S_Basketball")
+								!template.ObjData.ObjectPath.includes("S_Basketball") &&
+								!template.ObjData.ObjectPath.includes("S_Sidewalk")
 							) {
 								break;
 							}

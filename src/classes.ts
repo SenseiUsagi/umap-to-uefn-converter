@@ -121,7 +121,8 @@ export class StaticMesh {
 				this.MeshData.ObjectPath.includes("S_SmallStreet") ||
 				this.MeshData.ObjectPath.includes("S_Water") ||
 				this.MeshData.ObjectPath.includes("BP_Athena_Water") ||
-				this.MeshData.ObjectPath.includes("S_Basketball")
+				this.MeshData.ObjectPath.includes("S_Basketball") ||
+				this.MeshData.ObjectPath.includes("S_Sidewalk")
 			) {
 				return "";
 			}

@@ -130,7 +130,7 @@ function ExamplesPage() {
 				<Row>
 					<Column size={6}>
 						<Segment raised padded inverted={globalState.currentSettings.darkMode}>
-							<Header floated="left">House Sub_5x5_JJ</Header>
+							<Header floated="left">Snobby House</Header>
 							<Form>
 								<Button
 									inverted={globalState.currentSettings.darkMode}
@@ -162,7 +162,7 @@ function ExamplesPage() {
 				<Row>
 					<Column size={6}>
 						<Segment raised padded inverted={globalState.currentSettings.darkMode}>
-							<Header floated="left">Some tilted house</Header>
+							<Header floated="left">Tilted Towers Apartment</Header>
 							<Form>
 								<Button
 									inverted={globalState.currentSettings.darkMode}

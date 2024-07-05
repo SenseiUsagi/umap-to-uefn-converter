@@ -109,9 +109,8 @@ function HelpPage() {
 							inverted={globalState.currentSettings.darkMode}
 						>
 							<Header size="medium">
-								Your FModel doesnt export Vertex-Color-Data. I have a tutorial on
-								how you can modify FModel to export that data <a>here</a>, or you
-								use an already modified version{" "}
+								Your FModel doesnt export Vertex-Color-Data. I have an already
+								modified version of FModel you can download{" "}
 								<a
 									href="https://drive.google.com/file/d/1FxLy1LdTkFn7dHzAX-b8t1QRwH1lp4i6/view?usp=drive_link"
 									target="_blank"
@@ -119,9 +118,9 @@ function HelpPage() {
 								>
 									here
 								</a>
-								. <br /> (Note when using the already modified one, it will be
+								. <br /> (Note: when using the already modified one, it will be
 								outdated, have a lot more files than just the .exe because its
-								technically a debugging version, be very unstable and crash
+								technically a debugging version, <br /> be very unstable and crash
 								unexpectedly and also dont update it if it asks you to update it)
 							</Header>
 						</Segment>
