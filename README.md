@@ -1,4 +1,4 @@
-![Visitors](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2FSenseiUsagi%2Fumap-to-uefn-converter&countColor=%23ba68c8)
+[![Visitors](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2FSenseiUsagi%2Fumap-to-uefn-converter&countColor=%23ba68c8)](https://visitorbadge.io/status?path=https://github.com/SenseiUsagi/umap-to-uefn-converter)
 [![.github/workflows/deploy.yml](https://github.com/SenseiUsagi/umap-to-uefn-converter/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/SenseiUsagi/umap-to-uefn-converter/actions/workflows/deploy.yml)
 
 # About
