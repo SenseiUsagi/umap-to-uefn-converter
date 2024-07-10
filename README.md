@@ -1,5 +1,5 @@
 [![.github/workflows/deploy.yml](https://github.com/SenseiUsagi/umap-to-uefn-converter/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/SenseiUsagi/umap-to-uefn-converter/actions/workflows/deploy.yml)
-
+![Visitors](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2FSenseiUsagi%2Fumap-to-uefn-converter&countColor=%23ba68c8)
 # About
 
 This is the source code for the [UMAP to UEFN converter](https://senseiusagi.github.io/umap-to-uefn-converter/) that I have created. With it you can convert .json versions of .umap files into a format that can be copy-pasted into UEFN. To get .json versions of .umap files use FModel.
