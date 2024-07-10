@@ -11,3 +11,18 @@ When converting .umaps like this the probability of them validating in UEFN is e
 # Dev Corner
 
 This website was writting in mostly TypeScript, React, as well as React-Router for the routing.
+
+# Feedback
+
+If you have any feedback, please open up a new issue.
+
+
+# License
+
+[GNU Affero General Public License v3.0](https://github.com/SenseiUsagi/umap-to-uefn-converter/blob/main/LICENSE)
+
+# Authors
+
+- [@SenseiUsagi](https://github.com/SenseiUsagi)
+- [@ItsNik](https://github.com/Its4Nik)
+
