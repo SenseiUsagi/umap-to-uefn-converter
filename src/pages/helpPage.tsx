@@ -1,7 +1,8 @@
 import React from "react";
-import { Header, Segment } from "semantic-ui-react";
+import { Header, Image, Segment } from "semantic-ui-react";
 import { Column, Container, Row } from "../components/gridsystem";
 import GlobalStore, { GlobalState } from "../state/globalstate";
+import doesntValidate from "../assets/img/iT_dOeSnT_vAlIdAtE.png";
 
 function HelpPage() {
 	const globalState: GlobalState = {
@@ -95,6 +96,34 @@ function HelpPage() {
 							inverted={globalState.currentSettings.darkMode}
 						>
 							<Header size="large">
+								How do I get the converted level into UEFN?
+							</Header>
+						</Segment>
+					</Column>
+				</Row>
+				<Row>
+					<Column size={6}>
+						<Segment
+							raised
+							textAlign="center"
+							inverted={globalState.currentSettings.darkMode}
+						>
+							<Header size="medium">
+								Copy the text from the text area, then go into UEFN and press CTRL +
+								V. <br /> (I recommend doing this in an empty level)
+							</Header>
+						</Segment>
+					</Column>
+				</Row>
+				<Row>
+					<Column size={6}>
+						<Segment
+							raised
+							padded="very"
+							textAlign="center"
+							inverted={globalState.currentSettings.darkMode}
+						>
+							<Header size="large">
 								My converted level doesnt have roads and paths painted
 							</Header>
 						</Segment>
@@ -147,7 +176,7 @@ function HelpPage() {
 							textAlign="center"
 							inverted={globalState.currentSettings.darkMode}
 						>
-							<Header size="medium">Dont make me tab the sign.</Header>
+							<Image src={doesntValidate} fluid size="big" centered />
 						</Segment>
 					</Column>
 				</Row>

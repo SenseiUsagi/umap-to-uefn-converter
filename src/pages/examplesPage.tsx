@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form, Header, Segment, TextArea } from "semantic-ui-react";
+import { Button, Form, Header, Image, Segment, TextArea } from "semantic-ui-react";
 import athenaCity from "../assets/data/Athena_POI_City_001.txt";
 import athenaSuburban from "../assets/data/Athena_POI_Suburban_006.txt";
 import athenaHouseA from "../assets/data/Athena_SUB_5x5_House_jj.txt";
@@ -90,7 +90,7 @@ function ExamplesPage() {
 										"Athena_POI_City_001"
 									)}
 								/>
-								<TextArea readOnly value={athenaCity} rows={5} />
+								<TextArea readOnly value={athenaCity} rows={10} />
 							</Form>
 						</Segment>
 					</Column>
@@ -188,6 +188,7 @@ function ExamplesPage() {
 								/>
 								<TextArea readOnly value={athenaHouseB} rows={5} />
 							</Form>
+							<Image />
 						</Segment>
 					</Column>
 				</Row>
