@@ -68,7 +68,10 @@ export function convertToUEFN(parsedJSON: any[], folderName: string): convertedL
 					return;
 				}
 				if (typeof template === "undefined") {
-					if (typeof dataObj.Template !== "undefined") {
+					if (
+						typeof dataObj.Template !== "undefined" &&
+						typeof dataObj.Template === "object"
+					) {
 						template = new Template(dataObj.Template);
 					}
 				}
@@ -235,7 +238,10 @@ export function convertToUEFN(parsedJSON: any[], folderName: string): convertedL
 				let resourceType: ResourceType | undefined;
 				let sound: Sound | undefined;
 				if (typeof template === "undefined") {
-					if (typeof dataObj.Template !== "undefined") {
+					if (
+						typeof dataObj.Template !== "undefined" &&
+						typeof dataObj.Template === "object"
+					) {
 						template = new Template(dataObj.Template);
 					}
 				}

@@ -4,6 +4,7 @@ import { Column, Container, Row } from "../components/gridsystem";
 import { convertToUEFN } from "../converter";
 import { PopUpTypes, convertedLevel, processJSON } from "../constants";
 import GlobalStore, { GlobalState } from "../state/globalstate";
+import ErrorModal from "../components/ErrorModal";
 
 function ConverterPage() {
 	const [file, setFile] = useState<File>();
@@ -15,6 +16,9 @@ function ConverterPage() {
 
 	const [textCopied, setTextCopied] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
+	const [errorTitle, setErrorTitle] = useState<String>("");
+	const [errorStack, setErrorStack] = useState<String>("");
+	const [errorOpen, setErrorOpen] = useState<boolean>(false);
 	const [lastConvertedMap, setLastConvertedMap] = useState<convertedLevel | null>(null);
 
 	const globalState: GlobalState = {
@@ -122,13 +126,11 @@ function ConverterPage() {
 				}
 				globalState.incrementConvertedFiles();
 				setIsLoading(false);
-			} catch (error) {
+			} catch (error: any) {
 				console.error(error);
-				globalState.openPopUp({
-					title: "Error!",
-					content: `${error}`,
-					type: PopUpTypes.ERROR,
-				});
+				setErrorOpen(true);
+				setErrorTitle("An Error has occured!");
+				setErrorStack(error.stack);
 				setIsLoading(false);
 			}
 		}
@@ -409,6 +411,16 @@ function ConverterPage() {
 					</Column>
 				</Row>
 			</Container>
+			<ErrorModal
+				open={errorOpen}
+				title={errorTitle}
+				stackTrace={errorStack}
+				onClose={() => {
+					setErrorOpen(false);
+					setErrorTitle("");
+					setErrorStack("");
+				}}
+			/>
 		</>
 	);
 }
