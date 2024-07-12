@@ -240,7 +240,7 @@ function ConverterPage() {
 									inverted={globalState.currentSettings.darkMode}
 								>
 									{/* Ver. FullVersion.FeatureVersion.PatchVersion */}
-									Ver. 1.0.0
+									Ver. 1.0.1
 								</Header>
 								<Header size="tiny" inverted={globalState.currentSettings.darkMode}>
 									<a

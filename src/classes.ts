@@ -197,50 +197,58 @@ export class LODData {
 	convertToUEFN(): string {
 		let tempLodData: string = "";
 
-		this.LODData.forEach((element, index) => {
-			if (element.OverrideVertexColors !== undefined) {
-				const numVertices: number = element.OverrideVertexColors.NumVertices;
-				let colorData: string = "";
-				if (typeof element.OverrideVertexColors.Data !== "undefined") {
-					if (typeof element.OverrideVertexColors.Data[0] === "string") {
-						element.OverrideVertexColors.Data.forEach((color, colorIndex) => {
-							colorData += `${color}${
-								colorIndex !== element.OverrideVertexColors!.Data.length - 1
-									? ","
-									: ""
-							}`;
-						});
+		if (this.LODData) {
+			this.LODData.forEach((element, index) => {
+				if (element.OverrideVertexColors !== undefined) {
+					const numVertices: number = element.OverrideVertexColors.NumVertices;
+					let colorData: string = "";
+					if (typeof element.OverrideVertexColors.Data !== "undefined") {
+						if (typeof element.OverrideVertexColors.Data[0] === "string") {
+							element.OverrideVertexColors.Data.forEach((color, colorIndex) => {
+								colorData += `${color}${
+									colorIndex !== element.OverrideVertexColors!.Data.length - 1
+										? ","
+										: ""
+								}`;
+							});
 
-						tempLodData += `${tabIndent(
-							4
-						)}CustomProperties CustomLODData LOD=${index} ColorVertexData(${numVertices})=(${colorData})\n`;
-					} else if (typeof element.OverrideVertexColors.Data[0] === "object") {
-						element.OverrideVertexColors.Data.forEach((color, colorIndex) => {
-							if (typeof color === "object") {
-								if (typeof color.Hex === "string") {
-									colorData += `${color.Hex}${
-										colorIndex !== element.OverrideVertexColors!.Data.length - 1
-											? ","
-											: ""
-									}`;
-								} else {
-									colorData += `${rgbaToHex(color.R, color.G, color.B, color.A)}${
-										colorIndex !== element.OverrideVertexColors!.Data.length - 1
-											? ","
-											: ""
-									}`;
+							tempLodData += `${tabIndent(
+								4
+							)}CustomProperties CustomLODData LOD=${index} ColorVertexData(${numVertices})=(${colorData})\n`;
+						} else if (typeof element.OverrideVertexColors.Data[0] === "object") {
+							element.OverrideVertexColors.Data.forEach((color, colorIndex) => {
+								if (typeof color === "object") {
+									if (typeof color.Hex === "string") {
+										colorData += `${color.Hex}${
+											colorIndex !==
+											element.OverrideVertexColors!.Data.length - 1
+												? ","
+												: ""
+										}`;
+									} else {
+										colorData += `${rgbaToHex(
+											color.R,
+											color.G,
+											color.B,
+											color.A
+										)}${
+											colorIndex !==
+											element.OverrideVertexColors!.Data.length - 1
+												? ","
+												: ""
+										}`;
+									}
+
+									tempLodData += `${tabIndent(
+										4
+									)}CustomProperties CustomLODData LOD=${index} ColorVertexData(${numVertices})=(${colorData})\n`;
 								}
-
-								tempLodData += `${tabIndent(
-									4
-								)}CustomProperties CustomLODData LOD=${index} ColorVertexData(${numVertices})=(${colorData})\n`;
-							}
-						});
+							});
+						}
 					}
 				}
-			}
-		});
-
+			});
+		}
 		return tempLodData;
 	}
 }
