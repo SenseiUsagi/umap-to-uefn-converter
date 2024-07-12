@@ -67,6 +67,7 @@ export const UEFNLabelStrings = {
 	resourceType: (type: string) => `${tabIndent(3)}ResourceType=${type}\n`,
 	sound: (path: string) => `${tabIndent(4)}Sound="/Script/Engine.SoundCue'${path}\n`,
 	customMaterial: `${tabIndent(3)}bAllowCustomMaterial=False\n`,
+	mirrored: `${tabIndent(3)}bMirrored=True\n`,
 };
 
 export function processJSON(rawJson: string): unknown[] {
@@ -164,6 +165,7 @@ export interface editorObject {
 	relativeRotation: RelativeRotation | null;
 	relativeScale: RelativeScale | null;
 	textureData: TextureData | null;
+	mirrored: boolean;
 	lodData: LODData | null;
 	resourceType: ResourceType | null;
 	sound: Sound | null;

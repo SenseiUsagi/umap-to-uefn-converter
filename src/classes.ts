@@ -408,6 +408,7 @@ export class UEFNObject {
 		convertedObject += lodData;
 		convertedObject += UEFNLabelStrings.endObject;
 		convertedObject += textureData;
+		convertedObject += this.data.mirrored ? UEFNLabelStrings.mirrored : "";
 		convertedObject += resourceType;
 		convertedObject += UEFNLabelStrings.customMaterial;
 		if (!this.endOfObject) {

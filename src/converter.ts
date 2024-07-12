@@ -61,6 +61,7 @@ export function convertToUEFN(parsedJSON: any[], folderName: string): convertedL
 			let textureData: TextureData | undefined;
 			let lodData: LODData | undefined;
 			let resourceType: ResourceType | undefined;
+			let mirrored: boolean = false;
 			let sound: Sound | undefined;
 
 			moreDataObjs.forEach((dataObj) => {
@@ -149,6 +150,10 @@ export function convertToUEFN(parsedJSON: any[], folderName: string): convertedL
 						resourceType = new ResourceType(dataObj.Properties.ResourceType);
 					}
 				}
+
+				if (typeof dataObj.Properties.bMirrored !== "undefined") {
+					mirrored = true;
+				}
 			});
 
 			if (location !== undefined) {
@@ -185,6 +190,7 @@ export function convertToUEFN(parsedJSON: any[], folderName: string): convertedL
 						relativeRotation: typeof rotation !== "undefined" ? rotation : null,
 						relativeScale: typeof scale !== "undefined" ? scale : null,
 						textureData: typeof textureData !== "undefined" ? textureData : null,
+						mirrored: mirrored,
 						lodData: typeof lodData !== "undefined" ? lodData : null,
 						resourceType: typeof resourceType !== "undefined" ? resourceType : null,
 						sound: typeof sound !== "undefined" ? sound : null,
@@ -237,6 +243,7 @@ export function convertToUEFN(parsedJSON: any[], folderName: string): convertedL
 				let lodData: LODData | undefined;
 				let resourceType: ResourceType | undefined;
 				let sound: Sound | undefined;
+				let mirrored: boolean = false;
 				if (typeof template === "undefined") {
 					if (
 						typeof dataObj.Template !== "undefined" &&
@@ -319,6 +326,9 @@ export function convertToUEFN(parsedJSON: any[], folderName: string): convertedL
 						resourceType = new ResourceType(dataObj.Properties.ResourceType);
 					}
 				}
+				if (typeof dataObj.Properties.bMirrored !== "undefined") {
+					mirrored = true;
+				}
 				if (template !== undefined) {
 					if (!startedActor) {
 						if (globalState.currentSettings.exportOnlyTerrain) {
@@ -376,6 +386,7 @@ export function convertToUEFN(parsedJSON: any[], folderName: string): convertedL
 							relativeRotation: typeof rotation !== "undefined" ? rotation : null,
 							relativeScale: typeof scale !== "undefined" ? scale : null,
 							textureData: typeof textureData !== "undefined" ? textureData : null,
+							mirrored: mirrored,
 							lodData: typeof lodData !== "undefined" ? lodData : null,
 							resourceType: typeof resourceType !== "undefined" ? resourceType : null,
 							sound: typeof sound !== "undefined" ? sound : null,
