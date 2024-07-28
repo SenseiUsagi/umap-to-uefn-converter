@@ -202,7 +202,7 @@ function ConverterPage() {
 							textAlign="center"
 							inverted={globalState.currentSettings.darkMode}
 						>
-							<div style={{ height: "7.5rem" }}>
+							<div style={{ height: "11rem" }}>
 								<Header size="huge" inverted={globalState.currentSettings.darkMode}>
 									You have converted a total of {globalState.totalFilesConverted}{" "}
 									file
@@ -213,7 +213,7 @@ function ConverterPage() {
 					</Column>
 					<Column size={2}>
 						<Segment raised inverted={globalState.currentSettings.darkMode}>
-							<div style={{ height: "7.5rem" }}>
+							<div style={{ height: "11rem" }}>
 								<Header size="tiny" inverted={globalState.currentSettings.darkMode}>
 									Created By:{" "}
 									<a
@@ -234,14 +234,6 @@ function ConverterPage() {
 										ItsNik &#128011;
 									</a>
 								</Header>
-								<Header
-									size="tiny"
-									floated="right"
-									inverted={globalState.currentSettings.darkMode}
-								>
-									{/* Ver. FullVersion.FeatureVersion.PatchVersion */}
-									Ver. 1.0.1
-								</Header>
 								<Header size="tiny" inverted={globalState.currentSettings.darkMode}>
 									Inspired by:{" "}
 									<a
@@ -251,6 +243,14 @@ function ConverterPage() {
 									>
 										JMAP
 									</a>
+								</Header>
+								<Header
+									size="tiny"
+									floated="right"
+									inverted={globalState.currentSettings.darkMode}
+								>
+									{/* Ver. FullVersion.FeatureVersion.PatchVersion */}
+									Ver. 1.0.1
 								</Header>
 								<Header size="tiny" inverted={globalState.currentSettings.darkMode}>
 									<a
