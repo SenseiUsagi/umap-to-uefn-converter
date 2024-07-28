@@ -243,6 +243,16 @@ function ConverterPage() {
 									Ver. 1.0.1
 								</Header>
 								<Header size="tiny" inverted={globalState.currentSettings.darkMode}>
+									Inspired by:{" "}
+									<a
+										href="https://www.patreon.com/user/membership?u=70550621"
+										target="_blank"
+										rel="noopener noreferrer"
+									>
+										JMAP
+									</a>
+								</Header>
+								<Header size="tiny" inverted={globalState.currentSettings.darkMode}>
 									<a
 										href="https://github.com/SenseiUsagi/umap-to-uefn-converter/blob/main/LICENSE"
 										target="_blank"
