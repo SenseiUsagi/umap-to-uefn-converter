@@ -43,8 +43,8 @@ const router = createBrowserRouter(
 				},
 			],
 		},
-	],
-	{ basename: "/umap-to-uefn-converter" }
+	]
+	// { basename: "/umap-to-uefn-converter" }
 );
 
 root.render(

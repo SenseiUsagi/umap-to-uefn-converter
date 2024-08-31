@@ -141,6 +141,7 @@ export class StaticMesh {
 		tempMeshPath = tempMeshPath.replace("FortniteGame/Content", "/Game");
 		tempMeshPath = tempMeshPath.replace(/\d+$/, "");
 
+		console.log(tempMeshName);
 		return UEFNLabelStrings.staticMesh(tempMeshPath + tempMeshName);
 	}
 }
