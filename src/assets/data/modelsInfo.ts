@@ -1,8 +1,62 @@
 export enum models {
 	"S_Foundation_Inner'",
+	"S_Foundation_Outer'",
+	"S_Foundation_Straight_x2'",
+	"S_Foundation_Straight'",
+	"S_WaterWall_1x1_A'",
+	"S_WaterWall_1x2'",
+	"S_WaterWall_1x5'",
+	"S_WaterWall_Corner_B'",
+	"S_WaterWall_Corner'",
+	"S_WaterWall_InsideCorner'",
+	"S_Urban_Cave_Ceiling'",
+	"S_Urban_Cave_Entrance'",
+	"S_Urban_Cave_Inner_Floor'",
+	"S_Urban_Cave_Inner_Middle_To_Concave'",
+	"S_Urban_Cave_Straight_Middle_To_Concave'",
+	"S_Urban_Cave_Outer_Middle_To_Concave'",
+	"S_Urban_Cave_Ramp_Cap'",
+	"S_Urban_Cave_Ramp_Floor_Outer'",
+	"S_Urban_Cave_Ramp_Floor'",
 }
 
 export const portedModelsPaths = {
 	"S_Foundation_Inner'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Foundation_Inner.Foundation_Inner'",
+	"S_Foundation_Outer'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Foundation_Outer.Foundation_Outer'",
+	"S_Foundation_Straight_x2'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Foundation_Straight_2x.Foundation_Straight_2x'",
+	"S_Foundation_Straight'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Foundation_Straight.Foundation_Straight'",
+	"S_WaterWall_1x1_A'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Water_Wall_1x2.Water_Wall_1x2'",
+	"S_WaterWall_1x2'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Water_Wall_2x2.Water_Wall_2x2'",
+	"S_WaterWall_1x5'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Water_Wall_5x2.Water_Wall_5x2'",
+	"S_WaterWall_Corner_B'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Water_Wall_Corner_Outer_1x1.Water_Wall_Corner_Outer_1x1'",
+	"S_WaterWall_Corner'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Water_Wall_Corner_Outer_1x2.Water_Wall_Corner_Outer_1x2'",
+	"S_WaterWall_InsideCorner'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Water_Wall_Corner_Inner_1x2.Water_Wall_Corner_Inner_1x2'",
+	"S_Urban_Cave_Ceiling'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Water_Wall_Cave_Ceiling_1x1.Water_Wall_Cave_Ceiling_1x1'",
+	"S_Urban_Cave_Entrance'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Water_Wall_Cave_Entrance.Water_Wall_Cave_Entrance'",
+	"S_Urban_Cave_Inner_Floor'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Water_Wall_Corner_Inner_1x1.Water_Wall_Corner_Inner_1x1'",
+	"S_Urban_Cave_Inner_Middle_To_Concave'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Water_Wall_Corner_Inner_Cave.Water_Wall_Corner_Inner_Cave'",
+	"S_Urban_Cave_Straight_Middle_To_Concave'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Water_Wall_Cave.Water_Wall_Cave'",
+	"S_Urban_Cave_Outer_Middle_To_Concave'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Water_Wall_Corner_Outer_Cave.Water_Wall_Corner_Outer_Cave'",
+	"S_Urban_Cave_Ramp_Cap'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Water_Wall_Ramp.Water_Wall_Ramp'",
+	"S_Urban_Cave_Ramp_Floor_Outer'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Water_Wall_Ramp_Wall_Outer.Water_Wall_Ramp_Wall_Outer'",
+	"S_Urban_Cave_Ramp_Floor'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Water_Wall_Ramp_Wall.Water_Wall_Ramp_Wall'",
 };
