@@ -18,6 +18,19 @@ export enum models {
 	"S_Urban_Cave_Ramp_Cap'",
 	"S_Urban_Cave_Ramp_Floor_Outer'",
 	"S_Urban_Cave_Ramp_Floor'",
+	"S_Elevation_Ground_Z'",
+	"S_Elevation_Ground_Z_High'",
+	"S_FORT_Garden_End'",
+	"S_FORT_Garden_Single'",
+	"S_FORT_Garden_Straight'",
+	"S_FORT_Garden_End_3'",
+	"S_FORT_Garden_Straight_1x4'",
+	"S_FORT_Garden_Straight_3x3'",
+	"S_FORT_Garden_Straight_3x4'",
+	"S_Underground_A_Inner'",
+	"S_Underground_A_Outer'",
+	"S_Underground_A_Straight_x2'",
+	"S_Underground_A_Straight'",
 }
 
 export const portedModelsPaths = {
@@ -59,4 +72,30 @@ export const portedModelsPaths = {
 		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Water_Wall_Ramp_Wall_Outer.Water_Wall_Ramp_Wall_Outer'",
 	"S_Urban_Cave_Ramp_Floor'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Water_Wall_Ramp_Wall.Water_Wall_Ramp_Wall'",
+	"S_Elevation_Ground_Z'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Floor/Floor_Ground.Floor_Ground'",
+	"S_Elevation_Ground_Z_High'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Floor/Floor_Ground_High.Floor_Ground_High'",
+	"S_FORT_Garden_End'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Floor/Floor_Garden_End.Floor_Garden_End'",
+	"S_FORT_Garden_Single'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Floor/Floor_Garden_Single.Floor_Garden_Single'",
+	"S_FORT_Garden_Straight'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Floor/Floor_Garden_Straight.Floor_Garden_Straight'",
+	"S_FORT_Garden_End_3'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Floor/Floor_Garden_3Row.Floor_Garden_3Row'",
+	"S_FORT_Garden_Straight_1x4'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Floor/Floor_Garden_4.Floor_Garden_4'",
+	"S_FORT_Garden_Straight_3x3'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Floor/Floor_Garden_3x3.Floor_Garden_3x3'",
+	"S_FORT_Garden_Straight_3x4'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Floor/Floor_Garden_3x4.Floor_Garden_3x4'",
+	"S_Underground_A_Inner'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Floor/Underground_Corner_Inner.Underground_Corner_Inner'",
+	"S_Underground_A_Outer'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Floor/Underground_Corner_Outer.Underground_Corner_Outer'",
+	"S_Underground_A_Straight_x2'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Floor/Underground_Straight_2x.Underground_Straight_2x'",
+	"S_Underground_A_Straight'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Floor/Underground_Straight.Underground_Straight'",
 };
