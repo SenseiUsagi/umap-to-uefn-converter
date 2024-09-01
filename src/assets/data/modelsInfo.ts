@@ -1,38 +1,3 @@
-export enum models {
-	"S_Foundation_Inner'",
-	"S_Foundation_Outer'",
-	"S_Foundation_Straight_x2'",
-	"S_Foundation_Straight'",
-	"S_WaterWall_1x1_A'",
-	"S_WaterWall_1x2'",
-	"S_WaterWall_1x5'",
-	"S_WaterWall_Corner_B'",
-	"S_WaterWall_Corner'",
-	"S_WaterWall_InsideCorner'",
-	"S_Urban_Cave_Ceiling'",
-	"S_Urban_Cave_Entrance'",
-	"S_Urban_Cave_Inner_Floor'",
-	"S_Urban_Cave_Inner_Middle_To_Concave'",
-	"S_Urban_Cave_Straight_Middle_To_Concave'",
-	"S_Urban_Cave_Outer_Middle_To_Concave'",
-	"S_Urban_Cave_Ramp_Cap'",
-	"S_Urban_Cave_Ramp_Floor_Outer'",
-	"S_Urban_Cave_Ramp_Floor'",
-	"S_Elevation_Ground_Z'",
-	"S_Elevation_Ground_Z_High'",
-	"S_FORT_Garden_End'",
-	"S_FORT_Garden_Single'",
-	"S_FORT_Garden_Straight'",
-	"S_FORT_Garden_End_3'",
-	"S_FORT_Garden_Straight_1x4'",
-	"S_FORT_Garden_Straight_3x3'",
-	"S_FORT_Garden_Straight_3x4'",
-	"S_Underground_A_Inner'",
-	"S_Underground_A_Outer'",
-	"S_Underground_A_Straight_x2'",
-	"S_Underground_A_Straight'",
-}
-
 export const portedModelsPaths = {
 	"S_Foundation_Inner'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Foundation_Inner.Foundation_Inner'",
@@ -98,4 +63,50 @@ export const portedModelsPaths = {
 		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Floor/Underground_Straight_2x.Underground_Straight_2x'",
 	"S_Underground_A_Straight'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Floor/Underground_Straight.Underground_Straight'",
+	"S_Cave_Ceiling'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Cave/Cave_Ceiling.Cave_Ceiling'",
+	"S_Cave_Entrance_Jagged'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Cave/Cave_Entrance_Transition.Cave_Entrance_Transition'",
+	"S_Cave_Entrance'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Cave/Cave_Entrance.Cave_Entrance'",
+	"S_Cave_Inner_Concave'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Cave/Cave_Ceiling_Inner.Cave_Ceiling_Inner'",
+	"S_Cave_Inner_Convex'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Cave/Cave_Inner_Corner.Cave_Inner_Corner'",
+	"S_Cave_Inner_Floor'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Cave/Cave_Floor_Inner.Cave_Floor_Inner'",
+	"S_Cave_Inner_Middle'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Walls/Wall_Inner_Corner.Wall_Inner_Corner'",
+	"S_Cave_Inner_Middle2'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Walls/Wall2_Inner_Corner.Wall2_Inner_Corner'",
+	"S_Cave_Outer_Concave'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Cave/Cave_Ceiling_Outer.Cave_Ceiling_Outer'",
+	"S_Cave_Outer_Convex'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Cave/Cave_Outer_Corner.Cave_Outer_Corner'",
+	"S_Cave_Outer_Floor'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Cave/Cave_Floor_Outer.Cave_Floor_Outer'",
+	"S_Cave_Outer_Middle'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Walls/Wall_Outer_Corner.Wall_Outer_Corner'",
+	"S_Cave_Outer_Middle2'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Walls/Wall2_Outer_Corner.Wall2_Outer_Corner'",
+	"S_Cave_Ramp_Cap_ToInner'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Ramp/Ramp_Cap_Inner.Ramp_Cap_Inner'",
+	"S_Cave_Ramp_Cap'": "/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Ramp/Ramp_Cap.Ramp_Cap'",
+	"S_Cave_Ramp_Floor'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Ramp/Ramp_Floor.Ramp_Floor'",
+	"S_Cave_Ramp_FloorOuter'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Ramp/Ramp_Floor_Outer.Ramp_Floor_Outer'",
+	"S_Cave_Ramp_Ground_Straight'": "/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Ramp/Ramp.Ramp'",
+	"S_Cave_Ramp2_Cap_ToInner'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Ramp/Ramp2_Cap_Inner.Ramp2_Cap_Inner'",
+	"S_Cave_Ramp2_Cap'": "/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Ramp/Ramp2_Cap.Ramp2_Cap'",
+	"S_Cave_Ramp2_Floor'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Ramp/Ramp2_Floor.Ramp2_Floor'",
+	"S_Cave_Ramp2_FloorOuter'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Ramp/Ramp2_Floor_Outer.Ramp2_Floor_Outer'",
+	"S_Cave_Ramp2_FloorTunnel'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Ramp/Ramp2_Floor_Tunnel.Ramp2_Floor_Tunnel'",
+	"S_Cave_Ramp2_Ground_Straight'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Ramp/Ramp2.Ramp2'",
+	// Next one is "S_Cave_Straight_Concave" in the normal packages
 };
