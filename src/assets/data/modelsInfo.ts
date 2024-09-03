@@ -1,3 +1,5 @@
+import { Biome } from "../../constants";
+
 export const portedModelsPaths: any = {
 	"S_Foundation_Inner'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Foundation_Inner.Foundation_Inner'",
@@ -28,7 +30,7 @@ export const portedModelsPaths: any = {
 	"S_Urban_Cave_Inner_Middle_To_Concave'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Water_Wall_Corner_Inner_Cave.Water_Wall_Corner_Inner_Cave'",
 	"S_Urban_Cave_Straight_Middle_To_Concave'":
-		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Water_Wall_Cave.Water_Wall_Cave'",
+		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Water_Wall_Cave_Straight.Water_Wall_Cave_Straight'",
 	"S_Urban_Cave_Outer_Middle_To_Concave'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Water_Wall_Corner_Outer_Cave.Water_Wall_Corner_Outer_Cave'",
 	"S_Urban_Cave_Ramp_Cap'":
@@ -283,7 +285,7 @@ export const portedModelsPaths: any = {
 	"S_Shoreline_1W_ToBeach_1L_a'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Beach_ToShoreline.Beach_ToShoreline'",
 	"S_Asphalt_1x1'":
-		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_Stree_1x1.Sidewalk_Stree_1x1'",
+		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_Street_1x1.Sidewalk_Street_1x1'",
 	"S_BasketballCourt'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_Street_Basketball_Court.Sidewalk_Street_Basketball_Court'",
 	"S_Road_Crosswalk_A'":
@@ -298,9 +300,12 @@ export const portedModelsPaths: any = {
 		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_Street_Parking_Spot.Sidewalk_Street_Parking_Spot'",
 	"S_Road_ParkingSpots'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_Street_Parking_Spots.Sidewalk_Street_Parking_Spots'",
-	"S_SmallStreets_2x1'": "TODO PORT THIS DUMBASS",
-	"S_SmallStreets_2x2'": "TODO PORT THIS DUMBASS",
-	"S_SmallStreets_2x5'": "TODO PORT THIS DUMBASS",
+	"S_SmallStreets_2x1'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_Small_2x1.Sidewalk_Small_2x1'",
+	"S_SmallStreets_2x2'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_Small_2x2.Sidewalk_Small_2x2'",
+	"S_SmallStreets_2x5'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_Small_2x5.Sidewalk_Small_2x5'",
 	"S_SmallStreets_End'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_Small_Cap.Sidewalk_Small_Cap'",
 	"S_SmallStreets_Merge'":
@@ -335,23 +340,34 @@ export const portedModelsPaths: any = {
 		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_Outer_F.Sidewalk_Outer_F'",
 	"S_Sidewalk_1x1_Corner'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_Outer_A.Sidewalk_Outer_A'",
-	"S_Sidewalk_1x2_Grass'": "TODO PORT THIS DUMBASS",
-	"S_Sidewalk_1x2_NoCurb'": "TODO PORT THIS DUMBASS",
-	"S_Sidewalk_1x2'": "TODO PORT THIS DUMBASS",
-	"S_Sidewalk_1x4_NoCurb'": "TODO PORT THIS DUMBASS",
-	"S_Sidewalk_1x4'": "TODO PORT THIS DUMBASS",
-	"S_Sidewalk_1x5_Grass'": "TODO PORT THIS DUMBASS",
-	"S_Sidewalk_1x5_NoCurb'": "TODO PORT THIS DUMBASS",
-	"S_Sidewalk_1x5'": "TODO PORT THIS DUMBASS",
+	"S_Sidewalk_1x2_Grass'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_1x2_A.Sidewalk_1x2_A'",
+	"S_Sidewalk_1x2_NoCurb'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_1x2_B.Sidewalk_1x2_B'",
+	"S_Sidewalk_1x2'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_1x2_C.Sidewalk_1x2_C'",
+	"S_Sidewalk_1x4_NoCurb'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_1x4_A.Sidewalk_1x4_A'",
+	"S_Sidewalk_1x4'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_1x4_B.Sidewalk_1x4_B'",
+	"S_Sidewalk_1x5_Grass'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_1x5_A.Sidewalk_1x5_A'",
+	"S_Sidewalk_1x5_NoCurb'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_1x5_B.Sidewalk_1x5_B'",
+	"S_Sidewalk_1x5'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_1x5_C.Sidewalk_1x5_C'",
 	"S_Sidewalk_InsideCorner_Grass'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_Inner_D.Sidewalk_Inner_D'",
 	"S_Sidewalk_InsideCorner'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_Inner_A.Sidewalk_Inner_A'",
-	"S_Sidewalk_RoundAbout'": "TODO PORT THIS DUMBASS",
+	"S_Sidewalk_RoundAbout'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_RoundAbout.Sidewalk_RoundAbout'",
 	"S_Sidewalk_RoundWedge'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_RoundWedge.Sidewalk_RoundWedge'",
+	"S_Sidewalk_RoundWedge_03'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_Island_A.Sidewalk_Island_A'",
 	"S_Sidewalk_SBend'":
-		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_S_Bend.Sidewalk_S_Bend'",
+		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_SBend.Sidewalk_SBend'",
 	"S_Sidewalk_Street_BLVD_b_Wide'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_BLVD_B_Wide.Sidewalk_BLVD_B_Wide'",
 	"S_Sidewalk_Street_BLVD_b'":
@@ -368,19 +384,32 @@ export const portedModelsPaths: any = {
 		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_BLVD_A.Sidewalk_BLVD_A'",
 	"SM_Sidewalk_Rounded_01'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_Outer_B.Sidewalk_Outer_B'",
-	"SM_Sidewalk_Rounded_02'": "TODO PORT THIS DUMBASS",
+	"SM_Sidewalk_Rounded_02'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_180.Sidewalk_180'",
 	"SM_Sidewalk_Small_01'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_05x1.Sidewalk_05x1'",
-	"SM_Sidewalk_Small_01x2'": "TODO PORT THIS DUMBASS",
+	"SM_Sidewalk_Small_01x2'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_05x2.Sidewalk_05x2'",
 	"SM_Sidewalk_Small_02'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_Inner_B.Sidewalk_Inner_B'",
 	"SM_Sidewalk_Small_03'":
-		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_05x05.Sidewalk_05x05'",
-	"SM_Sidewalk_Small_03B'": "TODO PORT THIS DUMBASS",
+		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_05x05_A.Sidewalk_05x05_A'",
+	"SM_Sidewalk_Small_03B'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_05x05_B.Sidewalk_05x05_B'",
 	"SM_Sidewalk_Small_04'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_Outer_C.Sidewalk_Outer_C'",
 	"SM_Sidewalk_Small_05'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_Inner_C.Sidewalk_Inner_C'",
+	"SM_BridgeStreet_2Blend'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_Street_Bridge_Blend.Sidewalk_Street_Bridge_Blend'",
+	"SM_BridgeStreet'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_Street_Bridge_A.Sidewalk_Street_Bridge_A'",
+	"SM_BridgeStreet_Broken'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_Street_Bridge_B.Sidewalk_Street_Bridge_B'",
+	"SM_BridgeStreet_BrokenProp'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_Street_Bridge_Broken.Sidewalk_Street_Bridge_Broken'",
+	"SM_BridgeStreet_2'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_Street_Bridge_C.Sidewalk_Street_Bridge_C'",
 };
 
 export const portedMaterialsPaths: any = {
@@ -448,4 +477,160 @@ export const portedMaterialsPaths: any = {
 		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Cliff_Biome_Brown_Cave.Cliff_Biome_Brown_Cave'",
 	"M_TRV_Swamp_Water_Border_02'":
 		"/Ported_Assets_By_Sensei_Usagi/Materials/Water/Swamp/LandWaterBorderSwamp.LandWaterBorderSwamp'",
+};
+
+export const grassBiome: Biome = {
+	cliffBrown:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Cliff_Biome_Brown.Cliff_Biome_Brown'",
+	cliffBrownCave:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Cliff_Biome_Brown_Cave.Cliff_Biome_Brown_Cave'",
+	cliffWhite:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Cliff_Biome_White.Cliff_Biome_White'",
+	cliffWhiteCave:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Cliff_Biome_White_Cave.Cliff_Biome_White_Cave'",
+	farmField:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Farm_Field_Biome.Farm_Field_Biome'",
+	terrain:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Main_Terrain_Biome.Main_Terrain_Biome'",
+	terrainBeach:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Terrain_Beach_Biome.Terrain_Beach_Biome'",
+	terrainForest:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Terrain_Forest_Biome.Terrain_Forest_Biome'",
+	terrainRural:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Terrain_Rural_Biome.Terrain_Rural_Biome'",
+	sideWalks: "/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/SideWalk.SideWalk'",
+	waterWall:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/Water_Wall01_Biome.Water_Wall01_Biome'",
+	WaterWallSecondary:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/Water_Wall02_Biome.Water_Wall02_Biome'",
+};
+
+export const farmBiome: Biome = {
+	cliffBrown:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Farm/Cliff_Biome_Farm_Brown.Cliff_Biome_Farm_Brown'",
+	cliffBrownCave:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Farm/Cliff_Biome_Farm_Brown_Cave.Cliff_Biome_Farm_Brown_Cave'",
+	cliffWhite:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Farm/Cliff_Biome_Farm_White.Cliff_Biome_Farm_White'",
+	cliffWhiteCave:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Farm/Cliff_Biome_Farm_White_Cave.Cliff_Biome_Farm_White_Cave'",
+	farmField:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Farm/Farm_Field_Farm_Biome.Farm_Field_Farm_Biome'",
+	terrain:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Farm/Terrain_Farm_Biome.Terrain_Farm_Biome'",
+	terrainBeach:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Farm/Terrain_Beach_Farm_Biome.Terrain_Beach_Farm_Biome'",
+	terrainForest:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Farm/Terrain_Forest_Farm_Biome.Terrain_Forest_Farm_Biome'",
+	terrainRural:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Farm/Terrain_Rural_Farm_Biome.Terrain_Rural_Farm_Biome'",
+	sideWalks: "/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/SideWalk.SideWalk'",
+	waterWall:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/Water_Wall01_Farm.Water_Wall01_Farm'",
+	WaterWallSecondary:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/Water_Wall02_Farm.Water_Wall02_Farm'",
+};
+
+export const mountainBiome: Biome = {
+	cliffBrown:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Mountain/Cliff_Biome_Mountain_Brown.Cliff_Biome_Mountain_Brown'",
+	cliffBrownCave:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Mountain/Cliff_Biome_Mountain_Brown_Cave.Cliff_Biome_Mountain_Brown_Cave'",
+	cliffWhite:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Mountain/Cliff_Biome_Mountain_White.Cliff_Biome_Mountain_White'",
+	cliffWhiteCave:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Mountain/Cliff_Biome_Mountain_White_Cave.Cliff_Biome_Mountain_White_Cave'",
+	farmField:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Mountain/Farm_Field_Mountain_Biome.Farm_Field_Mountain_Biome'",
+	terrain:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Mountain/Terrain_Mountain_Biome.Terrain_Mountain_Biome'",
+	terrainBeach:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Mountain/Terrain_Beach_Mountain_Biome.Terrain_Beach_Mountain_Biome'",
+	terrainForest:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Mountain/Terrain_Forest_Mountain_Biome.Terrain_Forest_Mountain_Biome'",
+	terrainRural:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Mountain/Terrain_Rural_Mountain_Biome.Terrain_Rural_Mountain_Biome'",
+	sideWalks: "/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/SideWalk.SideWalk'",
+	waterWall:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/Water_Wall01_Mountain.Water_Wall01_Mountain'",
+	WaterWallSecondary:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/Water_Wall02_Mountain.Water_Wall02_Mountain'",
+};
+
+export const swampBiome: Biome = {
+	cliffBrown:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Swamp/Cliff_Biome_Swamp_Biome.Cliff_Biome_Swamp_Biome'",
+	cliffBrownCave:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Swamp/Cliff_Biome_Swamp_Brown_Cave.Cliff_Biome_Swamp_Brown_Cave'",
+	cliffWhite:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Swamp/Cliff_Biome_Swamp_White.Cliff_Biome_Swamp_White'",
+	cliffWhiteCave:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Swamp/Cliff_Biome_Swamp_White_Cave.Cliff_Biome_Swamp_White_Cave'",
+	farmField:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Swamp/Farm_Field_Swamp_Biome.Farm_Field_Swamp_Biome'",
+	terrain:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Swamp/Terrain_Swamp_Biome.Terrain_Swamp_Biome'",
+	terrainBeach:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Swamp/Terrain_Beach_Swamp_Biome.Terrain_Beach_Swamp_Biome'",
+	terrainForest:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Swamp/Terrain_Forest_Swamp_Biome.Terrain_Forest_Swamp_Biome'",
+	terrainRural:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Swamp/Terrain_Rural_Swamp_Biome.Terrain_Rural_Swamp_Biome'",
+	sideWalks: "/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/SideWalk.SideWalk'",
+	waterWall:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/Water_Wall01_Swamp.Water_Wall01_Swamp'",
+	WaterWallSecondary:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/Water_Wall02_Swamp.Water_Wall02_Swamp'",
+};
+
+export const snowBiome: Biome = {
+	cliffBrown:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Snow/Cliff_Biome_Snow_Brown.Cliff_Biome_Snow_Brown'",
+	cliffBrownCave:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Snow/Cliff_Biome_Snow_Brown_Cave.Cliff_Biome_Snow_Brown_Cave'",
+	cliffWhite:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Snow/Cliff_Biome_Snow_White.Cliff_Biome_Snow_White'",
+	cliffWhiteCave:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Snow/Cliff_Biome_Snow_White_Cave.Cliff_Biome_Snow_White_Cave'",
+	farmField:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Snow/Farm_Field_Biome_Snow.Farm_Field_Biome_Snow'",
+	terrain:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Snow/Main_Terrain_Biome_Snow.Main_Terrain_Biome_Snow'",
+	terrainBeach:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Snow/Terrain_Beach_Biome_Snow.Terrain_Beach_Biome_Snow'",
+	terrainForest:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Snow/Terrain_Forest_Biome_Snow.Terrain_Forest_Biome_Snow'",
+	terrainRural:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Snow/Terrain_Rural_Biome_Snow.Terrain_Rural_Biome_Snow'",
+	sideWalks: "/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/SideWalk.SideWalk'",
+	waterWall:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/Water_Wall01_Biome.Water_Wall01_Biome'",
+	WaterWallSecondary:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/Water_Wall02_Biome.Water_Wall02_Biome'",
+};
+
+export const adBiome: Biome = {
+	cliffBrown:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/AD_(Plankerton)/Cliff_AD.Cliff_AD'",
+	cliffBrownCave:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/AD_(Plankerton)/Cliff_AD_Cave.Cliff_AD_Cave'",
+	cliffWhite:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/AD_(Plankerton)/Cliff_AD.Cliff_AD'",
+	cliffWhiteCave:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/AD_(Plankerton)/Cliff_AD_Cave.Cliff_AD_Cave'",
+	farmField:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/AD_(Plankerton)/Farm_Field_AD.Farm_Field_AD'",
+	terrain:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/AD_(Plankerton)/Terrain_AD.Terrain_AD'",
+	terrainBeach:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/AD_(Plankerton)/Terrain_Beach_AD.Terrain_Beach_AD'",
+	terrainForest:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/AD_(Plankerton)/Terrain_Forest_AD.Terrain_Forest_AD'",
+	terrainRural:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/AD_(Plankerton)/Terrain_Rural_AD.Terrain_Rural_AD'",
+	sideWalks: "/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/SideWalk_AD.SideWalk_AD'",
+	waterWall:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/Water_Wall01_AD.Water_Wall01_AD'",
+	WaterWallSecondary:
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/Water_Wall02_AD.Water_Wall02_AD'",
 };
