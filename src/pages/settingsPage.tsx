@@ -1,5 +1,5 @@
-import React from "react";
-import { Checkbox, Header, Segment } from "semantic-ui-react";
+import React, { useState } from "react";
+import { Button, Checkbox, Header, Input, Segment } from "semantic-ui-react";
 import GlobalStore, { GlobalState } from "../state/globalstate";
 import { Column, Container, Row } from "../components/gridsystem";
 
@@ -7,6 +7,10 @@ function SettingsPage() {
     const globalState: GlobalState = {
         ...GlobalStore((state) => state),
     };
+
+    const [projectName, setProjectName] = useState(
+        globalState.currentSettings.portedModelsProjectName
+    );
     return (
         <>
             <div style={{ minHeight: "2.85714286em" }}></div>
@@ -235,8 +239,8 @@ function SettingsPage() {
                                     rel="noopener noreferrer"
                                 >
                                     here
-                                </a>
-                                .
+                                </a>{" "}
+                                (only copatable with V3 of my ported models).
                             </Header>
                             <Checkbox
                                 toggle
@@ -252,6 +256,37 @@ function SettingsPage() {
                                     globalState.currentSettings.usePortedModels
                                 }
                             />
+                            <Header size="medium">
+                                Your project name will be required for the
+                                ported models to actually get imported into you
+                                level (Empty = "Game")
+                            </Header>
+                            <Input
+                                inverted={globalState.currentSettings.darkMode}
+                                disabled={
+                                    !globalState.currentSettings.usePortedModels
+                                }
+                                placeholder="Project Name"
+                                size="huge"
+                                value={projectName}
+                                onChange={(event) => {
+                                    setProjectName(event.target.value);
+                                }}
+                                action={
+                                    <Button
+                                        primary
+                                        onClick={() => {
+                                            globalState.changeSettings({
+                                                ...globalState.currentSettings,
+                                                portedModelsProjectName:
+                                                    projectName,
+                                            });
+                                        }}
+                                    >
+                                        Apply
+                                    </Button>
+                                }
+                            ></Input>
                         </Segment>
                     </Column>
                 </Row>
