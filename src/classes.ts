@@ -161,9 +161,9 @@ export class StaticMesh {
 }
 
 export class OverrideMaterials {
-	Materials: ObjectData[];
+	Materials: ObjectData[] | null[];
 
-	constructor(overrideMaterials: ObjectData[]) {
+	constructor(overrideMaterials: ObjectData[] | null[]) {
 		this.Materials = overrideMaterials;
 	}
 
@@ -175,11 +175,11 @@ export class OverrideMaterials {
 			if (element === null) {
 				continue;
 			} else {
-				let tempMeshName: string = "";
+				let tempMeshName: string = element.ObjectName;
 				let tempMeshPath: string = element.ObjectPath;
 
-				if (element.ObjectName.includes("MaterialInstanceConstant'")) {
-					tempMeshName = element.ObjectName.split("MaterialInstanceConstant'")[1];
+				if (tempMeshName.includes("MaterialInstanceConstant'")) {
+					tempMeshName = tempMeshName.split("MaterialInstanceConstant'")[1];
 				}
 
 				tempMeshPath = tempMeshPath.replace("FortniteGame/Content", "/Game");
@@ -188,9 +188,19 @@ export class OverrideMaterials {
 				let material = tempMeshPath + tempMeshName;
 				if (globalState.currentSettings.usePortedModels) {
 					const portedMaterial: String | undefined = portedMaterialsPaths[tempMeshName];
-					if (typeof portedMaterial != "undefined") {
+
+					const biomeKey = (
+						Object.keys(globalState.currentSettings.overrideBiome) as Array<
+							keyof typeof globalState.currentSettings.overrideBiome
+						>
+					).find((key) => globalState.currentSettings.overrideBiome[key] === true);
+					if (typeof portedMaterial !== "undefined") {
 						material = `/${
 							globalState.currentSettings.portedModelsProjectName + portedMaterial
+						}`;
+					} else if (typeof biomeKey !== "undefined") {
+						material = `/${
+							globalState.currentSettings.portedModelsProjectName + material
 						}`;
 					}
 				}
