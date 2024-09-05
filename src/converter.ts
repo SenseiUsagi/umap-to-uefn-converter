@@ -491,6 +491,7 @@ function processDataObj(
 			} else if (staticMesh !== undefined) {
 				actor += new Template(staticMesh.MeshData).convertToUEFN(true);
 			} else {
+				// TODO: Add logic here for AdditionalWorlds
 				return "";
 			}
 
@@ -549,9 +550,6 @@ export function convertToUEFN(parsedJSON: any[], folderName: string): convertedL
 	const alreadyProcessed: string[] = [];
 
 	parsedJSON.forEach((element) => {
-		const globalState: GlobalState = GlobalStore.getState();
-		// let convertedActor: string = "";
-
 		const objName: string = element.Name;
 
 		if (objName === "PersistentLevel") {
