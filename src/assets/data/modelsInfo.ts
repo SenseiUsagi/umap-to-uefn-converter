@@ -20,7 +20,7 @@ export const portedModelsPaths: any = {
 	"S_WaterWall_InsideCorner'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Water_Wall_Corner_Inner_1x2.Water_Wall_Corner_Inner_1x2'",
 	"S_Urban_Cave_Ceiling'":
-		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Water_Wall_Cave_Ceiling_1x1.Water_Wall_Cave_Ceiling_1x1'",
+		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Water_Wall_Cave_Ceiling.Water_Wall_Cave_Ceiling'",
 	"S_Urban_Cave_Entrance'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Water_Wall_Cave_Entrance.Water_Wall_Cave_Entrance'",
 	"S_Urban_Cave_Inner_Floor'":
@@ -34,7 +34,7 @@ export const portedModelsPaths: any = {
 	"S_Urban_Cave_Ramp_Cap'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Water_Wall_Ramp.Water_Wall_Ramp'",
 	"S_Urban_Cave_Ramp_Floor_Outer'":
-		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Water_Wall_Ramp_Wall_Outer.Water_Wall_Ramp_Wall_Outer'",
+		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Water_Wall_Ramp_Outer.Water_Wall_Ramp_Outer'",
 	"S_Urban_Cave_Ramp_Floor'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Water_Wall_Ramp_Wall.Water_Wall_Ramp_Wall'",
 	"S_Elevation_Ground_Z'":
@@ -143,7 +143,7 @@ export const portedModelsPaths: any = {
 	"S_Cave_Tunnel_SBend'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Cave/Cave_Tunnel_SBend.Cave_Tunnel_SBend'",
 	"S_Cave_Tunnel_Straight_x2'":
-		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Cave/Cave_Tunnel_Straight2.Cave_Tunnel_Straight2'",
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Cave/Cave_Tunnel_Straight_2x.Cave_Tunnel_Straight_2x'",
 	"S_Cave_Tunnel_Straight'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Cave/Cave_Tunnel_Straight.Cave_Tunnel_Straight'",
 	"S_Cave_Tunnel_TSection'":
@@ -208,13 +208,13 @@ export const portedModelsPaths: any = {
 	"S_Elevation_2W_Straight_Outer'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Elevation/Elevation_Cap_Outer.Elevation_Cap_Outer'",
 	"S_Elevation_2W_ToGeoSlope_1L_a'":
-		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Elevation/Elevation_ToGeoSlope.Elevation_ToGeoSlope'",
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Elevation/Elevation_To_GeoSlope.Elevation_To_GeoSlope'",
 	"S_Elevation_2W_ToOuter_1L_a'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Elevation/Elevation_Cap_A.Elevation_Cap_A'",
 	"S_Elevation_2W_ToOuter_1L_b'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Elevation/Elevation_Cap_B.Elevation_Cap_B'",
 	"S_Elevation_2W_ToStraight_1L_a'":
-		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Elevation/Elevation_Cap_Wall.Elevation_Cap_Wall'",
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Elevation/Elevation_Cap_C.Elevation_Cap_C'",
 	"S_Elevation_Step'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Elevation/Elevation_Step.Elevation_Step'",
 	"S_GeoSlope_2W_Inner_2L_a'":
@@ -222,7 +222,7 @@ export const portedModelsPaths: any = {
 	"S_GeoSlope_2W_Outer_2L_a'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/GeoSlope/GeoSlope_Corner_Outer.GeoSlope_Corner_Outer'",
 	"S_GeoSlope_2W_Straight_1L_a'":
-		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/GeoSlope/GeoSlope_Straight_1.GeoSlope_Straight_1'",
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/GeoSlope/GeoSlope_Straight.GeoSlope_Straight'",
 	"S_GeoSlope_2W_Straight_Cap'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/GeoSlope/GeoSlope_Cap.GeoSlope_Cap'",
 	"S_GeoSlope_2W_Straight_End'":
@@ -247,23 +247,26 @@ export const portedModelsPaths: any = {
 		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/River/River_Straight05.River_Straight05'",
 	"S_Stream_2W_Straight_1L_a'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/River/River_Straight1.River_Straight1'",
-	"S_Stream_2W_Straight_2L_a'": "TODO PORT THIS DUMBASS",
+	"S_Stream_2W_Straight_2L_a'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/River/River_Straight2.River_Straight2'",
 	"S_Water_Shallow_1x1'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Water_Shallow_1x1.Water_Shallow_1x1'",
-	"S_Water_Shallow_2x2'": "TODO PORT THIS DUMBASS",
+	"S_Water_Shallow_2x2'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Water_Shallow_2x2.Water_Shallow_2x2'",
 	"S_Shoreline_1W_BeachInner_1L_a'":
-		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Beach_Inner_Corner_A.Beach_Inner_Corner_A'",
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Beach_Inner_A.Beach_Inner_A'",
 	"S_Shoreline_1W_BeachInner_2L_a'":
-		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Beach_Inner_Corner_B.Beach_Inner_Corner_B'",
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Beach_Inner_B.Beach_Inner_B'",
 	"S_Shoreline_1W_BeachOuter_1L_a'":
-		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Beach_Outer_Corner_A.Beach_Outer_Corner_A'",
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Beach_Outer_A.Beach_Outer_A'",
 	"S_Shoreline_1W_BeachOuter_2L_a'":
-		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Beach_Outer_Corner_B.Beach_Outer_Corner_B'",
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Beach_Outer_B.Beach_Outer_B'",
 	"S_Shoreline_1W_BeachSBend_2L_a'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Beach_SBend.Beach_SBend'",
 	"S_Shoreline_1W_BeachStraight_1L_a'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Beach_Straight_A.Beach_Straight_A'",
-	"S_Shoreline_1W_BeachStraight_2L_a'": "TODO PORT THIS DUMBASS",
+	"S_Shoreline_1W_BeachStraight_2L_a'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Beach_Straight_B.Beach_Straight_B'",
 	"S_Shoreline_1W_Inner_1L_a'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Shoreline_Inner_A.Shoreline_Inner_A'",
 	"S_Shoreline_1W_Inner_2L_a'":
@@ -275,13 +278,13 @@ export const portedModelsPaths: any = {
 	"S_Shoreline_1W_SBend_2L_a'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Shoreline_SBend.Shoreline_SBend'",
 	"S_Shoreline_1W_Straight_1L_a'":
-		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Shoreline_Straight_1.Shoreline_Straight_1'",
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Shoreline_Straight_A.Shoreline_Straight_A'",
 	"S_Shoreline_1W_Straight_2L_a'":
-		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Shoreline_Straight_2.Shoreline_Straight_2'",
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Shoreline_Straight_B.Shoreline_Straight_B'",
 	"S_Shoreline_1W_Straight_5L_a'":
-		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Beach_Straight_B.Beach_Straight_B'",
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Shoreline_Straight_C.Shoreline_Straight_C'",
 	"S_Shoreline_1W_ToBeach_1L_a'":
-		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Beach_ToShoreline.Beach_ToShoreline'",
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Beach_To_Shoreline.Beach_To_Shoreline'",
 	"S_Asphalt_1x1'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_Street_1x1.Sidewalk_Street_1x1'",
 	"S_BasketballCourt'":
@@ -410,6 +413,30 @@ export const portedModelsPaths: any = {
 		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_Street_Bridge_Broken.Sidewalk_Street_Bridge_Broken'",
 	"SM_BridgeStreet_2'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_Street_Bridge_C.Sidewalk_Street_Bridge_C'",
+	"S_Cave_Inner_Floor_To_Concave'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Cave/Cave_Floor_Ceiling_Inner.Cave_Floor_Ceiling_Inner'",
+	"S_Cave_Inner_Middle_To_Concave'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Cave/Cave_Ceiling_Inner_2x.Cave_Ceiling_Inner_2x'",
+	"S_Cave_Outer_Floor_To_Concave'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Cave/Cave_Floor_Ceiling_Outer.Cave_Floor_Ceiling_Outer'",
+	"S_Cave_Outer_Middle_To_Concave'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Cave/Cave_Ceiling_Outer_2x.Cave_Ceiling_Outer_2x'",
+	"S_Cave_Straight_Floor_To_Concave'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Cave/Cave_Floor_Ceiling_Straight.Cave_Floor_Ceiling_Straight'",
+	"S_Cave_Straight_Middle_To_Concave'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Cave/Cave_Ceiling_Straight_2x.Cave_Ceiling_Straight_2x'",
+	"S_Shoreline_1W_BeachOuter_1L_180a'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Beach_180_A.Beach_180_A'",
+	"S_Shoreline_1W_BeachOuter_1L_2L_180'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Beach_180_B.Beach_180_B'",
+	"S_SoccerPitch'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Floor/Floor_Ground.Floor_Ground'",
+	"S_Sidewalk_1x2_GrassTransition'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_1x2_A.Sidewalk_1x2_A'",
+	"S_Sidewalk_1x3_GrassTransition'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_1x3_A.Sidewalk_1x3_A'",
+	"S_Sidewalk_1x5_GrassTransition'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_1x5_D.Sidewalk_1x5_D'",
 };
 
 export const portedMaterialsPaths: any = {
@@ -477,4 +504,10 @@ export const portedMaterialsPaths: any = {
 		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Cliff_Biome_Brown_Cave.Cliff_Biome_Brown_Cave'",
 	"M_TRV_Swamp_Water_Border_02'":
 		"/Ported_Assets_By_Sensei_Usagi/Materials/Water/Swamp/LandWaterBorderSwamp.LandWaterBorderSwamp'",
+	"M_Terrain_Z_Forest_Athena'":
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Terrain_Forest_Biome.Terrain_Forest_Biome'",
+	"M_Terrain_Z_FarmField_Athena_ForceSwamp'":
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Swamp/Farm_Field_Swamp_Biome.Farm_Field_Swamp_Biome'",
+	"MI_BasketballCourt_Athena_ForceSwamp'":
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/BasketballCourts_Biome_Swamp.BasketballCourts_Biome_Swamp'",
 };
