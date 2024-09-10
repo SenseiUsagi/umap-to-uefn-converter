@@ -11,6 +11,41 @@ function SettingsPage() {
     const [projectName, setProjectName] = useState(
         globalState.currentSettings.portedModelsProjectName
     );
+
+    function changeBiome(biomeName: string) {
+        const newBiomeSettings = {
+            ...globalState.currentSettings.overrideBiome,
+        };
+
+        for (let key in newBiomeSettings) {
+            if (Object.prototype.hasOwnProperty.call(newBiomeSettings, key)) {
+                if (
+                    newBiomeSettings[
+                        key as keyof typeof globalState.currentSettings.overrideBiome
+                    ] === true
+                ) {
+                    if (key !== "forceCave" && key !== biomeName) {
+                        newBiomeSettings[
+                            key as keyof typeof globalState.currentSettings.overrideBiome
+                        ] = false;
+                    }
+                }
+            }
+        }
+
+        newBiomeSettings[
+            biomeName as keyof typeof globalState.currentSettings.overrideBiome
+        ] =
+            !globalState.currentSettings.overrideBiome[
+                biomeName as keyof typeof globalState.currentSettings.overrideBiome
+            ];
+
+        globalState.changeSettings({
+            ...globalState.currentSettings,
+            overrideBiome: newBiomeSettings,
+        });
+    }
+
     return (
         <>
             <div style={{ minHeight: "2.85714286em" }}></div>
@@ -240,7 +275,7 @@ function SettingsPage() {
                                 >
                                     here
                                 </a>{" "}
-                                (only copatable with V3 of my ported models).
+                                (only compatable with V3 of my ported models).
                             </Header>
                             <Checkbox
                                 toggle
@@ -287,6 +322,225 @@ function SettingsPage() {
                                     </Button>
                                 }
                             ></Input>
+                        </Segment>
+                    </Column>
+                </Row>
+                <Row>
+                    <Column size={6}>
+                        <Segment
+                            raised
+                            padded="very"
+                            textAlign="center"
+                            inverted={globalState.currentSettings.darkMode}
+                        >
+                            <Header size="large">
+                                Override Biome detection (when using ported
+                                assets)
+                            </Header>
+                            <Header size="medium">
+                                Instead of trying to auto detect what biome to
+                                use, specify a specific Biome
+                            </Header>
+                        </Segment>
+                    </Column>
+                </Row>
+                <Row>
+                    <Column size={2}>
+                        <Segment
+                            raised
+                            padded="very"
+                            textAlign="center"
+                            inverted={globalState.currentSettings.darkMode}
+                        >
+                            <Header
+                                size="medium"
+                                inverted={globalState.currentSettings.darkMode}
+                            >
+                                Grass Biome
+                            </Header>
+                            <Checkbox
+                                toggle
+                                disabled={
+                                    !globalState.currentSettings.usePortedModels
+                                }
+                                onChange={changeBiome.bind(null, "grasBiome")}
+                                checked={
+                                    globalState.currentSettings.overrideBiome
+                                        .grasBiome
+                                }
+                            />
+                        </Segment>
+                    </Column>
+                    <Column size={2}>
+                        <Segment
+                            raised
+                            padded="very"
+                            textAlign="center"
+                            inverted={globalState.currentSettings.darkMode}
+                        >
+                            <Header
+                                size="medium"
+                                inverted={globalState.currentSettings.darkMode}
+                            >
+                                Mountain Biome
+                            </Header>
+                            <Checkbox
+                                toggle
+                                disabled={
+                                    !globalState.currentSettings.usePortedModels
+                                }
+                                onChange={changeBiome.bind(
+                                    null,
+                                    "mountainBiome"
+                                )}
+                                checked={
+                                    globalState.currentSettings.overrideBiome
+                                        .mountainBiome
+                                }
+                            />
+                        </Segment>
+                    </Column>
+                    <Column size={2}>
+                        <Segment
+                            raised
+                            padded="very"
+                            textAlign="center"
+                            inverted={globalState.currentSettings.darkMode}
+                        >
+                            <Header
+                                size="medium"
+                                inverted={globalState.currentSettings.darkMode}
+                            >
+                                Farm Biome
+                            </Header>
+                            <Checkbox
+                                toggle
+                                disabled={
+                                    !globalState.currentSettings.usePortedModels
+                                }
+                                onChange={changeBiome.bind(null, "farmBiome")}
+                                checked={
+                                    globalState.currentSettings.overrideBiome
+                                        .farmBiome
+                                }
+                            />
+                        </Segment>
+                    </Column>
+                </Row>
+                <Row>
+                    <Column size={1.5}>
+                        <Segment
+                            raised
+                            padded="very"
+                            textAlign="center"
+                            inverted={globalState.currentSettings.darkMode}
+                        >
+                            <Header
+                                size="medium"
+                                inverted={globalState.currentSettings.darkMode}
+                            >
+                                Swamp Biome
+                            </Header>
+                            <Checkbox
+                                toggle
+                                disabled={
+                                    !globalState.currentSettings.usePortedModels
+                                }
+                                onChange={changeBiome.bind(null, "swampBiome")}
+                                checked={
+                                    globalState.currentSettings.overrideBiome
+                                        .swampBiome
+                                }
+                            />
+                        </Segment>
+                    </Column>
+                    <Column size={1.5}>
+                        <Segment
+                            raised
+                            padded="very"
+                            textAlign="center"
+                            inverted={globalState.currentSettings.darkMode}
+                        >
+                            <Header
+                                size="medium"
+                                inverted={globalState.currentSettings.darkMode}
+                            >
+                                Snow Biome
+                            </Header>
+                            <Checkbox
+                                toggle
+                                disabled={
+                                    !globalState.currentSettings.usePortedModels
+                                }
+                                onChange={changeBiome.bind(null, "snowBiome")}
+                                checked={
+                                    globalState.currentSettings.overrideBiome
+                                        .snowBiome
+                                }
+                            />
+                        </Segment>
+                    </Column>
+                    <Column size={1.5}>
+                        <Segment
+                            raised
+                            padded="very"
+                            textAlign="center"
+                            inverted={globalState.currentSettings.darkMode}
+                        >
+                            <Header
+                                size="medium"
+                                inverted={globalState.currentSettings.darkMode}
+                            >
+                                AD (Plankerton) Biome
+                            </Header>
+                            <Checkbox
+                                toggle
+                                disabled={
+                                    !globalState.currentSettings.usePortedModels
+                                }
+                                onChange={changeBiome.bind(null, "adBiome")}
+                                checked={
+                                    globalState.currentSettings.overrideBiome
+                                        .adBiome
+                                }
+                            />
+                        </Segment>
+                    </Column>
+                    <Column size={1.5}>
+                        <Segment
+                            raised
+                            padded="very"
+                            textAlign="center"
+                            inverted={globalState.currentSettings.darkMode}
+                        >
+                            <Header
+                                size="medium"
+                                inverted={globalState.currentSettings.darkMode}
+                            >
+                                Force Cave Floor
+                            </Header>
+                            <Checkbox
+                                toggle
+                                disabled={
+                                    !globalState.currentSettings.usePortedModels
+                                }
+                                onChange={() => {
+                                    globalState.changeSettings({
+                                        ...globalState.currentSettings,
+                                        overrideBiome: {
+                                            ...globalState.currentSettings
+                                                .overrideBiome,
+                                            forceCave:
+                                                !globalState.currentSettings
+                                                    .overrideBiome.forceCave,
+                                        },
+                                    });
+                                }}
+                                checked={
+                                    globalState.currentSettings.overrideBiome
+                                        .forceCave
+                                }
+                            />
                         </Segment>
                     </Column>
                 </Row>

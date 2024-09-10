@@ -270,7 +270,7 @@ function ConverterPage() {
                                     }
                                 >
                                     {/* Ver. FullVersion.FeatureVersion.PatchVersion */}
-                                    Ver. 1.1.1
+                                    Ver. 1.1.0
                                 </Header>
                                 <Header
                                     size="tiny"
