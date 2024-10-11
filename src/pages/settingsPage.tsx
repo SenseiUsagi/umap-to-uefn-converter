@@ -274,9 +274,15 @@ function SettingsPage() {
 									<Button
 										primary
 										onClick={() => {
+											if (projectName.trim().length === 0) {
+												setProjectName("Game");
+											}
 											globalState.changeSettings({
 												...globalState.currentSettings,
-												portedModelsProjectName: projectName,
+												portedModelsProjectName:
+													projectName.trim().length > 0
+														? projectName
+														: "Game",
 											});
 										}}
 									>
@@ -306,7 +312,7 @@ function SettingsPage() {
 					</Column>
 				</Row>
 				<Row>
-					<Column size={2}>
+					<Column size={1.5}>
 						<Segment
 							raised
 							padded="very"
@@ -324,7 +330,7 @@ function SettingsPage() {
 							/>
 						</Segment>
 					</Column>
-					<Column size={2}>
+					<Column size={1.5}>
 						<Segment
 							raised
 							padded="very"
@@ -342,7 +348,7 @@ function SettingsPage() {
 							/>
 						</Segment>
 					</Column>
-					<Column size={2}>
+					<Column size={1.5}>
 						<Segment
 							raised
 							padded="very"
@@ -360,8 +366,6 @@ function SettingsPage() {
 							/>
 						</Segment>
 					</Column>
-				</Row>
-				<Row>
 					<Column size={1.5}>
 						<Segment
 							raised
@@ -380,6 +384,8 @@ function SettingsPage() {
 							/>
 						</Segment>
 					</Column>
+				</Row>
+				<Row>
 					<Column size={1.5}>
 						<Segment
 							raised
@@ -395,6 +401,24 @@ function SettingsPage() {
 								disabled={!globalState.currentSettings.usePortedModels}
 								onChange={changeBiome.bind(null, "snowBiome")}
 								checked={globalState.currentSettings.overrideBiome.snowBiome}
+							/>
+						</Segment>
+					</Column>
+					<Column size={1.5}>
+						<Segment
+							raised
+							padded="very"
+							textAlign="center"
+							inverted={globalState.currentSettings.darkMode}
+						>
+							<Header size="medium" inverted={globalState.currentSettings.darkMode}>
+								Junlge Biome
+							</Header>
+							<Checkbox
+								toggle
+								disabled={!globalState.currentSettings.usePortedModels}
+								onChange={changeBiome.bind(null, "jungleBiome")}
+								checked={globalState.currentSettings.overrideBiome.jungleBiome}
 							/>
 						</Segment>
 					</Column>

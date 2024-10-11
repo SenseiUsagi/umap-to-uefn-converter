@@ -56,6 +56,10 @@ export function findTerrainTypeBasedMesh(mesh: StaticMesh) {
 		type = "terrain";
 	}
 
+	if (mesh.MeshData.ObjectPath.includes("crater")) {
+		type = "crater";
+	}
+
 	// Farm Field
 	if (mesh.MeshData.ObjectPath.includes("Garden")) {
 		type = "farmField";
@@ -124,6 +128,18 @@ export function findTerrainTypeBasedMaterial(material: ObjectData | null) {
 		material.ObjectPath.includes("SoccerPitch")
 	) {
 		type = "terrain-normal";
+	}
+
+	if (material.ObjectPath.includes("BasketballCourt")) {
+		type = "basketball";
+	}
+
+	if (material.ObjectPath.includes("Parking")) {
+		type = "parking";
+	}
+
+	if (material.ObjectPath.includes("crater")) {
+		type = "crater";
 	}
 
 	if (material.ObjectPath.includes("Forest")) {

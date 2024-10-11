@@ -437,17 +437,35 @@ export const portedModelsPaths: any = {
 		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_1x3_A.Sidewalk_1x3_A'",
 	"S_Sidewalk_1x5_GrassTransition'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_1x5_D.Sidewalk_1x5_D'",
+	"SM_SmallCrater_Test'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Floor/Floor_Crater.Floor_Crater'",
+	"SM_Vik_Waterfall_Ground_01'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/River/River_Waterfall_Big.River_Waterfall_Big'",
+	"S_Athena_WaterWall_1x5'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Water_Wall_5x2.Water_Wall_5x2'",
+	"S_Athena_Foundation_Straight_x2'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Foundation_Straight_2x.Foundation_Straight_2x'",
+	"S_Athena_Foundation_Outer'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Foundation_Outer.Foundation_Outer'",
+	"S_Athena_Foundation_Inner'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Foundation_Inner.Foundation_Inner'",
+	"S_Athena_Foundation_Straight'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Foundation_Straight.Foundation_Straight'",
 };
 
+// TODO: Add Water_Wall01_Biome
+//		 Add Crosswalk_Biome
+//		 Add ParkingSpots_Biome
+//		 Add Foundation
 export const portedMaterialsPaths: any = {
 	"M_Con_Dock_UrbanWall_Terr'":
-		"/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/Water_Wall02.Water_Wall02'",
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Water_Wall02_Biome.Water_Wall02_Biome'",
 	"M_Con_Dock_UrbanWall_Terr_Asphalt'":
-		"/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/Water_Wall02.Water_Wall02'",
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Water_Wall02_Biome.Water_Wall02_Biome'",
 	"M_Con_Dock_UrbanWall_Terr_Athena'":
-		"/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/Water_Wall02.Water_Wall02'",
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Water_Wall02_Biome.Water_Wall02_Biome'",
 	"MI_BasketballCourt'":
-		"/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/BasketballCourts_Biome.BasketballCourts_Biome'",
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/BasketballCourts_Biome.BasketballCourts_Biome'",
 	"M_Terrain_Cliff_White'":
 		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Cliff_Biome_White.Cliff_Biome_White'",
 	"M_Terrain_Cave_Grass'":
@@ -509,5 +527,11 @@ export const portedMaterialsPaths: any = {
 	"M_Terrain_Z_FarmField_Athena_ForceSwamp'":
 		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Swamp/Farm_Field_Swamp_Biome.Farm_Field_Swamp_Biome'",
 	"MI_BasketballCourt_Athena_ForceSwamp'":
-		"/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/BasketballCourts_Biome_Swamp.BasketballCourts_Biome_Swamp'",
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Swamp/BasketballCourts_Biome_Swamp.BasketballCourts_Biome_Swamp'",
+	"Athena_Terrain_Mat_Biome_ForceFarm_Snow'":
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Vikings/Terrain_Vikings_Biome.Terrain_Vikings_Biome'",
+	"Athena_Terrain_Mat_Biome_Cliff_ForceFarm_Snow'":
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Vikings/Cliff_Biome_Vikings_White.Cliff_Biome_Vikings_White'",
+	"Athena_Terrain_Mat_Biome_Cliff_Brown_ForceFarm_Snow'":
+		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Vikings/Cliff_Biome_Vikings_Brown.Cliff_Biome_Vikings_Brown'",
 };

@@ -1,5 +1,6 @@
 import { Biome } from "../../constants";
-export const biome = {};
+
+// TODO: Add jungle biome
 export const grassBiome: Biome = {
 	cliff: {
 		brown: {
@@ -42,15 +43,15 @@ export const grassBiome: Biome = {
 		},
 	},
 	sideWalks: {
-		ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/SideWalk.",
+		ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/SideWalk.",
 		ObjectName: "SideWalk'",
 	},
 	waterWall: {
-		ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/Water_Wall01_Biome.",
+		ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Water_Wall01_Biome.",
 		ObjectName: "Water_Wall01_Biome'",
 	},
 	waterWallSecondary: {
-		ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/Water_Wall02_Biome.",
+		ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Water_Wall02_Biome.",
 		ObjectName: "Water_Wall02_Biome'",
 	},
 	landWater: {
@@ -99,6 +100,18 @@ export const grassBiome: Biome = {
 			ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Water/Stream_WaterFall.",
 			ObjectName: "Stream_WaterFall'",
 		},
+	},
+	basketball: {
+		ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/BasketballCourts_Biome.",
+		ObjectName: "BasketballCourts_Biome'",
+	},
+	parking: {
+		ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/ParkingSpots_Biome.",
+		ObjectName: "ParkingSpots_Biome'",
+	},
+	crater: {
+		ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Terrain_Crater.",
+		ObjectName: "Terrain_Crater'",
 	},
 };
 
@@ -151,15 +164,15 @@ export const farmBiome: Biome = {
 		},
 	},
 	sideWalks: {
-		ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/SideWalk.",
+		ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/SideWalk.",
 		ObjectName: "SideWalk'",
 	},
 	waterWall: {
-		ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/Water_Wall01_Farm.",
+		ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Farm/Water_Wall01_Farm.",
 		ObjectName: "Water_Wall01_Farm'",
 	},
 	waterWallSecondary: {
-		ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/Water_Wall02_Farm.",
+		ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Farm/Water_Wall02_Farm.",
 		ObjectName: "Water_Wall02_Farm'",
 	},
 	landWater: {
@@ -208,6 +221,20 @@ export const farmBiome: Biome = {
 			ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Water/Stream_WaterFall.",
 			ObjectName: "Stream_WaterFall'",
 		},
+	},
+	basketball: {
+		ObjectPath:
+			"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Farm/BasketballCourts_Biome_Farm.",
+		ObjectName: "BasketballCourts_Biome_Farm'",
+	},
+	parking: {
+		ObjectPath:
+			"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Farm/ParkingSpots_Biome_Farm.",
+		ObjectName: "ParkingSpots_Biome_Farm'",
+	},
+	crater: {
+		ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Farm/Terrain_Crater_Farm.",
+		ObjectName: "Terrain_Crater_Farm'",
 	},
 };
 
@@ -262,15 +289,17 @@ export const mountainBiome: Biome = {
 		},
 	},
 	sideWalks: {
-		ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/SideWalk.",
+		ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/SideWalk.",
 		ObjectName: "SideWalk'",
 	},
 	waterWall: {
-		ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/Water_Wall01_Mountain.",
+		ObjectPath:
+			"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Mountain/Water_Wall01_Mountain.",
 		ObjectName: "Water_Wall01_Mountain'",
 	},
 	waterWallSecondary: {
-		ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/Water_Wall02_Mountain.",
+		ObjectPath:
+			"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Mountain/Water_Wall02_Mountain.",
 		ObjectName: "Water_Wall02_Mountain'",
 	},
 	landWater: {
@@ -319,6 +348,21 @@ export const mountainBiome: Biome = {
 			ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Water/Stream_WaterFall.",
 			ObjectName: "Stream_WaterFall'",
 		},
+	},
+	basketball: {
+		ObjectPath:
+			"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Mountain/BasketballCourts_Biome_Mountain.",
+		ObjectName: "BasketballCourts_Biome_Mountain'",
+	},
+	parking: {
+		ObjectPath:
+			"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Mountain/ParkingSpots_Biome_Mountain.",
+		ObjectName: "ParkingSpots_Biome_Mountain'",
+	},
+	crater: {
+		ObjectPath:
+			"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Mountain/Terrain_Crater_Mountain.",
+		ObjectName: "Terrain_Crater_Mountain'",
 	},
 };
 
@@ -373,15 +417,15 @@ export const swampBiome: Biome = {
 		},
 	},
 	sideWalks: {
-		ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/SideWalk.",
+		ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/SideWalk.",
 		ObjectName: "SideWalk'",
 	},
 	waterWall: {
-		ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/Water_Wall01_Swamp.",
+		ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Swamp/Water_Wall01_Swamp.",
 		ObjectName: "Water_Wall01_Swamp'",
 	},
 	waterWallSecondary: {
-		ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/Water_Wall02_Swamp.",
+		ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Swamp/Water_Wall02_Swamp.",
 		ObjectName: "Water_Wall02_Swamp'",
 	},
 	landWater: {
@@ -430,6 +474,20 @@ export const swampBiome: Biome = {
 			ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Water/Stream_WaterFall.",
 			ObjectName: "Stream_WaterFall'",
 		},
+	},
+	basketball: {
+		ObjectPath:
+			"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Swamp/BasketballCourts_Biome_Swamp.",
+		ObjectName: "BasketballCourts_Biome_Swamp'",
+	},
+	parking: {
+		ObjectPath:
+			"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Swamp/ParkingSpots_Biome_Swamp.",
+		ObjectName: "ParkingSpots_Biome_Swamp'",
+	},
+	crater: {
+		ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Swamp/Terrain_Crater_Swamp.",
+		ObjectName: "Terrain_Crater_Swamp'",
 	},
 };
 
@@ -483,7 +541,7 @@ export const snowBiome: Biome = {
 		},
 	},
 	sideWalks: {
-		ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/SideWalk.",
+		ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/SideWalk.",
 		ObjectName: "SideWalk'",
 	},
 	waterWall: {
@@ -541,6 +599,20 @@ export const snowBiome: Biome = {
 			ObjectName: "Stream_WaterFall'",
 		},
 	},
+	basketball: {
+		ObjectPath:
+			"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Snow/BasketballCourts_Biome_Snow.",
+		ObjectName: "BasketballCourts_Biome_Snow'",
+	},
+	parking: {
+		ObjectPath:
+			"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Snow/ParkingSpots_Biome_Snow.",
+		ObjectName: "ParkingSpots_Biome_Snow'",
+	},
+	crater: {
+		ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Snow/Terrain_Crater_Snow.",
+		ObjectName: "Terrain_Crater_Snow'",
+	},
 };
 
 export const adBiome: Biome = {
@@ -594,15 +666,17 @@ export const adBiome: Biome = {
 		},
 	},
 	sideWalks: {
-		ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/SideWalk_AD.",
+		ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/AD_Plankerton/SideWalk_AD.",
 		ObjectName: "SideWalk_AD'",
 	},
 	waterWall: {
-		ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/Water_Wall01_AD.",
+		ObjectPath:
+			"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/AD_Plankerton/Water_Wall01_AD.",
 		ObjectName: "Water_Wall01_AD'",
 	},
 	waterWallSecondary: {
-		ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Foundation/Water_Wall02_AD.",
+		ObjectPath:
+			"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/AD_Plankerton/Water_Wall02_AD.",
 		ObjectName: "Water_Wall02_AD'",
 	},
 	landWater: {
@@ -656,6 +730,148 @@ export const adBiome: Biome = {
 			ObjectPath:
 				"/Ported_Assets_By_Sensei_Usagi/Materials/Water/AD_(Plankerton)/Stream_WaterFall_AD.",
 			ObjectName: "Stream_WaterFall_AD'",
+		},
+	},
+	basketball: {
+		ObjectPath:
+			"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/AD_Plankerton/BasketballCourts_Biome_AD.",
+		ObjectName: "BasketballCourts_Biome_AD'",
+	},
+	parking: {
+		ObjectPath:
+			"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/AD_Plankerton/ParkingSpots_Biome_AD.",
+		ObjectName: "ParkingSpots_Biome_AD'",
+	},
+	crater: {
+		ObjectPath:
+			"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/AD_Plankerton/Terrain_Crater_AD.",
+		ObjectName: "Terrain_Crater_AD'",
+	},
+};
+
+export const jungleBiome: Biome = {
+	cliff: {
+		brown: {
+			ObjectPath:
+				"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Jungle/Cliff_Biome_Jungle_Brown.",
+			ObjectName: "Cliff_Biome_Jungle_Brown'",
+		},
+		white: {
+			ObjectPath:
+				"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Jungle/Cliff_Biome_Jungle_White.",
+			ObjectName: "Cliff_Biome_Jungle_White'",
+		},
+		brownCave: {
+			ObjectPath:
+				"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Jungle/Cliff_Biome_Jungle_Brown_Cave.",
+			ObjectName: "Cliff_Biome_Jungle_Brown_Cave'",
+		},
+		whiteCave: {
+			ObjectPath:
+				"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Jungle/Cliff_Biome_Jungle_White_Cave.",
+			ObjectName: "Cliff_Biome_Jungle_White_Cave'",
+		},
+	},
+	farmField: {
+		ObjectPath:
+			"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Jungle/Farm_Field_Jungle_Biome.",
+		ObjectName: "Farm_Field_Jungle_Biome'",
+	},
+	terrain: {
+		normal: {
+			ObjectPath:
+				"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Jungle/Terrain_Jungle_Biome.",
+			ObjectName: "Terrain_Jungle_Biome'",
+		},
+		beach: {
+			ObjectPath:
+				"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Jungle/Terrain_Beach_Jungle_Biome.",
+			ObjectName: "Terrain_Beach_Jungle_Biome'",
+		},
+		forest: {
+			ObjectPath:
+				"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Jungle/Terrain_Forest_Jungle_Biome.",
+			ObjectName: "Terrain_Forest_Jungle_Biome'",
+		},
+		rural: {
+			ObjectPath:
+				"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Jungle/Terrain_Rural_Jungle_Biome.",
+			ObjectName: "Terrain_Rural_Jungle_Biome'",
+		},
+	},
+	sideWalks: {
+		ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/SideWalk.",
+		ObjectName: "SideWalk'",
+	},
+	waterWall: {
+		ObjectPath:
+			"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Jungle/Water_Wall01_Biome_Jungle.",
+		ObjectName: "Water_Wall01_Biome_Jungle'",
+	},
+	waterWallSecondary: {
+		ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Jungle/Water_Wall02_Biome.",
+		ObjectName: "Water_Wall02_Biome'",
+	},
+	basketball: {
+		ObjectPath:
+			"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Jungle/BasketballCourts_Biome_Jungle.",
+		ObjectName: "BasketballCourts_Biome_Jungle'",
+	},
+	parking: {
+		ObjectPath:
+			"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Jungle/ParkingSpots_Biome_Jungle.",
+		ObjectName: "ParkingSpots_Biome_Jungle'",
+	},
+	crater: {
+		ObjectPath:
+			"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Jungle/Terrain_Crater_Jungle.",
+		ObjectName: "Terrain_Crater_Jungle'",
+	},
+	landWater: {
+		ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Water/Main_LandWaterBorder.",
+		ObjectName: "Main_LandWaterBorder'",
+	},
+	water: {
+		ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Water/Shallow_Water.",
+		ObjectName: "Shallow_Water'",
+	},
+	stream: {
+		normal: {
+			forward: {
+				ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Water/Stream_Forward.",
+				ObjectName: "Stream_Forward'",
+			},
+			backwards: {
+				ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Water/Stream_Backwards.",
+				ObjectName: "Stream_Backwards'",
+			},
+		},
+		tSection: {
+			forward: {
+				ObjectPath:
+					"/Ported_Assets_By_Sensei_Usagi/Materials/Water/Stream_Forward_TSection.",
+				ObjectName: "Stream_Forward_TSection'",
+			},
+			backwards: {
+				ObjectPath:
+					"/Ported_Assets_By_Sensei_Usagi/Materials/Water/Stream_Backwards_TSection.",
+				ObjectName: "Stream_Backwards_TSection'",
+			},
+		},
+		lakeTransition: {
+			forward: {
+				ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Water/Stream_Forward_ToLake.",
+				ObjectName: "Stream_Forward_ToLake'",
+			},
+			backwards: {
+				ObjectPath:
+					"/Ported_Assets_By_Sensei_Usagi/Materials/Water/Stream_Backwards_ToLake.",
+				ObjectName: "Stream_Backwards_ToLake'",
+			},
+		},
+		cliff: {
+			ObjectPath: "/Ported_Assets_By_Sensei_Usagi/Materials/Water/Stream_WaterFall.",
+			ObjectName: "Stream_WaterFall'",
 		},
 	},
 };
