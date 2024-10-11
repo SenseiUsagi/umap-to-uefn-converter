@@ -2,20 +2,10 @@ import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import {
     PopUpTypes,
-    booleanFunction,
-    convertedLevel,
     defaultSettings,
     settings,
     voidFunction,
 } from "../constants";
-
-interface setFile {
-    (file: File): void;
-}
-
-interface setConvertion {
-    (level: convertedLevel): void;
-}
 
 interface setSettings {
     (updatedSetting: settings): void;
@@ -56,13 +46,9 @@ export function useOverrideBiome(globalState: GlobalState): boolean {
 }
 
 export interface GlobalState {
-    uploadedFile: File | undefined;
-    lastConvertedFile: convertedLevel | undefined;
     currentSettings: settings;
     popUp: popUp;
     totalFilesConverted: number;
-    setUploadedFile: setFile;
-    setLastConvertedFile: setConvertion;
     changeSettings: setSettings;
     openPopUp: openPopup;
     closePopUp: voidFunction;
@@ -84,8 +70,6 @@ const store = () => {
     return create<GlobalState>()(
         persist(
             (set) => ({
-                uploadedFile: undefined,
-                lastConvertedFile: undefined,
                 currentSettings:
                     saveSettings === undefined ? defaultSettings : saveSettings,
                 totalFilesConverted:
@@ -96,20 +80,6 @@ const store = () => {
                     isOpen: false,
                     type: null,
                     animationStarted: null,
-                },
-                setUploadedFile: (file) => {
-                    set(() => {
-                        return {
-                            uploadedFile: file,
-                        };
-                    });
-                },
-                setLastConvertedFile: (level) => {
-                    set(() => {
-                        return {
-                            lastConvertedFile: level,
-                        };
-                    });
                 },
                 changeSettings: (updatedSetting) => {
                     set(() => {

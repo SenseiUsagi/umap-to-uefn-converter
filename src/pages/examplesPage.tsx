@@ -14,6 +14,7 @@ import athenaHouseB from "../assets/data/Athena_URB_5x5_Apartment_i.txt";
 import { Column, Container, Row } from "../components/gridsystem";
 import GlobalStore, { GlobalState } from "../state/globalstate";
 import { writeFile } from "../converter";
+import { handleCopyClipboard } from "../constants";
 
 function ExamplesPage() {
     const globalState: GlobalState = {
@@ -23,15 +24,6 @@ function ExamplesPage() {
     const [suburbanCopied, setSuburbanCopied] = useState<boolean>(false);
     const [houseACopied, setHouseACopied] = useState<boolean>(false);
     const [houseBCopied, setHouseBCopied] = useState<boolean>(false);
-
-    function handleCopyClipboard(
-        text: string,
-        copyFunction: React.Dispatch<React.SetStateAction<boolean>>
-    ) {
-        navigator.clipboard.writeText(text);
-        copyFunction(true);
-        setTimeout(() => copyFunction(false), 3000);
-    }
 
     return (
         <>

@@ -9,7 +9,12 @@ import {
 } from "semantic-ui-react";
 import { Column, Container, Row } from "../components/gridsystem";
 import { convertToUEFN, writeFile } from "../converter";
-import { PopUpTypes, convertedLevel, processJSON } from "../constants";
+import {
+    PopUpTypes,
+    convertedLevel,
+    handleCopyClipboard,
+    processJSON,
+} from "../constants";
 import GlobalStore, { GlobalState } from "../state/globalstate";
 import ErrorModal from "../components/ErrorModal";
 
@@ -108,7 +113,6 @@ function ConverterPage() {
         if (isLoading) {
             return;
         } else if (file) {
-            globalState.setUploadedFile(file);
             setIsLoading(true);
             const rawJson = await file!.text();
 
@@ -124,16 +128,14 @@ function ConverterPage() {
                     processJSON(rawJson),
                     folderName
                 );
+                setLastConvertedMap(convertedLevel);
                 if (convertedLevel.fileContent.length > 4718592) {
-                    setLastConvertedMap(convertedLevel);
                     globalState.openPopUp({
                         title: "Warning!",
                         content:
-                            "Converted Level is bigger than 10MB! If the map doesnt show up please refresh the page",
+                            "Converted Level is bigger than 10MB! If the map doesnt show up please refresh the page and try again",
                         type: PopUpTypes.WARNING,
                     });
-                } else {
-                    globalState.setLastConvertedFile(convertedLevel);
                 }
                 globalState.incrementConvertedFiles();
                 setIsLoading(false);
@@ -147,27 +149,8 @@ function ConverterPage() {
         }
     }
 
-    function handleCopyClipboard() {
-        if (globalState.lastConvertedFile) {
-            navigator.clipboard.writeText(
-                globalState.lastConvertedFile.fileContent
-            );
-            setTextCopied(true);
-            setTimeout(() => setTextCopied(false), 3000);
-        } else if (lastConvertedMap) {
-            navigator.clipboard.writeText(lastConvertedMap.fileContent);
-            setTextCopied(true);
-            setTimeout(() => setTextCopied(false), 3000);
-        }
-    }
-
     function handleDownload() {
-        if (globalState.lastConvertedFile) {
-            writeFile(
-                globalState.lastConvertedFile.fileContent,
-                globalState.lastConvertedFile.fileName
-            );
-        } else if (lastConvertedMap) {
+        if (lastConvertedMap) {
             writeFile(lastConvertedMap.fileContent, lastConvertedMap.fileName);
         }
     }
@@ -373,11 +356,15 @@ function ConverterPage() {
                         >
                             <Button
                                 primary
-                                disabled={
-                                    typeof globalState.lastConvertedFile ===
-                                        "undefined" && lastConvertedMap === null
-                                }
-                                onClick={handleCopyClipboard}
+                                disabled={lastConvertedMap === null}
+                                onClick={() => {
+                                    if (lastConvertedMap !== null) {
+                                        handleCopyClipboard(
+                                            lastConvertedMap.fileContent,
+                                            setTextCopied
+                                        );
+                                    }
+                                }}
                                 loading={isLoading}
                                 size="big"
                                 icon
@@ -418,10 +405,7 @@ function ConverterPage() {
                         >
                             <Button
                                 primary
-                                disabled={
-                                    typeof globalState.lastConvertedFile ===
-                                        "undefined" && lastConvertedMap === null
-                                }
+                                disabled={lastConvertedMap === null}
                                 onClick={handleDownload}
                                 loading={isLoading}
                                 size="big"
@@ -445,13 +429,7 @@ function ConverterPage() {
                                 <TextArea
                                     readOnly
                                     placeholder="Copy the resulting text into UEFN"
-                                    value={
-                                        globalState.lastConvertedFile !==
-                                        undefined
-                                            ? globalState.lastConvertedFile
-                                                  .fileContent
-                                            : lastConvertedMap?.fileContent
-                                    }
+                                    value={lastConvertedMap?.fileContent}
                                     rows={25}
                                     ref={textRef}
                                 />
