@@ -451,9 +451,22 @@ export const portedModelsPaths: any = {
 		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Foundation_Inner.Foundation_Inner'",
 	"S_Athena_Foundation_Straight'":
 		"/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Foundation_Straight.Foundation_Straight'",
+	"SM_Athena_Lake_Base_01'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Leaky_Lake/Vortex_Base.Vortex_Base'",
+	"SM_Athena_Lake_WaterPlane_01'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Leaky_Lake/Vortex_Water_Plane.Vortex_Water_Plane'",
+	"SM_Athena_Lake_Waterfall_01'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Leaky_Lake/Vortex_Water.Vortex_Water'",
+	"S_FORT_Garden_Slope_Straight'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Floor/Floor_Garden_GeoSlope.Floor_Garden_GeoSlope'",
+	"S_FORT_Garden_Slope_End'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Floor/Floor_Garden_GeoSlope_End.Floor_Garden_GeoSlope_End'",
+	"SM_Athena_SandBunker_01'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Floor/Floor_SandBunker01.Floor_SandBunker01'",
+	"SM_Athena_SandBunker_02'":
+		"/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Floor/Floor_SandBunker02.Floor_SandBunker02'",
 };
 
-// TODO: Generally add all the ones that should be the defaul material of a model
 export const portedMaterialsPaths: any = {
 	"M_Con_Dock_UrbanWall_Terr'":
 		"/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Water_Wall02_Biome.Water_Wall02_Biome'",
