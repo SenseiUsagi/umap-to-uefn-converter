@@ -7,6 +7,44 @@ function SettingsPage() {
 	const globalState: GlobalState = {
 		...GlobalStore((state) => state),
 	};
+
+	const [projectName, setProjectName] = useState(
+		globalState.currentSettings.portedModelsProjectName
+	);
+	const [folderName, setFolderName] = useState(globalState.currentSettings.customFolderName);
+
+	function changeBiome(biomeName: string) {
+		const newBiomeSettings = {
+			...globalState.currentSettings.overrideBiome,
+		};
+
+		for (let key in newBiomeSettings) {
+			if (Object.prototype.hasOwnProperty.call(newBiomeSettings, key)) {
+				if (
+					newBiomeSettings[
+						key as keyof typeof globalState.currentSettings.overrideBiome
+					] === true
+				) {
+					if (key !== "forceCave" && key !== biomeName) {
+						newBiomeSettings[
+							key as keyof typeof globalState.currentSettings.overrideBiome
+						] = false;
+					}
+				}
+			}
+		}
+
+		newBiomeSettings[biomeName as keyof typeof globalState.currentSettings.overrideBiome] =
+			!globalState.currentSettings.overrideBiome[
+				biomeName as keyof typeof globalState.currentSettings.overrideBiome
+			];
+
+		globalState.changeSettings({
+			...globalState.currentSettings,
+			overrideBiome: newBiomeSettings,
+		});
+	}
+
 	return (
 		<>
 			<div style={{ minHeight: "2.85714286em" }}></div>
@@ -47,7 +85,7 @@ function SettingsPage() {
 					</Column>
 				</Row>
 				<Row>
-					<Column size={2}>
+					<Column size={1.5}>
 						<Segment
 							raised
 							textAlign="center"
@@ -84,7 +122,7 @@ function SettingsPage() {
 							</div>
 						</Segment>
 					</Column>
-					<Column size={2}>
+					<Column size={1.5}>
 						<Segment
 							raised
 							textAlign="center"
@@ -121,7 +159,7 @@ function SettingsPage() {
 							</div>
 						</Segment>
 					</Column>
-					<Column size={2}>
+					<Column size={1.5}>
 						<Segment
 							raised
 							textAlign="center"
@@ -157,30 +195,51 @@ function SettingsPage() {
 							</div>
 						</Segment>
 					</Column>
-					{/* TODO: Fix folder name not saving in local storage */}
-					{/* <Column size={1.5}>
-					<Segment raised textAlign="center">
-						<div style={{ height: "15rem" }}>
-							<Header size="medium">Custom Folder name</Header>
-							<Header size="small">
-								The converted actors are automatically placed inside a folder
-								(usually the file name of the json). Here you can provide a custom
-								folder name.
-							</Header>
-							<Input
-								type="text"
-								placeholder="Default is filename"
-								value={globalState.currentSettings.customFolderName}
-								onChange={(event: any) => {
-									globalState.changeSettings({
-										...globalState.currentSettings,
-										customFolderName: event.value,
-									});
-								}}
-							/>
-						</div>
-					</Segment>
-				</Column> */}
+					<Column size={1.5}>
+						<Segment
+							raised
+							textAlign="center"
+							inverted={globalState.currentSettings.darkMode}
+						>
+							<div style={{ height: "15rem" }}>
+								<Header
+									size="medium"
+									inverted={globalState.currentSettings.darkMode}
+								>
+									Custom Folder name
+								</Header>
+								<Header
+									size="small"
+									inverted={globalState.currentSettings.darkMode}
+								>
+									The converted actors are automatically placed inside a folder
+									(usually the file name of the json). Here you can provide a
+									custom folder name.
+								</Header>
+								<Input
+									inverted={globalState.currentSettings.darkMode}
+									placeholder="Folder Name"
+									value={folderName}
+									onChange={(event) => {
+										setFolderName(event.target.value);
+									}}
+									action={
+										<Button
+											primary
+											onClick={() => {
+												globalState.changeSettings({
+													...globalState.currentSettings,
+													customFolderName: folderName,
+												});
+											}}
+										>
+											Apply
+										</Button>
+									}
+								/>
+							</div>
+						</Segment>
+					</Column>
 				</Row>
 				<Row>
 					<Column size={6}>
@@ -191,22 +250,244 @@ function SettingsPage() {
 							inverted={globalState.currentSettings.darkMode}
 						>
 							<Header size="large">
-								Use recreated terrain instead of the one from the game (Coming soon)
+								Use recreated terrain instead of the one from the game
 							</Header>
 							<Header size="medium">
 								This option tries to use the terrain models I have ported to UEFN
-								instead of the ones from the game. You can find the recreated
-								terrain{" "}
+								instead of the ones from the game. This makes validating a ported
+								map a little bit easier. You can find the recreated terrain{" "}
 								<a
-									href="https://drive.google.com/file/d/19CmxPlHQ9xn9mGDChtn3KuYzd34L0eG8/view?usp=sharing"
+									href="https://drive.google.com/file/d/1YFO-of1vaPCwAC-NF2x-eaIDx4G8IKY5/view?usp=sharing"
 									target="_blank"
 									rel="noopener noreferrer"
 								>
 									here
-								</a>
-								.
+								</a>{" "}
+								(only compatable with V3 of my ported models).
 							</Header>
-							<Checkbox disabled toggle />
+							<Checkbox
+								toggle
+								onChange={() => {
+									globalState.changeSettings({
+										...globalState.currentSettings,
+										usePortedModels:
+											!globalState.currentSettings.usePortedModels,
+									});
+								}}
+								checked={globalState.currentSettings.usePortedModels}
+							/>
+							<Header size="medium">
+								Your project name will be required for the ported models to actually
+								get imported into you level (Empty = "Game")
+							</Header>
+							<Header size="medium" color="red">
+								BROKEN MESH PAINT ON THE MESHES IS TO BE EXPECTED!!!
+							</Header>
+							<Input
+								inverted={globalState.currentSettings.darkMode}
+								disabled={!globalState.currentSettings.usePortedModels}
+								placeholder="Project Name"
+								size="huge"
+								value={projectName}
+								onChange={(event) => {
+									setProjectName(event.target.value);
+								}}
+								action={
+									<Button
+										primary
+										onClick={() => {
+											if (projectName.trim().length === 0) {
+												setProjectName("Game");
+											}
+											globalState.changeSettings({
+												...globalState.currentSettings,
+												portedModelsProjectName:
+													projectName.trim().length > 0
+														? projectName
+														: "Game",
+											});
+										}}
+									>
+										Apply
+									</Button>
+								}
+							/>
+						</Segment>
+					</Column>
+				</Row>
+				<Row>
+					<Column size={6}>
+						<Segment
+							raised
+							padded="very"
+							textAlign="center"
+							inverted={globalState.currentSettings.darkMode}
+						>
+							<Header size="large">
+								Override Biome detection (when using ported assets)
+							</Header>
+							<Header size="medium">
+								Instead of trying to auto detect what biome to use, specify a
+								specific Biome
+							</Header>
+						</Segment>
+					</Column>
+				</Row>
+				<Row>
+					<Column size={1.5}>
+						<Segment
+							raised
+							padded="very"
+							textAlign="center"
+							inverted={globalState.currentSettings.darkMode}
+						>
+							<Header size="medium" inverted={globalState.currentSettings.darkMode}>
+								Grass Biome
+							</Header>
+							<Checkbox
+								toggle
+								disabled={!globalState.currentSettings.usePortedModels}
+								onChange={changeBiome.bind(null, "grasBiome")}
+								checked={globalState.currentSettings.overrideBiome.grasBiome}
+							/>
+						</Segment>
+					</Column>
+					<Column size={1.5}>
+						<Segment
+							raised
+							padded="very"
+							textAlign="center"
+							inverted={globalState.currentSettings.darkMode}
+						>
+							<Header size="medium" inverted={globalState.currentSettings.darkMode}>
+								Mountain Biome
+							</Header>
+							<Checkbox
+								toggle
+								disabled={!globalState.currentSettings.usePortedModels}
+								onChange={changeBiome.bind(null, "mountainBiome")}
+								checked={globalState.currentSettings.overrideBiome.mountainBiome}
+							/>
+						</Segment>
+					</Column>
+					<Column size={1.5}>
+						<Segment
+							raised
+							padded="very"
+							textAlign="center"
+							inverted={globalState.currentSettings.darkMode}
+						>
+							<Header size="medium" inverted={globalState.currentSettings.darkMode}>
+								Farm Biome
+							</Header>
+							<Checkbox
+								toggle
+								disabled={!globalState.currentSettings.usePortedModels}
+								onChange={changeBiome.bind(null, "farmBiome")}
+								checked={globalState.currentSettings.overrideBiome.farmBiome}
+							/>
+						</Segment>
+					</Column>
+					<Column size={1.5}>
+						<Segment
+							raised
+							padded="very"
+							textAlign="center"
+							inverted={globalState.currentSettings.darkMode}
+						>
+							<Header size="medium" inverted={globalState.currentSettings.darkMode}>
+								Swamp Biome
+							</Header>
+							<Checkbox
+								toggle
+								disabled={!globalState.currentSettings.usePortedModels}
+								onChange={changeBiome.bind(null, "swampBiome")}
+								checked={globalState.currentSettings.overrideBiome.swampBiome}
+							/>
+						</Segment>
+					</Column>
+				</Row>
+				<Row>
+					<Column size={1.5}>
+						<Segment
+							raised
+							padded="very"
+							textAlign="center"
+							inverted={globalState.currentSettings.darkMode}
+						>
+							<Header size="medium" inverted={globalState.currentSettings.darkMode}>
+								Snow Biome
+							</Header>
+							<Checkbox
+								toggle
+								disabled={!globalState.currentSettings.usePortedModels}
+								onChange={changeBiome.bind(null, "snowBiome")}
+								checked={globalState.currentSettings.overrideBiome.snowBiome}
+							/>
+						</Segment>
+					</Column>
+					<Column size={1.5}>
+						<Segment
+							raised
+							padded="very"
+							textAlign="center"
+							inverted={globalState.currentSettings.darkMode}
+						>
+							<Header size="medium" inverted={globalState.currentSettings.darkMode}>
+								Junlge Biome
+							</Header>
+							<Checkbox
+								toggle
+								disabled={!globalState.currentSettings.usePortedModels}
+								onChange={changeBiome.bind(null, "jungleBiome")}
+								checked={globalState.currentSettings.overrideBiome.jungleBiome}
+							/>
+						</Segment>
+					</Column>
+					<Column size={1.5}>
+						<Segment
+							raised
+							padded="very"
+							textAlign="center"
+							inverted={globalState.currentSettings.darkMode}
+						>
+							<Header size="medium" inverted={globalState.currentSettings.darkMode}>
+								AD (Plankerton) Biome
+							</Header>
+							<Checkbox
+								toggle
+								disabled={!globalState.currentSettings.usePortedModels}
+								onChange={changeBiome.bind(null, "adBiome")}
+								checked={globalState.currentSettings.overrideBiome.adBiome}
+							/>
+						</Segment>
+					</Column>
+					<Column size={1.5}>
+						<Segment
+							raised
+							padded="very"
+							textAlign="center"
+							inverted={globalState.currentSettings.darkMode}
+						>
+							<Header size="medium" inverted={globalState.currentSettings.darkMode}>
+								Force Cave Floor
+							</Header>
+							<Checkbox
+								toggle
+								disabled={!globalState.currentSettings.usePortedModels}
+								onChange={() => {
+									globalState.changeSettings({
+										...globalState.currentSettings,
+										overrideBiome: {
+											...globalState.currentSettings.overrideBiome,
+											forceCave:
+												!globalState.currentSettings.overrideBiome
+													.forceCave,
+										},
+									});
+								}}
+								checked={globalState.currentSettings.overrideBiome.forceCave}
+							/>
 						</Segment>
 					</Column>
 				</Row>
