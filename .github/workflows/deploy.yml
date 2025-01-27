@@ -1,7 +1,6 @@
 on:
-  push:
-    branches:
-      - "main" # change to the branch you wish to deploy from
+  release:
+    types: [published]
 
 permissions:
   contents: read
@@ -10,9 +9,9 @@ permissions:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
     - id: build-publish
-      uses: bitovi/github-actions-react-to-github-pages@v1.2.4
+      uses: bitovi/github-actions-react-to-github-pages@v1.2
       with:
         path: build
