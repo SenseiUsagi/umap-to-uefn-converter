@@ -161,6 +161,8 @@ export interface settings {
     usePortedModels: boolean;
     portedModelsProjectName: string;
     darkMode: boolean;
+    blueprintMode: boolean;
+    propogateLevels: boolean;
     overrideBiome: {
         adBiome: boolean;
         farmBiome: boolean;
@@ -205,6 +207,29 @@ export function handleCopyClipboard(
     setTimeout(() => copyFunction(false), 3000);
 }
 
+declare global {
+    interface Window {
+        showAdditionalWorldModel?: (filePath: string) => void;
+        resolveUserInput?: (value: string) => void;
+    }
+}
+
+export function handleDownload(levelFile: convertedLevel) {
+    const blob = new Blob([levelFile.fileContent], {
+        type: "text/plain",
+    });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${levelFile.fileName}.txt`;
+    document.body.appendChild(a);
+    a.click();
+
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+
 export const defaultSettings: settings = {
     exportOnlyTerrain: false,
     exportNoTerrain: false,
@@ -213,6 +238,8 @@ export const defaultSettings: settings = {
     portedModelsProjectName: "Game",
     usePortedModels: false,
     darkMode: false,
+    blueprintMode: false,
+    propogateLevels: true,
     overrideBiome: {
         adBiome: false,
         farmBiome: false,

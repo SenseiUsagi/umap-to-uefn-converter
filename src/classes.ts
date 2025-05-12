@@ -1,3 +1,4 @@
+import { Vector3d } from "open3d";
 import {
     portedMaterialsPaths,
     portedModelsPaths,
@@ -21,6 +22,41 @@ export class RelativeLocation {
         this.X = X;
         this.Y = Y;
         this.Z = Z;
+    }
+
+    displace(position: RelativeLocation): RelativeLocation {
+        let locationVector: Vector3d = new Vector3d(this.X, this.Y, this.Z);
+        const displaceLocation: Vector3d = new Vector3d(
+            position.X,
+            position.Y,
+            position.Z
+        );
+        locationVector.Add(displaceLocation);
+        this.X = locationVector.X;
+        this.Y = locationVector.Y;
+        this.Z = locationVector.Z;
+        return this;
+    }
+
+    rotate(angle: RelativeRotation): RelativeLocation {
+        let locationVector: Vector3d = new Vector3d(this.X, this.Y, this.Z);
+        // Fact check these angle axis
+        locationVector = locationVector.VectorRotate(
+            angle.Pitch * (Math.PI / 180),
+            Vector3d.XAxis
+        );
+        locationVector = locationVector.VectorRotate(
+            angle.Roll * (Math.PI / 180),
+            Vector3d.YAxis
+        );
+        locationVector = locationVector.VectorRotate(
+            angle.Yaw * (Math.PI / 180),
+            Vector3d.ZAxis
+        );
+        this.X = locationVector.X;
+        this.Y = locationVector.Y;
+        this.Z = locationVector.Z;
+        return this;
     }
 
     convertToUEFN(): string {

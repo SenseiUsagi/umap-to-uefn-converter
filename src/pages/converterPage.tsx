@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { Vector3d } from "open3d";
 import {
     Button,
     Form,
@@ -8,11 +9,12 @@ import {
     TextArea,
 } from "semantic-ui-react";
 import { Column, Container, Row } from "../components/gridsystem";
-import { convertToUEFN, writeFile } from "../converter";
+import { convertToUEFN } from "../converter";
 import {
     PopUpTypes,
     convertedLevel,
     handleCopyClipboard,
+    handleDownload,
     processJSON,
 } from "../constants";
 import GlobalStore, { GlobalState } from "../state/globalstate";
@@ -126,7 +128,10 @@ function ConverterPage() {
             try {
                 convertedLevel = convertToUEFN(
                     processJSON(rawJson),
-                    folderName
+                    folderName,
+                    !globalState.currentSettings.blueprintMode,
+                    null,
+                    null
                 );
                 setLastConvertedMap(convertedLevel);
                 if (convertedLevel.fileContent.length > 4718592) {
@@ -146,12 +151,6 @@ function ConverterPage() {
                 setErrorStack(error.stack);
                 setIsLoading(false);
             }
-        }
-    }
-
-    function handleDownload() {
-        if (lastConvertedMap) {
-            writeFile(lastConvertedMap.fileContent, lastConvertedMap.fileName);
         }
     }
 
@@ -253,7 +252,7 @@ function ConverterPage() {
                                     }
                                 >
                                     {/* Ver. FullVersion.FeatureVersion.PatchVersion */}
-                                    Ver. 1.1.0
+                                    Ver. 1.2.0
                                 </Header>
                                 <Header
                                     size="tiny"
@@ -406,7 +405,10 @@ function ConverterPage() {
                             <Button
                                 primary
                                 disabled={lastConvertedMap === null}
-                                onClick={handleDownload}
+                                onClick={handleDownload.bind(
+                                    null,
+                                    lastConvertedMap!
+                                )}
                                 loading={isLoading}
                                 size="big"
                                 icon
