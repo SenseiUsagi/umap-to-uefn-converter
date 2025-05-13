@@ -557,52 +557,63 @@ export async function convertToUEFN_NEW(
             continue;
         }
 
-        if (combinedProperties.Properties?.AdditionalWorlds !== undefined) {
-            console.warn("Additional World Detected");
-            const filePathWorld =
-                combinedProperties.Properties.AdditionalWorlds[0].AssetPathName.split(
-                    "."
-                )[0];
-            console.log("Required World", filePathWorld);
-            console.log(
-                "Location of world",
-                actualRelevantData.location,
-                actualRelevantData.rotation,
-                actualRelevantData.scale
-            );
-            console.log("Waiting for file upload");
-            const jsonFile: File | undefined = await getAdditionalWorld(
-                filePathWorld
-            );
-            console.log("File Upload Done");
-            if (jsonFile) {
-                const json = await jsonFile!.text();
-                const folderName =
-                    globalState.currentSettings.customFolderName.trim().length >
-                    0
-                        ? globalState.currentSettings.customFolderName
-                        : jsonFile.name.split(".")[0];
-                try {
-                    const insideLevel = await convertToUEFN_NEW(
-                        processJSON(json),
-                        folderName,
-                        false,
-                        actualRelevantData.location,
-                        actualRelevantData.rotation !== undefined
-                            ? actualRelevantData.rotation
-                            : null
-                    );
-                    convertedMap += insideLevel;
-                } catch (error) {
-                    throw error;
+        if (globalState.currentSettings.propagateLevels) {
+            if (combinedProperties.Properties?.AdditionalWorlds !== undefined) {
+                const filePathWorld =
+                    combinedProperties.Properties.AdditionalWorlds[0].AssetPathName.split(
+                        "."
+                    )[0];
+                const jsonFile: File | undefined | null =
+                    await getAdditionalWorld(filePathWorld);
+                console.log("File Upload Done");
+                if (jsonFile) {
+                    const json = await jsonFile!.text();
+                    const folderName =
+                        globalState.currentSettings.customFolderName.trim()
+                            .length > 0
+                            ? globalState.currentSettings.customFolderName
+                            : jsonFile.name.split(".")[0];
+                    try {
+                        const insideLevel = await convertToUEFN_NEW(
+                            processJSON(json),
+                            folderName,
+                            false,
+                            actualRelevantData.location,
+                            actualRelevantData.rotation !== undefined
+                                ? actualRelevantData.rotation
+                                : null
+                        );
+                        convertedMap += insideLevel;
+                    } catch (error) {
+                        throw error;
+                    }
+                } else {
+                    continue;
                 }
-            } else {
-                continue;
             }
         }
+
         if (globalState.currentSettings.exportNoTerrain) {
-            if (actualRelevantData.mesh) {
+            if (actualRelevantData.mesh !== undefined) {
                 if (isTerrain(actualRelevantData.mesh.MeshData.ObjectPath)) {
+                    continue;
+                }
+            } else if (actualRelevantData.template !== undefined) {
+                if (isTerrain(actualRelevantData.template.ObjData.ObjectPath)) {
+                    continue;
+                }
+            }
+        }
+
+        if (globalState.currentSettings.exportOnlyTerrain) {
+            if (actualRelevantData.mesh !== undefined) {
+                if (!isTerrain(actualRelevantData.mesh.MeshData.ObjectPath)) {
+                    continue;
+                }
+            } else if (actualRelevantData.template !== undefined) {
+                if (
+                    !isTerrain(actualRelevantData.template.ObjData.ObjectPath)
+                ) {
                     continue;
                 }
             }
@@ -658,7 +669,7 @@ function processPropertiesObj(
                 objData.materials
             ).convertToUEFN();
         } else {
-            completeActor += objData.materials?.convertToUEFN();
+            completeActor += objData.materials?.convertToUEFN() ?? "";
         }
     } else if (objData.template !== undefined) {
         if (
@@ -666,14 +677,12 @@ function processPropertiesObj(
             globalState.currentSettings.portedModelsProjectName === "Game"
         ) {
             // Special Case for BPs I have models of
+            return "";
         } else {
             completeActor += objData.template.convertToUEFN();
             completeActor += UEFNLabelStrings.beginObject(undefined);
             completeActor += objData.materials?.convertToUEFN();
         }
-    }
-    if (objData.name === "StaticMeshActor_26") {
-        console.log("Testing");
     }
     completeActor +=
         locationOffset !== null

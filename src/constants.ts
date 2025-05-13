@@ -161,9 +161,8 @@ export interface settings {
     customFolderName: string;
     usePortedModels: boolean;
     portedModelsProjectName: string;
+    propagateLevels: boolean;
     darkMode: boolean;
-    blueprintMode: boolean;
-    propogateLevels: boolean;
     overrideBiome: {
         adBiome: boolean;
         farmBiome: boolean;
@@ -211,7 +210,7 @@ export function handleCopyClipboard(
 declare global {
     interface Window {
         showAdditionalWorldModel?: (filePath: string) => void;
-        resolveUserInput?: (jsonFile: File | undefined) => void;
+        resolveUserInput?: (jsonFile: File | undefined | null) => void;
     }
 }
 
@@ -239,8 +238,7 @@ export const defaultSettings: settings = {
     portedModelsProjectName: "Game",
     usePortedModels: false,
     darkMode: false,
-    blueprintMode: false,
-    propogateLevels: true,
+    propagateLevels: true,
     overrideBiome: {
         adBiome: false,
         farmBiome: false,
@@ -301,7 +299,7 @@ export interface Biome {
 
 export function getAdditionalWorld(
     filePath: string
-): Promise<File | undefined> {
+): Promise<File | undefined | null> {
     return new Promise((resolve) => {
         window.resolveUserInput = resolve;
         window.showAdditionalWorldModel?.(filePath);

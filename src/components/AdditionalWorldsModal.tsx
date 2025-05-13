@@ -1,6 +1,13 @@
 // Required
 import React, { useRef, useState } from "react";
-import { Button, Modal, Header, Icon, Segment } from "semantic-ui-react";
+import {
+    Button,
+    Modal,
+    Header,
+    Icon,
+    Segment,
+    ModalHeader,
+} from "semantic-ui-react";
 import { PopUpTypes, voidFunction } from "../constants";
 import GlobalStore, { GlobalState } from "../state/globalstate";
 
@@ -97,6 +104,8 @@ function MoreWorldModal() {
         if (file) {
             window.resolveUserInput?.(file);
             setFile(undefined);
+        } else {
+            window.resolveUserInput?.(null);
         }
     }
 
@@ -108,12 +117,14 @@ function MoreWorldModal() {
             closeOnEscape={false}
             open={isOpen}
         >
-            <Header size="huge">Additional World detected</Header>
+            <ModalHeader>Additional World detected</ModalHeader>
             <Modal.Content>
                 <Header size="large" textAlign="center">
                     An additional level has been detected. Please provide a json
-                    file for this level (if none is provided the level will be
-                    skipped)
+                    file for this level.
+                </Header>
+                <Header size="medium" textAlign="center">
+                    Note: If none is provided the level will be skipped
                 </Header>
                 <Header size="medium" textAlign="center">
                     {worldFilePath}
@@ -126,49 +137,36 @@ function MoreWorldModal() {
                     onDrop={handleDrop}
                 >
                     <Segment
-                        inverted
-                        color={
-                            dragging
-                                ? "blue"
-                                : globalState.currentSettings.darkMode
-                                ? "grey"
-                                : "black"
-                        }
+                        placeholder
+                        raised
+                        textAlign="center"
                         id="dragDivModal"
+                        // color="grey"
+                        // inverted={true}
                     >
-                        <Segment
-                            placeholder
-                            raised
-                            textAlign="center"
-                            inverted={globalState.currentSettings.darkMode}
-                        >
-                            <Header icon>
-                                <Icon name="file code outline" />
-                                {file
-                                    ? `Uploaded file: ${file.name}`
-                                    : "No file uploaded"}
-                            </Header>
-                            <label>
-                                <input
-                                    ref={fileRef}
-                                    type="file"
-                                    style={{ display: "none" }}
-                                    accept=".json"
-                                    onChange={handleChange}
-                                />
-                                <span className="ui primary button">
-                                    {file ? "Change file" : "Upload .json file"}
-                                </span>
-                            </label>
-                        </Segment>
+                        <Header icon>
+                            <Icon name="file code outline" />
+                            {file
+                                ? `Uploaded file: ${file.name}`
+                                : "No file uploaded"}
+                        </Header>
+                        <label>
+                            <input
+                                ref={fileRef}
+                                type="file"
+                                style={{ display: "none" }}
+                                accept=".json"
+                                onChange={handleChange}
+                            />
+                            <span className="ui primary button">
+                                {file ? "Change file" : "Upload .json file"}
+                            </span>
+                        </label>
                     </Segment>
                 </div>
             </Modal.Content>
             <Modal.Actions>
-                <Button onClick={handleSubmit} secondary>
-                    Close
-                </Button>
-                <Button onClick={handleSubmit} secondary>
+                <Button primary onClick={handleSubmit}>
                     Submit
                 </Button>
             </Modal.Actions>

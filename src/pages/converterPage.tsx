@@ -21,6 +21,7 @@ import GlobalStore, { GlobalState } from "../state/globalstate";
 import ErrorModal from "../components/ErrorModal";
 import { convertToUEFN_NEW } from "../new_converter";
 import MoreWorldModal from "../components/AdditionalWorldsModal";
+import { RelativeLocation, RelativeRotation } from "../classes";
 
 function ConverterPage() {
     const [file, setFile] = useState<File>();
@@ -132,17 +133,10 @@ function ConverterPage() {
                 convertedMap = await convertToUEFN_NEW(
                     processJSON(rawJson),
                     folderName,
-                    !globalState.currentSettings.blueprintMode,
+                    true,
                     null,
                     null
                 );
-                // convertedLevel = convertToUEFN(
-                //     processJSON(rawJson),
-                //     folderName,
-                //     !globalState.currentSettings.blueprintMode,
-                //     null,
-                //     null
-                // );
                 const convertedLevel: convertedLevel = {
                     fileName: folderName,
                     fileContent: convertedMap,
@@ -317,46 +311,37 @@ function ConverterPage() {
                             onDrop={handleDrop}
                         >
                             <Segment
-                                inverted
-                                color={
-                                    dragging
-                                        ? "blue"
-                                        : globalState.currentSettings.darkMode
-                                        ? "grey"
-                                        : "black"
-                                }
+                                placeholder
+                                raised
                                 id="dragDiv"
+                                textAlign="center"
+                                inverted={
+                                    globalState.currentSettings.darkMode
+                                    // || dragging
+                                }
                                 loading={isLoading}
+                                // color={dragging ? "blue" : undefined}
                             >
-                                <Segment
-                                    placeholder
-                                    raised
-                                    textAlign="center"
-                                    inverted={
-                                        globalState.currentSettings.darkMode
-                                    }
-                                >
-                                    <Header icon>
-                                        <Icon name="file code outline" />
+                                <Header icon>
+                                    <Icon name="file code outline" />
+                                    {file
+                                        ? `Uploaded file: ${file.name}`
+                                        : "No file uploaded"}
+                                </Header>
+                                <label>
+                                    <input
+                                        ref={fileRef}
+                                        type="file"
+                                        style={{ display: "none" }}
+                                        accept=".json"
+                                        onChange={handleChange}
+                                    />
+                                    <span className="ui primary button">
                                         {file
-                                            ? `Uploaded file: ${file.name}`
-                                            : "No file uploaded"}
-                                    </Header>
-                                    <label>
-                                        <input
-                                            ref={fileRef}
-                                            type="file"
-                                            style={{ display: "none" }}
-                                            accept=".json"
-                                            onChange={handleChange}
-                                        />
-                                        <span className="ui primary button">
-                                            {file
-                                                ? "Change file"
-                                                : "Upload .json file"}
-                                        </span>
-                                    </label>
-                                </Segment>
+                                            ? "Change file"
+                                            : "Upload .json file"}
+                                    </span>
+                                </label>
                             </Segment>
                         </div>
                     </Column>

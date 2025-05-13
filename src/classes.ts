@@ -33,33 +33,31 @@ export class RelativeLocation {
         // roll = y
 
         const location = new Vector3d(this.X, this.Y, this.Z);
-        console.log("Current Location", location);
-        console.log("Current Rotation", rotation);
-        if (rotation !== null) {
-            console.log(
-                "test angle",
-                location.VectorRotate(rotation.Yaw, Vector3d.ZAxis)
-            );
-        }
 
         const angleAdjusted =
             rotation !== null
                 ? location
-                      .VectorRotate(rotation.Pitch, Vector3d.XAxis)
-                      .VectorRotate(rotation.Roll, Vector3d.YAxis)
-                      .VectorRotate(rotation.Yaw, Vector3d.ZAxis)
+                      .VectorRotate(
+                          rotation.Pitch * (Math.PI / 180),
+                          Vector3d.XAxis
+                      )
+                      .VectorRotate(
+                          rotation.Roll * (Math.PI / 180),
+                          Vector3d.YAxis
+                      )
+                      .VectorRotate(
+                          rotation.Yaw * (Math.PI / 180),
+                          Vector3d.ZAxis
+                      )
                 : location;
 
-        console.log("angle adjusted", angleAdjusted);
         const finalLocation = angleAdjusted.Add(
             new Vector3d(position.X, position.Y, position.Z)
         );
 
-        console.log("final position", finalLocation);
-
-        this.X = finalLocation.X;
-        this.Y = finalLocation.Y;
-        this.Z = finalLocation.Z;
+        this.X = parseFloat(finalLocation.X.toFixed(2));
+        this.Y = parseFloat(finalLocation.Y.toFixed(2));
+        this.Z = parseFloat(finalLocation.Z.toFixed(2));
         return this;
     }
 
