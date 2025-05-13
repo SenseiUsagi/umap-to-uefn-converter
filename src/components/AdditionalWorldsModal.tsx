@@ -1,12 +1,13 @@
 // Required
-import React, { useState } from "react";
-import { Button, Modal, Header, Icon } from "semantic-ui-react";
+import React, { useRef, useState } from "react";
+import { Button, Modal, Header, Icon, Segment } from "semantic-ui-react";
 import { PopUpTypes, voidFunction } from "../constants";
 import GlobalStore, { GlobalState } from "../state/globalstate";
 
 // General Error modal use in various places
 // (consider using the pop up intead of this)
-function MoreWorldModal({ onClose }: { onClose: voidFunction }) {
+function MoreWorldModal() {
+    const fileRef = useRef(null);
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [worldFilePath, setWorldFilePath] = useState<string>("");
     const [dragging, setDragging] = useState(false);
@@ -30,7 +31,7 @@ function MoreWorldModal({ onClose }: { onClose: voidFunction }) {
         event.preventDefault();
         event.stopPropagation();
 
-        if (event.target.id === "dragDiv") {
+        if (event.target.id === "dragDivModal") {
             setDragging(false);
         }
     }
@@ -91,13 +92,20 @@ function MoreWorldModal({ onClose }: { onClose: voidFunction }) {
         }
     }
 
+    async function handleSubmit() {
+        setIsOpen(false);
+        if (file) {
+            window.resolveUserInput?.(file);
+            setFile(undefined);
+        }
+    }
+
     return (
         <Modal
             // Clicking the background doesnt close the modal
             closeOnDimmerClick={false}
             // Same with pressing the ESC button
             closeOnEscape={false}
-            onClose={onClose}
             open={isOpen}
         >
             <Header size="huge">Additional World detected</Header>
@@ -110,10 +118,58 @@ function MoreWorldModal({ onClose }: { onClose: voidFunction }) {
                 <Header size="medium" textAlign="center">
                     {worldFilePath}
                 </Header>
+
+                <div
+                    onDragEnter={handleDragEnter}
+                    onDragLeave={handleDragLeave}
+                    onDragOver={handleDragOver}
+                    onDrop={handleDrop}
+                >
+                    <Segment
+                        inverted
+                        color={
+                            dragging
+                                ? "blue"
+                                : globalState.currentSettings.darkMode
+                                ? "grey"
+                                : "black"
+                        }
+                        id="dragDivModal"
+                    >
+                        <Segment
+                            placeholder
+                            raised
+                            textAlign="center"
+                            inverted={globalState.currentSettings.darkMode}
+                        >
+                            <Header icon>
+                                <Icon name="file code outline" />
+                                {file
+                                    ? `Uploaded file: ${file.name}`
+                                    : "No file uploaded"}
+                            </Header>
+                            <label>
+                                <input
+                                    ref={fileRef}
+                                    type="file"
+                                    style={{ display: "none" }}
+                                    accept=".json"
+                                    onChange={handleChange}
+                                />
+                                <span className="ui primary button">
+                                    {file ? "Change file" : "Upload .json file"}
+                                </span>
+                            </label>
+                        </Segment>
+                    </Segment>
+                </div>
             </Modal.Content>
             <Modal.Actions>
-                <Button onClick={onClose} secondary>
+                <Button onClick={handleSubmit} secondary>
                     Close
+                </Button>
+                <Button onClick={handleSubmit} secondary>
+                    Submit
                 </Button>
             </Modal.Actions>
         </Modal>

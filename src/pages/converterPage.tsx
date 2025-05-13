@@ -9,16 +9,18 @@ import {
     TextArea,
 } from "semantic-ui-react";
 import { Column, Container, Row } from "../components/gridsystem";
-import { convertToUEFN } from "../converter";
 import {
     PopUpTypes,
     convertedLevel,
+    deepMerge,
     handleCopyClipboard,
     handleDownload,
     processJSON,
 } from "../constants";
 import GlobalStore, { GlobalState } from "../state/globalstate";
 import ErrorModal from "../components/ErrorModal";
+import { convertToUEFN_NEW } from "../new_converter";
+import MoreWorldModal from "../components/AdditionalWorldsModal";
 
 function ConverterPage() {
     const [file, setFile] = useState<File>();
@@ -124,15 +126,28 @@ function ConverterPage() {
                     : file.name.split(".")[0];
 
             let convertedLevel: convertedLevel | undefined;
+            let convertedMap: string | undefined;
 
             try {
-                convertedLevel = convertToUEFN(
+                convertedMap = await convertToUEFN_NEW(
                     processJSON(rawJson),
                     folderName,
                     !globalState.currentSettings.blueprintMode,
                     null,
                     null
                 );
+                // convertedLevel = convertToUEFN(
+                //     processJSON(rawJson),
+                //     folderName,
+                //     !globalState.currentSettings.blueprintMode,
+                //     null,
+                //     null
+                // );
+                const convertedLevel: convertedLevel = {
+                    fileName: folderName,
+                    fileContent: convertedMap,
+                    dateCreated: new Date(),
+                };
                 setLastConvertedMap(convertedLevel);
                 if (convertedLevel.fileContent.length > 4718592) {
                     globalState.openPopUp({
@@ -440,6 +455,7 @@ function ConverterPage() {
                     </Column>
                 </Row>
             </Container>
+            <MoreWorldModal />
             <ErrorModal
                 open={errorOpen}
                 title={errorTitle}

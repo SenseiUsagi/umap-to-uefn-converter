@@ -8,6 +8,7 @@ import {
     ResourceType,
     Sound,
     StaticMesh,
+    Template,
     TextureData,
 } from "./classes";
 // ===== General =====
@@ -210,7 +211,7 @@ export function handleCopyClipboard(
 declare global {
     interface Window {
         showAdditionalWorldModel?: (filePath: string) => void;
-        resolveUserInput?: (value: string) => void;
+        resolveUserInput?: (jsonFile: File | undefined) => void;
     }
 }
 
@@ -296,4 +297,56 @@ export interface Biome {
         };
         cliff: ObjectData;
     };
+}
+
+export function getAdditionalWorld(
+    filePath: string
+): Promise<File | undefined> {
+    return new Promise((resolve) => {
+        window.resolveUserInput = resolve;
+        window.showAdditionalWorldModel?.(filePath);
+    });
+}
+
+type PlainObject = { [key: string]: any };
+
+function isObject(item: unknown): item is PlainObject {
+    return item !== null && typeof item === "object" && !Array.isArray(item);
+}
+
+export function deepMerge<T extends PlainObject[]>(...objects: T): T[number] {
+    const result: PlainObject = {};
+
+    for (const obj of objects) {
+        for (const key in obj) {
+            const sourceValue = obj[key];
+            const targetValue = result[key];
+
+            if (isObject(sourceValue) && isObject(targetValue)) {
+                result[key] = deepMerge(targetValue, sourceValue);
+            } else {
+                result[key] = sourceValue;
+            }
+        }
+    }
+
+    return result as T[number];
+}
+
+export interface RelaventObjectData {
+    name: string;
+    class: string;
+    type: string;
+    location: RelativeLocation;
+    rotation: RelativeRotation | undefined;
+    scale: RelativeScale | undefined;
+    lodData: LODData | undefined;
+    materials: OverrideMaterials | undefined;
+    // If template present -> Blueprint
+    template: Template | undefined;
+    // If mesh present -> mesh (duh)
+    mesh: StaticMesh | undefined;
+    textureData: TextureData | undefined;
+    resourceType: ResourceType | undefined;
+    mirrored: boolean;
 }

@@ -13,8 +13,11 @@ import athenaHouseA from "../assets/data/Athena_SUB_5x5_House_jj.txt";
 import athenaHouseB from "../assets/data/Athena_URB_5x5_Apartment_i.txt";
 import { Column, Container, Row } from "../components/gridsystem";
 import GlobalStore, { GlobalState } from "../state/globalstate";
-import { writeFile } from "../converter";
-import { handleCopyClipboard } from "../constants";
+import {
+    convertedLevel,
+    handleCopyClipboard,
+    handleDownload,
+} from "../constants";
 
 function ExamplesPage() {
     const globalState: GlobalState = {
@@ -24,6 +27,27 @@ function ExamplesPage() {
     const [suburbanCopied, setSuburbanCopied] = useState<boolean>(false);
     const [houseACopied, setHouseACopied] = useState<boolean>(false);
     const [houseBCopied, setHouseBCopied] = useState<boolean>(false);
+
+    const tiltedTowers: convertedLevel = {
+        fileName: "Tilted Towers 3.5",
+        fileContent: athenaCity,
+        dateCreated: new Date(),
+    };
+    const saltySprings: convertedLevel = {
+        fileName: "Salty Springs 3.5",
+        fileContent: athenaSuburban,
+        dateCreated: new Date(),
+    };
+    const houseA: convertedLevel = {
+        fileName: "House A 3.5",
+        fileContent: athenaCity,
+        dateCreated: new Date(),
+    };
+    const houseB: convertedLevel = {
+        fileName: "House B 3.5",
+        fileContent: athenaCity,
+        dateCreated: new Date(),
+    };
 
     return (
         <>
@@ -78,10 +102,9 @@ function ExamplesPage() {
                                     icon="download"
                                     primary
                                     floated="right"
-                                    onClick={writeFile.bind(
+                                    onClick={handleDownload.bind(
                                         null,
-                                        athenaCity,
-                                        "Athena_POI_City_001"
+                                        tiltedTowers
                                     )}
                                 />
                                 <TextArea
@@ -122,10 +145,9 @@ function ExamplesPage() {
                                     icon="download"
                                     primary
                                     floated="right"
-                                    onClick={writeFile.bind(
+                                    onClick={handleDownload.bind(
                                         null,
-                                        athenaSuburban,
-                                        "Athena_POI_Suburban_006"
+                                        saltySprings
                                     )}
                                 />
                                 <TextArea
@@ -166,11 +188,7 @@ function ExamplesPage() {
                                     icon="download"
                                     primary
                                     floated="right"
-                                    onClick={writeFile.bind(
-                                        null,
-                                        athenaHouseA,
-                                        "Athena_SUB_5x5_House_jj"
-                                    )}
+                                    onClick={handleDownload.bind(null, houseA)}
                                 />
                                 <TextArea
                                     readOnly
@@ -212,11 +230,7 @@ function ExamplesPage() {
                                     icon="download"
                                     primary
                                     floated="right"
-                                    onClick={writeFile.bind(
-                                        null,
-                                        athenaHouseB,
-                                        "Athena_URB_5x5_Apartment"
-                                    )}
+                                    onClick={handleDownload.bind(null, houseB)}
                                 />
                                 <TextArea
                                     readOnly

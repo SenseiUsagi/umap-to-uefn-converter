@@ -477,14 +477,12 @@ function processDataObj(
                             break;
                         }
                     }
-                    actor += template.convertToUEFN(
-                        typeof staticMesh !== "undefined"
-                    );
+                    actor += template.convertToUEFN();
                     startedActor = true;
                 }
             } else if (staticMesh !== undefined) {
                 if (!startedActor) {
-                    new Template(staticMesh.MeshData).convertToUEFN(true);
+                    new Template(staticMesh.MeshData).convertToUEFN();
                     startedActor = true;
                 }
             } else {
@@ -589,16 +587,15 @@ function processDataObj(
                         return "";
                     }
                 }
-                actor += template.convertToUEFN(
-                    typeof staticMesh !== "undefined"
-                );
+                actor += template.convertToUEFN();
             } else if (staticMesh !== undefined) {
-                actor += new Template(staticMesh.MeshData).convertToUEFN(true);
+                actor += new Template(staticMesh.MeshData).convertToUEFN();
             } else {
                 // TODO: Add logic here for AdditionalWorlds (in case I will do it at all)
                 // Pause execution, save location / rotation of level, ask for json
                 // if json present recursivly call this function again with location / rotation offset
                 // if json not present continue as normal
+
                 return "";
             }
 

@@ -19,43 +19,47 @@ export class RelativeLocation {
     Z: number;
 
     constructor(X: number = 0.0, Y: number = 0.0, Z: number = 0.0) {
-        this.X = X;
-        this.Y = Y;
-        this.Z = Z;
+        this.X = parseFloat(X.toFixed(2));
+        this.Y = parseFloat(Y.toFixed(2));
+        this.Z = parseFloat(Z.toFixed(2));
     }
 
-    displace(position: RelativeLocation): RelativeLocation {
-        let locationVector: Vector3d = new Vector3d(this.X, this.Y, this.Z);
-        const displaceLocation: Vector3d = new Vector3d(
-            position.X,
-            position.Y,
-            position.Z
-        );
-        locationVector.Add(displaceLocation);
-        this.X = locationVector.X;
-        this.Y = locationVector.Y;
-        this.Z = locationVector.Z;
-        return this;
-    }
+    displace(
+        position: RelativeLocation,
+        rotation: RelativeRotation | null
+    ): RelativeLocation {
+        // pitch = x
+        // yaw = z
+        // roll = y
 
-    rotate(angle: RelativeRotation): RelativeLocation {
-        let locationVector: Vector3d = new Vector3d(this.X, this.Y, this.Z);
-        // Fact check these angle axis
-        locationVector = locationVector.VectorRotate(
-            angle.Pitch * (Math.PI / 180),
-            Vector3d.XAxis
+        const location = new Vector3d(this.X, this.Y, this.Z);
+        console.log("Current Location", location);
+        console.log("Current Rotation", rotation);
+        if (rotation !== null) {
+            console.log(
+                "test angle",
+                location.VectorRotate(rotation.Yaw, Vector3d.ZAxis)
+            );
+        }
+
+        const angleAdjusted =
+            rotation !== null
+                ? location
+                      .VectorRotate(rotation.Pitch, Vector3d.XAxis)
+                      .VectorRotate(rotation.Roll, Vector3d.YAxis)
+                      .VectorRotate(rotation.Yaw, Vector3d.ZAxis)
+                : location;
+
+        console.log("angle adjusted", angleAdjusted);
+        const finalLocation = angleAdjusted.Add(
+            new Vector3d(position.X, position.Y, position.Z)
         );
-        locationVector = locationVector.VectorRotate(
-            angle.Roll * (Math.PI / 180),
-            Vector3d.YAxis
-        );
-        locationVector = locationVector.VectorRotate(
-            angle.Yaw * (Math.PI / 180),
-            Vector3d.ZAxis
-        );
-        this.X = locationVector.X;
-        this.Y = locationVector.Y;
-        this.Z = locationVector.Z;
+
+        console.log("final position", finalLocation);
+
+        this.X = finalLocation.X;
+        this.Y = finalLocation.Y;
+        this.Z = finalLocation.Z;
         return this;
     }
 
@@ -71,9 +75,16 @@ export class RelativeRotation {
     Yaw: number;
     Roll: number;
     constructor(Pitch: number = 0.0, Yaw: number = 0.0, Roll: number = 0.0) {
-        this.Pitch = Pitch;
-        this.Yaw = Yaw;
-        this.Roll = Roll;
+        this.Pitch = parseFloat(Pitch.toFixed(2));
+        this.Yaw = parseFloat(Yaw.toFixed(2));
+        this.Roll = parseFloat(Roll.toFixed(2));
+    }
+
+    add(rotation: RelativeRotation): RelativeRotation {
+        this.Pitch = (((this.Pitch + rotation.Pitch) % 360) + 360) % 360;
+        this.Roll = (((this.Roll + rotation.Roll) % 360) + 360) % 360;
+        this.Yaw = (((this.Yaw + rotation.Yaw) % 360) + 360) % 360;
+        return this;
     }
 
     convertToUEFN(): string {
@@ -88,9 +99,9 @@ export class RelativeScale {
     Y: number;
     Z: number;
     constructor(X: number = 1.0, Y: number = 1.0, Z: number = 1.0) {
-        this.X = X;
-        this.Y = Y;
-        this.Z = Z;
+        this.X = parseFloat(X.toFixed(2));
+        this.Y = parseFloat(Y.toFixed(2));
+        this.Z = parseFloat(Z.toFixed(2));
     }
 
     convertToUEFN(): string {
@@ -107,22 +118,8 @@ export class Template {
         this.ObjData = ObjData;
     }
 
-    convertToUEFN(isStaticMesh: boolean): string {
+    convertToUEFN(): string {
         const globalState: GlobalState = GlobalStore.getState();
-        if (isStaticMesh) {
-            // Dev check for unreal 5 project
-            if (
-                globalState.currentSettings.portedModelsProjectName === "Game"
-            ) {
-                return UEFNLabelStrings.beginActor(
-                    "/Script/Engine.StaticMeshActor"
-                );
-            } else {
-                return UEFNLabelStrings.beginActor(
-                    "/Script/FortniteGame.FortStaticMeshActor"
-                );
-            }
-        }
         // Objects name
         let tempObjName: string = this.ObjData.ObjectName;
 
