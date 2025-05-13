@@ -479,6 +479,10 @@ export const portedModelsPaths: any = {
         "/Ported_Assets_By_Sensei_Usagi/Models/Terrain/GeoSlope/GeoSlope_Straight_Arid.GeoSlope_Straight_Arid'",
     "SM_DesertRoad'":
         "/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Floor/Desert_Road.Desert_Road'",
+    "S_Athena_Foundation2Landscape_3x3'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Floor/Athena_Base_3x3.Athena_Base_3x3'",
+    "S_Athena_Foundation2Landscape_5x5'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Floor/Athena_Base_5x5.Athena_Base_5x5'",
 };
 
 export const portedMaterialsPaths: any = {

@@ -263,6 +263,14 @@ function SettingsPage() {
                                     current one, ask for that worlds JSON file
                                     so it can be converted as well
                                 </Header>
+                                <Header
+                                    size="small"
+                                    color="red"
+                                    inverted={true}
+                                >
+                                    WARNING! USE AT YOUR OWN RISK! POTENTIAL
+                                    CRASH DUE TO OUT OF MEMORY POSSIBLE
+                                </Header>
                                 <Checkbox
                                     toggle
                                     onChange={() => {

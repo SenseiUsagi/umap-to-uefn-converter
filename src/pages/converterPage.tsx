@@ -120,13 +120,13 @@ function ConverterPage() {
         } else if (file) {
             setIsLoading(true);
             const rawJson = await file!.text();
+            console.log("Filesize", file.name, file.size);
 
             const folderName =
                 globalState.currentSettings.customFolderName.trim().length > 0
                     ? globalState.currentSettings.customFolderName
                     : file.name.split(".")[0];
 
-            let convertedLevel: convertedLevel | undefined;
             let convertedMap: string | undefined;
 
             try {

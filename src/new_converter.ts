@@ -20,7 +20,6 @@ import {
 } from "./classes";
 import {
     Biome,
-    convertedLevel,
     deepMerge,
     getAdditionalWorld,
     ObjectData,
@@ -34,6 +33,7 @@ import GlobalStore, {
 } from "./state/globalstate";
 export function isTerrain(objectPath: string) {
     if (
+        // TODO: Rework this to use the data in modelsInfo.ts
         objectPath.includes("DS_Fortnite_Terrain_NoLOD") ||
         objectPath.includes("Environments/World/Sidewalks") ||
         objectPath.includes("S_Road") ||
@@ -42,7 +42,12 @@ export function isTerrain(objectPath: string) {
         objectPath.includes("S_Water") ||
         objectPath.includes("BP_Athena_Water") ||
         objectPath.includes("S_Basketball") ||
-        objectPath.includes("S_Sidewalk")
+        objectPath.includes("S_Sidewalk") ||
+        objectPath.includes("SM_SmallCrater_Test") ||
+        objectPath.includes("BP_Waterfall_C") ||
+        objectPath.includes("S_Athena_Foundation2Landscape_") ||
+        objectPath.includes("SM_DesertRoad") ||
+        objectPath.includes("SM_Athena_SandBunker")
     ) {
         return true;
     }
@@ -343,7 +348,6 @@ export async function convertToUEFN_NEW(
     locationOffset: RelativeLocation | null,
     rotationOffset: RelativeRotation | null
 ): Promise<string> {
-    const globalState: GlobalState = GlobalStore.getState();
     let convertedMap: string = isLevel
         ? UEFNLabelStrings.beginMap + UEFNLabelStrings.beginLevel
         : "";
@@ -351,6 +355,7 @@ export async function convertToUEFN_NEW(
     const alreadyProcessed: string[] = [];
 
     for (const element of parsedJSON) {
+        const globalState: GlobalState = GlobalStore.getState();
         const objName: string = element.Name;
         const objType: string = element.Type;
         const objClass: string = element.Class;
@@ -464,10 +469,6 @@ export async function convertToUEFN_NEW(
                     );
                 }
             });
-        }
-
-        if (objType === "B_Athena_VendingMachine_C") {
-            console.log("all data", combinedProperties);
         }
 
         const actualRelevantData: RelaventObjectData = {
@@ -598,16 +599,56 @@ export async function convertToUEFN_NEW(
                             "."
                         )[0];
                 }
-                const jsonFile: File | undefined | null =
-                    await getAdditionalWorld(filePathWorld);
-                console.log("File Upload Done");
-                if (jsonFile) {
-                    const json = await jsonFile!.text();
+                const cachedFile = globalState.cachedJsonFiles.find(
+                    (cachedJSON) => cachedJSON.filePath === filePathWorld
+                );
+                if (cachedFile === undefined) {
+                    const jsonFile: File | undefined | null =
+                        await getAdditionalWorld(filePathWorld);
+                    if (jsonFile) {
+                        globalState.addJSONtoCache(jsonFile, filePathWorld);
+                        const json = await jsonFile!.text();
+                        const nestedFolderName =
+                            globalState.currentSettings.customFolderName.trim()
+                                .length > 0
+                                ? globalState.currentSettings.customFolderName
+                                : jsonFile.name.split(".")[0];
+                        try {
+                            const insideLevel = await convertToUEFN_NEW(
+                                processJSON(json),
+                                globalState.currentSettings.customFolderName.trim()
+                                    .length > 0
+                                    ? folderName
+                                    : folderName + "/" + nestedFolderName,
+                                false,
+                                locationOffset !== null
+                                    ? actualRelevantData.location.displace(
+                                          locationOffset,
+                                          rotationOffset
+                                      )
+                                    : actualRelevantData.location,
+                                actualRelevantData.rotation !== undefined
+                                    ? rotationOffset !== null
+                                        ? actualRelevantData.rotation.add(
+                                              rotationOffset
+                                          )
+                                        : actualRelevantData.rotation
+                                    : null
+                            );
+                            convertedMap += insideLevel;
+                        } catch (error) {
+                            throw error;
+                        }
+                    } else {
+                        continue;
+                    }
+                } else {
+                    const json = await cachedFile.file!.text();
                     const nestedFolderName =
                         globalState.currentSettings.customFolderName.trim()
                             .length > 0
                             ? globalState.currentSettings.customFolderName
-                            : jsonFile.name.split(".")[0];
+                            : cachedFile.file.name.split(".")[0];
                     try {
                         const insideLevel = await convertToUEFN_NEW(
                             processJSON(json),
@@ -634,8 +675,6 @@ export async function convertToUEFN_NEW(
                     } catch (error) {
                         throw error;
                     }
-                } else {
-                    continue;
                 }
             }
         }

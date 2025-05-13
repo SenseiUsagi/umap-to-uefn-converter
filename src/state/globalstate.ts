@@ -10,6 +10,9 @@ import {
 interface setSettings {
     (updatedSetting: settings): void;
 }
+// 60000000 Too High
+// 4500000 Too Low
+const MAX_STORAGE: number = 55500000;
 
 interface popUp {
     title: string | null;
@@ -25,6 +28,19 @@ interface openPopup {
 
 interface incrementFilesConverted {
     (): void;
+}
+
+interface addJSONtoCache {
+    (file: File, filePath: string): void;
+}
+
+interface cachedJSON {
+    fileName: string;
+    // Relative to Fortnite
+    filePath: string;
+    size: number;
+    file: File;
+    timeAdded: Date;
 }
 
 export function useOverrideBiome(globalState: GlobalState): boolean {
@@ -49,10 +65,12 @@ export interface GlobalState {
     currentSettings: settings;
     popUp: popUp;
     totalFilesConverted: number;
+    cachedJsonFiles: cachedJSON[];
     changeSettings: setSettings;
     openPopUp: openPopup;
     closePopUp: voidFunction;
     incrementConvertedFiles: incrementFilesConverted;
+    addJSONtoCache: addJSONtoCache;
 }
 
 const store = () => {
@@ -81,6 +99,7 @@ const store = () => {
                     type: null,
                     animationStarted: null,
                 },
+                cachedJsonFiles: [],
                 changeSettings: (updatedSetting) => {
                     set(() => {
                         window.localStorage.setItem(
@@ -130,6 +149,42 @@ const store = () => {
                         return {
                             totalFilesConverted: state.totalFilesConverted + 1,
                         };
+                    });
+                },
+                addJSONtoCache: (file: File, filePath: string) => {
+                    set((state) => {
+                        if (file.size > MAX_STORAGE) {
+                            return { ...state };
+                        }
+                        const currentCachedFiles = [...state.cachedJsonFiles];
+                        const curTotalSize = currentCachedFiles.reduce(
+                            (accumulator, currentValue) =>
+                                accumulator + currentValue.size,
+                            0
+                        );
+
+                        if (curTotalSize + file.size > MAX_STORAGE) {
+                            const oldestElement = currentCachedFiles.reduce(
+                                (oldest, current) =>
+                                    current.timeAdded < oldest.timeAdded
+                                        ? current
+                                        : oldest
+                            );
+
+                            currentCachedFiles.splice(
+                                currentCachedFiles.indexOf(oldestElement),
+                                1
+                            );
+                        }
+
+                        currentCachedFiles.push({
+                            file: file,
+                            fileName: file.name,
+                            filePath: filePath,
+                            size: file.size,
+                            timeAdded: new Date(),
+                        });
+                        return { cachedJsonFiles: currentCachedFiles };
                     });
                 },
             }),
