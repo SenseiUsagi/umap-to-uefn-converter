@@ -403,6 +403,9 @@ export async function convertToUEFN_NEW(
         if (objType === "FortWorldSettings") {
             continue;
         }
+        if (objType === "ObjectProperty") {
+            continue;
+        }
 
         if (alreadyProcessed.findIndex((name) => name === objName) !== -1) {
             continue;
@@ -417,17 +420,31 @@ export async function convertToUEFN_NEW(
             if (dataObj.Outer) {
                 if (dataObj.Outer === objName) {
                     elementProperties.push(dataObj);
-                    if (dataObj.Type === "StaticMeshComponent") {
-                        if (dataObj.Properties.RelativeLocation !== undefined) {
-                            actualLocation =
-                                dataObj.Properties.RelativeLocation;
-                        }
-                        if (dataObj.Properties.RelativeRotation !== undefined) {
-                            actualRotation =
-                                dataObj.Properties.RelativeRotation;
-                        }
-                        if (dataObj.Properties.RelativeScale3D !== undefined) {
-                            actualScale = dataObj.Properties.RelativeScale3D;
+                    if (
+                        dataObj.Type === "StaticMeshComponent" ||
+                        dataObj.Type === "SceneComponent"
+                    ) {
+                        if (dataObj.Properties) {
+                            if (
+                                dataObj.Properties.RelativeLocation !==
+                                undefined
+                            ) {
+                                actualLocation =
+                                    dataObj.Properties.RelativeLocation;
+                            }
+                            if (
+                                dataObj.Properties.RelativeRotation !==
+                                undefined
+                            ) {
+                                actualRotation =
+                                    dataObj.Properties.RelativeRotation;
+                            }
+                            if (
+                                dataObj.Properties.RelativeScale3D !== undefined
+                            ) {
+                                actualScale =
+                                    dataObj.Properties.RelativeScale3D;
+                            }
                         }
                     }
                 }
@@ -449,6 +466,10 @@ export async function convertToUEFN_NEW(
             });
         }
 
+        if (objType === "B_Athena_VendingMachine_C") {
+            console.log("all data", combinedProperties);
+        }
+
         const actualRelevantData: RelaventObjectData = {
             name: objName,
             class: objClass,
@@ -468,7 +489,7 @@ export async function convertToUEFN_NEW(
                           actualRotation.Yaw,
                           actualRotation.Roll
                       )
-                    : undefined,
+                    : new RelativeRotation(0, 0, 0),
             scale:
                 actualScale !== undefined
                     ? new RelativeScale(
@@ -476,7 +497,7 @@ export async function convertToUEFN_NEW(
                           actualScale.Y,
                           actualScale.Z
                       )
-                    : undefined,
+                    : new RelativeScale(1, 1, 1),
             lodData: undefined,
             materials:
                 combinedProperties.Properties !== undefined
@@ -558,17 +579,31 @@ export async function convertToUEFN_NEW(
         }
 
         if (globalState.currentSettings.propagateLevels) {
-            if (combinedProperties.Properties?.AdditionalWorlds !== undefined) {
-                const filePathWorld =
-                    combinedProperties.Properties.AdditionalWorlds[0].AssetPathName.split(
-                        "."
-                    )[0];
+            if (
+                combinedProperties.Properties?.AdditionalWorlds !== undefined ||
+                combinedProperties.Properties?.WorldAsset !== undefined
+            ) {
+                let filePathWorld: string;
+                if (
+                    combinedProperties.Properties?.AdditionalWorlds !==
+                    undefined
+                ) {
+                    filePathWorld =
+                        combinedProperties.Properties.AdditionalWorlds[0].AssetPathName.split(
+                            "."
+                        )[0];
+                } else {
+                    filePathWorld =
+                        combinedProperties.Properties.WorldAsset.AssetPathName.split(
+                            "."
+                        )[0];
+                }
                 const jsonFile: File | undefined | null =
                     await getAdditionalWorld(filePathWorld);
                 console.log("File Upload Done");
                 if (jsonFile) {
                     const json = await jsonFile!.text();
-                    const folderName =
+                    const nestedFolderName =
                         globalState.currentSettings.customFolderName.trim()
                             .length > 0
                             ? globalState.currentSettings.customFolderName
@@ -576,11 +611,23 @@ export async function convertToUEFN_NEW(
                     try {
                         const insideLevel = await convertToUEFN_NEW(
                             processJSON(json),
-                            folderName,
+                            globalState.currentSettings.customFolderName.trim()
+                                .length > 0
+                                ? folderName
+                                : folderName + "/" + nestedFolderName,
                             false,
-                            actualRelevantData.location,
+                            locationOffset !== null
+                                ? actualRelevantData.location.displace(
+                                      locationOffset,
+                                      rotationOffset
+                                  )
+                                : actualRelevantData.location,
                             actualRelevantData.rotation !== undefined
-                                ? actualRelevantData.rotation
+                                ? rotationOffset !== null
+                                    ? actualRelevantData.rotation.add(
+                                          rotationOffset
+                                      )
+                                    : actualRelevantData.rotation
                                 : null
                         );
                         convertedMap += insideLevel;
@@ -680,9 +727,21 @@ function processPropertiesObj(
             return "";
         } else {
             completeActor += objData.template.convertToUEFN();
-            completeActor += UEFNLabelStrings.beginObject(undefined);
-            completeActor += objData.materials?.convertToUEFN();
+            if (objData.type === "B_Athena_VendingMachine_C") {
+                completeActor +=
+                    UEFNLabelStrings.beginObject("DefaultSceneRoot");
+            } else if (objData.type === "BP_Athena_Water_C") {
+                completeActor += UEFNLabelStrings.beginObject("Water_Base");
+            } else if (objData.type === "BP_Waterfall_C") {
+                completeActor += UEFNLabelStrings.beginObject("StaticMesh1");
+            } else {
+                completeActor += UEFNLabelStrings.beginObject(undefined);
+            }
+            completeActor += objData.materials?.convertToUEFN() ?? "";
         }
+    } else {
+        // No BP or Model to spawn
+        return "";
     }
     completeActor +=
         locationOffset !== null

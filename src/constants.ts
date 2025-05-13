@@ -336,8 +336,8 @@ export interface RelaventObjectData {
     class: string;
     type: string;
     location: RelativeLocation;
-    rotation: RelativeRotation | undefined;
-    scale: RelativeScale | undefined;
+    rotation: RelativeRotation;
+    scale: RelativeScale;
     lodData: LODData | undefined;
     materials: OverrideMaterials | undefined;
     // If template present -> Blueprint

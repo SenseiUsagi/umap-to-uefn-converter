@@ -19,9 +19,9 @@ export class RelativeLocation {
     Z: number;
 
     constructor(X: number = 0.0, Y: number = 0.0, Z: number = 0.0) {
-        this.X = parseFloat(X.toFixed(2));
-        this.Y = parseFloat(Y.toFixed(2));
-        this.Z = parseFloat(Z.toFixed(2));
+        this.X = X;
+        this.Y = Y;
+        this.Z = Z;
     }
 
     displace(
@@ -55,9 +55,9 @@ export class RelativeLocation {
             new Vector3d(position.X, position.Y, position.Z)
         );
 
-        this.X = parseFloat(finalLocation.X.toFixed(2));
-        this.Y = parseFloat(finalLocation.Y.toFixed(2));
-        this.Z = parseFloat(finalLocation.Z.toFixed(2));
+        this.X = finalLocation.X;
+        this.Y = finalLocation.Y;
+        this.Z = finalLocation.Z;
         return this;
     }
 
@@ -79,9 +79,9 @@ export class RelativeRotation {
     }
 
     add(rotation: RelativeRotation): RelativeRotation {
-        this.Pitch = (((this.Pitch + rotation.Pitch) % 360) + 360) % 360;
-        this.Roll = (((this.Roll + rotation.Roll) % 360) + 360) % 360;
-        this.Yaw = (((this.Yaw + rotation.Yaw) % 360) + 360) % 360;
+        this.Pitch = this.Pitch + rotation.Pitch;
+        this.Roll = this.Roll + rotation.Roll;
+        this.Yaw = this.Yaw + rotation.Yaw;
         return this;
     }
 
@@ -117,7 +117,6 @@ export class Template {
     }
 
     convertToUEFN(): string {
-        const globalState: GlobalState = GlobalStore.getState();
         // Objects name
         let tempObjName: string = this.ObjData.ObjectName;
 
@@ -129,6 +128,9 @@ export class Template {
         if (tempObjName.includes(":")) {
             // example: "Athena_Plant_Corn01_C"
             tempObjName = tempObjName.split(":")[0];
+            if (tempObjName.includes("'")) {
+                tempObjName = tempObjName.split("'")[1];
+            }
         }
 
         tempObjName = tempObjName.replace(/_+$/, "");
