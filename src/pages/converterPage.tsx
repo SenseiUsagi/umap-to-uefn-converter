@@ -244,13 +244,12 @@ function ConverterPage() {
                                         globalState.currentSettings.darkMode
                                     }
                                 >
-                                    Inspired by:{" "}
                                     <a
-                                        href="https://www.patreon.com/user/membership?u=70550621"
+                                        href="https://github.com/SenseiUsagi/umap-to-uefn-converter/blob/main/LICENSE"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >
-                                        JMAP
+                                        License
                                     </a>
                                 </Header>
                                 <Header
@@ -260,22 +259,8 @@ function ConverterPage() {
                                         globalState.currentSettings.darkMode
                                     }
                                 >
-                                    {/* Ver. FullVersion.FeatureVersion.PatchVersion */}
-                                    Ver. 1.2.0
-                                </Header>
-                                <Header
-                                    size="tiny"
-                                    inverted={
-                                        globalState.currentSettings.darkMode
-                                    }
-                                >
-                                    <a
-                                        href="https://github.com/SenseiUsagi/umap-to-uefn-converter/blob/main/LICENSE"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                        License
-                                    </a>
+                                    {/* Ver. FullVersion.FeatureVersion.PatchVersion.ModelsInfoVersion */}
+                                    Ver. 1.2.0.15
                                 </Header>
                             </div>
                         </Segment>

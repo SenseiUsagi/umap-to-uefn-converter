@@ -354,13 +354,12 @@ export class LODData {
                                                     : ""
                                             }`;
                                         }
-
-                                        tempLodData += `${tabIndent(
-                                            4
-                                        )}CustomProperties CustomLODData LOD=${index} ColorVertexData(${numVertices})=(${colorData})\n`;
                                     }
                                 }
                             );
+                            tempLodData += `${tabIndent(
+                                4
+                            )}CustomProperties CustomLODData LOD=${index} ColorVertexData(${numVertices})=(${colorData})\n`;
                         }
                     }
                 }

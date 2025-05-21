@@ -483,6 +483,8 @@ export const portedModelsPaths: any = {
         "/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Floor/Athena_Base_3x3.Athena_Base_3x3'",
     "S_Athena_Foundation2Landscape_5x5'":
         "/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Floor/Athena_Base_5x5.Athena_Base_5x5'",
+    "S_Stream_2W_Turn_2L_a'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Terrain/River/River_Turn.River_Turn'",
 };
 
 export const portedMaterialsPaths: any = {
@@ -704,4 +706,6 @@ export const portedMaterialsPaths: any = {
         "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Arid/STW_Arid/Arid_RockGravelDirt.Arid_RockGravelDirt'",
     "M_Arid_RockGravelDryGrass'":
         "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Arid/STW_Arid/Arid_RockGravelDryGrass.Arid_RockGravelDryGrass'",
+    "M_Terrain_Z_Rural'":
+        "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Terrain_Rural_Biome.Terrain_Rural_Biome'",
 };
