@@ -1,3 +1,4 @@
+import { portedModelsPaths } from "./assets/data/modelsInfo";
 import {
     adBiome,
     farmBiome,
@@ -31,27 +32,33 @@ import GlobalStore, {
     GlobalState,
     useOverrideBiome,
 } from "./state/globalstate";
-export function isTerrain(objectPath: string) {
+
+export function isTerrain(meshName: string): boolean {
+    let tempMeshName: string = "";
+
+    if (meshName.includes("StaticMesh'")) {
+        tempMeshName = meshName.split("StaticMesh'")[1];
+    } else if (meshName.includes(":")) {
+        tempMeshName = meshName.split(":")[0];
+    }
+
+    tempMeshName = tempMeshName.replace(/_+$/, "");
+
+    const portedMesh: String | undefined = portedModelsPaths[tempMeshName];
+    // Edge Cases
     if (
-        // TODO: Rework this to use the data in modelsInfo.ts
-        objectPath.includes("DS_Fortnite_Terrain_NoLOD") ||
-        objectPath.includes("Environments/World/Sidewalks") ||
-        objectPath.includes("S_Road") ||
-        objectPath.includes("S_Asphalt") ||
-        objectPath.includes("S_SmallStreet") ||
-        objectPath.includes("S_Water") ||
-        objectPath.includes("BP_Athena_Water") ||
-        objectPath.includes("S_Basketball") ||
-        objectPath.includes("S_Sidewalk") ||
-        objectPath.includes("SM_SmallCrater_Test") ||
-        objectPath.includes("BP_Waterfall_C") ||
-        objectPath.includes("S_Athena_Foundation2Landscape_") ||
-        objectPath.includes("SM_DesertRoad") ||
-        objectPath.includes("SM_Athena_SandBunker")
+        tempMeshName.includes("BP_Athena_Water") ||
+        tempMeshName.includes("BP_Waterfall")
     ) {
         return true;
     }
-    return false;
+
+    if (typeof portedMesh !== "undefined") {
+        return true;
+    } else {
+        console.log("Couldnt find Ported mesh", tempMeshName);
+        return false;
+    }
 }
 
 export function findTerrainTypeBasedMesh(mesh: StaticMesh) {
@@ -681,11 +688,11 @@ export async function convertToUEFN_NEW(
 
         if (globalState.currentSettings.exportNoTerrain) {
             if (actualRelevantData.mesh !== undefined) {
-                if (isTerrain(actualRelevantData.mesh.MeshData.ObjectPath)) {
+                if (isTerrain(actualRelevantData.mesh.MeshData.ObjectName)) {
                     continue;
                 }
             } else if (actualRelevantData.template !== undefined) {
-                if (isTerrain(actualRelevantData.template.ObjData.ObjectPath)) {
+                if (isTerrain(actualRelevantData.template.ObjData.ObjectName)) {
                     continue;
                 }
             }
@@ -693,12 +700,12 @@ export async function convertToUEFN_NEW(
 
         if (globalState.currentSettings.exportOnlyTerrain) {
             if (actualRelevantData.mesh !== undefined) {
-                if (!isTerrain(actualRelevantData.mesh.MeshData.ObjectPath)) {
+                if (!isTerrain(actualRelevantData.mesh.MeshData.ObjectName)) {
                     continue;
                 }
             } else if (actualRelevantData.template !== undefined) {
                 if (
-                    !isTerrain(actualRelevantData.template.ObjData.ObjectPath)
+                    !isTerrain(actualRelevantData.template.ObjData.ObjectName)
                 ) {
                     continue;
                 }
@@ -758,12 +765,35 @@ function processPropertiesObj(
             completeActor += objData.materials?.convertToUEFN() ?? "";
         }
     } else if (objData.template !== undefined) {
-        if (
-            globalState.currentSettings.usePortedModels &&
-            globalState.currentSettings.portedModelsProjectName === "Game"
-        ) {
+        if (globalState.currentSettings.usePortedModels) {
             // Special Case for BPs I have models of
-            return "";
+            if (objData.type === "BP_Athena_Water_C") {
+                completeActor += new Template({
+                    ObjectName: "BoxComponent'Athena_Water_C:Box_GEN_VARIABLE'",
+                    ObjectPath: `/${globalState.currentSettings.portedModelsProjectName}/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Athena_Water.`,
+                }).convertToUEFN();
+                completeActor += UEFNLabelStrings.beginObject(undefined);
+            } else if (objData.type === "BP_Waterfall_C") {
+                if (
+                    globalState.currentSettings.portedModelsProjectName ===
+                    "Game"
+                ) {
+                    completeActor += UEFNLabelStrings.beginActor(
+                        "/Script/Engine.StaticMeshActor"
+                    );
+                } else {
+                    completeActor += UEFNLabelStrings.beginActor(
+                        "/Script/FortniteGame.FortStaticMeshActor"
+                    );
+                }
+                completeActor += UEFNLabelStrings.beginObject(undefined);
+                completeActor += new StaticMesh({
+                    ObjectName: "StaticMesh'River_Cliff'",
+                    ObjectPath: `/${globalState.currentSettings.portedModelsProjectName}/Ported_Assets_By_Sensei_Usagi/Models/Terrain/River/River_Cliff.0`,
+                }).convertToUEFN();
+            } else {
+                return "";
+            }
         } else {
             completeActor += objData.template.convertToUEFN();
             if (objData.type === "B_Athena_VendingMachine_C") {
@@ -776,8 +806,8 @@ function processPropertiesObj(
             } else {
                 completeActor += UEFNLabelStrings.beginObject(undefined);
             }
-            completeActor += objData.materials?.convertToUEFN() ?? "";
         }
+        completeActor += objData.materials?.convertToUEFN() ?? "";
     } else {
         // No BP or Model to spawn
         return "";

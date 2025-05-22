@@ -12,6 +12,7 @@ import {
     rgbaToHex,
 } from "./constants";
 import GlobalStore, { GlobalState } from "./state/globalstate";
+import { isTerrain } from "./new_converter";
 
 export class RelativeLocation {
     X: number;
@@ -165,26 +166,6 @@ export class StaticMesh {
             return "";
         }
 
-        if (globalState.currentSettings.exportNoTerrain) {
-            if (
-                this.MeshData.ObjectPath.includes(
-                    "DS_Fortnite_Terrain_NoLOD"
-                ) ||
-                this.MeshData.ObjectPath.includes(
-                    "Environments/World/Sidewalks"
-                ) ||
-                this.MeshData.ObjectPath.includes("S_Road") ||
-                this.MeshData.ObjectPath.includes("S_Asphalt") ||
-                this.MeshData.ObjectPath.includes("S_SmallStreet") ||
-                this.MeshData.ObjectPath.includes("S_Water") ||
-                this.MeshData.ObjectPath.includes("BP_Athena_Water") ||
-                this.MeshData.ObjectPath.includes("S_Basketball") ||
-                this.MeshData.ObjectPath.includes("S_Sidewalk")
-            ) {
-                return "";
-            }
-        }
-
         if (this.MeshData.ObjectName.includes("StaticMesh'")) {
             tempMeshName = this.MeshData.ObjectName.split("StaticMesh'")[1];
         } else if (this.MeshData.ObjectName.includes(":")) {
@@ -199,6 +180,13 @@ export class StaticMesh {
         tempMeshPath = tempMeshPath.replace(/\d+$/, "");
 
         let mesh = tempMeshPath + tempMeshName;
+
+        if (globalState.currentSettings.exportNoTerrain) {
+            if (isTerrain(tempMeshName)) {
+                return "";
+            }
+        }
+
         if (globalState.currentSettings.usePortedModels) {
             const portedMesh: String | undefined =
                 portedModelsPaths[tempMeshName];
@@ -236,6 +224,9 @@ export class OverrideMaterials {
                     tempMeshName = tempMeshName.split(
                         "MaterialInstanceConstant'"
                     )[1];
+                }
+                if (tempMeshName.includes("Material'")) {
+                    tempMeshName = tempMeshName.split("Material'")[1];
                 }
 
                 tempMeshPath = tempMeshPath.replace(

@@ -260,7 +260,7 @@ function ConverterPage() {
                                     }
                                 >
                                     {/* Ver. FullVersion.FeatureVersion.PatchVersion.ModelsInfoVersion */}
-                                    Ver. 1.2.0.15
+                                    Ver. 1.2.0.16
                                 </Header>
                             </div>
                         </Segment>

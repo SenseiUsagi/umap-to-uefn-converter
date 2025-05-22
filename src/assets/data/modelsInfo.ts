@@ -485,6 +485,16 @@ export const portedModelsPaths: any = {
         "/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Floor/Athena_Base_5x5.Athena_Base_5x5'",
     "S_Stream_2W_Turn_2L_a'":
         "/Ported_Assets_By_Sensei_Usagi/Models/Terrain/River/River_Turn.River_Turn'",
+    "S_Athena_WaterWall_InsideCorner'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Water_Wall_Corner_Inner_1x2.Water_Wall_Corner_Inner_1x2'",
+    "S_Athena_WaterWall_Corner'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Water_Wall_Corner_Outer_1x2.Water_Wall_Corner_Outer_1x2'",
+    "S_Athena_WaterWall_Corner_B'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Water_Wall_Corner_Outer_1x1.Water_Wall_Corner_Outer_1x1'",
+    "S_Athena_WaterWall_1x2'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Water_Wall_2x2.Water_Wall_2x2'",
+    "S_Athena_WaterWall_1x1_A'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Water_Wall_1x2.Water_Wall_1x2'",
 };
 
 export const portedMaterialsPaths: any = {
@@ -708,4 +718,28 @@ export const portedMaterialsPaths: any = {
         "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Arid/STW_Arid/Arid_RockGravelDryGrass.Arid_RockGravelDryGrass'",
     "M_Terrain_Z_Rural'":
         "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Terrain_Rural_Biome.Terrain_Rural_Biome'",
+    "M_Athena_AridSM_Ground_NoGrass'":
+        "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Arid/Arid_Athena_Ground_NoGrass.Arid_Athena_Ground_NoGrass'",
+    "M_Athena_AridSM_Cliff_01'":
+        "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Arid/Arid_Athena.Arid_Athena'",
+    "Stream_Flowmaps_AthenaArid_REVERSE_toLake'":
+        "/Ported_Assets_By_Sensei_Usagi/Materials/Water/Arid/Stream_Backwards_ToLake_Arid.Stream_Backwards_ToLake_Arid'",
+    "LandWaterBorder_Mud_AthenaArid'":
+        "/Ported_Assets_By_Sensei_Usagi/Materials/Water/Arid/LandWaterBorder_Arid.LandWaterBorder_Arid'",
+    "Athena_Terrain_Mat_Biome_ForceJungle'":
+        "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Jungle/Terrain_Jungle_Biome.Terrain_Jungle_Biome'",
+    "Athena_Terrain_Mat_Biome_Cliff_ForceJungle'":
+        "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Jungle/Cliff_Biome_Jungle_White.Cliff_Biome_Jungle_White'",
+    "JungleGroundMat_Inst'":
+        "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Jungle/Terrain_Jungle_Biome_02.Terrain_Jungle_Biome_02'",
+    "M_Athena_JungleSand'":
+        "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Jungle/Terrain_Jungle_Sand.Terrain_Jungle_Sand'",
+    "M_Athena_JungleSand_NoGrass'":
+        "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Jungle/Terrain_Jungle_Sand_NoGrass.Terrain_Jungle_Sand_NoGrass'",
+    "SM_Athena_Stream_Spline_01'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Terrain/River/River_Spline_01_Model.River_Spline_01_Model'",
+    "SM_Athena_Stream_Spline_02b'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Terrain/River/River_Spline_02_Model.River_Spline_02_Model'",
+    "LandWaterBorder_Mud_AthenaCrater'":
+        "/Ported_Assets_By_Sensei_Usagi/Materials/Water/Crater_LandWaterBorder.Crater_LandWaterBorder'",
 };
