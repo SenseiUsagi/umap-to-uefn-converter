@@ -495,6 +495,24 @@ export const portedModelsPaths: any = {
         "/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Water_Wall_2x2.Water_Wall_2x2'",
     "S_Athena_WaterWall_1x1_A'":
         "/Ported_Assets_By_Sensei_Usagi/Models/Foundation/Water_Wall_1x2.Water_Wall_1x2'",
+    "S_Sidewalk_1x1_CornerComplete'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_Outer_G.Sidewalk_Outer_G'",
+    "S_Mansion_Path_1to2TSection'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Mansion_Path_1to2TSection.Mansion_Path_1to2TSection'",
+    "S_Mansion_Path_1x1'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Mansion_Path_1x1.Mansion_Path_1x1'",
+    "S_Mansion_Path_1x2'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Mansion_Path_1x2.Mansion_Path_1x2'",
+    "S_Mansion_Path_1x1_Corner'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Mansion_Path_1x1_Corner.Mansion_Path_1x1_Corner'",
+    "S_Mansion_Path_1x1_EndCap'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Mansion_Path_1x1_EndCap.Mansion_Path_1x1_EndCap'",
+    "S_Mansion_Path_1x1_TSection'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Mansion_Path_1x1_TSection.Mansion_Path_1x1_TSection'",
+    "S_Mansion_Path_2x2'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Mansion_Path_2x2.Mansion_Path_2x2'",
+    "S_Mansion_Path_2x1_EndCap'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Mansion_Path_2x1_EndCap.Mansion_Path_2x1_EndCap'",
 };
 
 export const portedMaterialsPaths: any = {
@@ -742,4 +760,6 @@ export const portedMaterialsPaths: any = {
         "/Ported_Assets_By_Sensei_Usagi/Models/Terrain/River/River_Spline_02_Model.River_Spline_02_Model'",
     "LandWaterBorder_Mud_AthenaCrater'":
         "/Ported_Assets_By_Sensei_Usagi/Materials/Water/Crater_LandWaterBorder.Crater_LandWaterBorder'",
+    "M_Mansion_GravelPath'":
+        "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Mansion_GravelPath.Mansion_GravelPath'",
 };
