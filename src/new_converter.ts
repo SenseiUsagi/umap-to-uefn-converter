@@ -792,9 +792,15 @@ function processPropertiesObj(
                     ObjectPath: `/${globalState.currentSettings.portedModelsProjectName}/Ported_Assets_By_Sensei_Usagi/Models/Terrain/River/River_Cliff.0`,
                 }).convertToUEFN();
             } else {
-                return "";
+                if (globalState.currentSettings.exportOnlyTerrain) {
+                    return "";
+                }
             }
-        } else {
+        }
+        if (
+            !isTerrain(objData.template.ObjData.ObjectName) &&
+            globalState.currentSettings.usePortedModels
+        ) {
             completeActor += objData.template.convertToUEFN();
             if (objData.type === "B_Athena_VendingMachine_C") {
                 completeActor +=
