@@ -11,7 +11,8 @@ jobs:
   deploy:
     runs-on: ubuntu-24.04
     steps:
-    - id: build-publish
-      uses: bitovi/github-actions-react-to-github-pages@v1.2
+    - name: Publish to GitHub Pages
+      id: build-publish
+      uses: bitovi/github-actions-react-to-github-pages@v1.2.4      
       with:
         path: build
