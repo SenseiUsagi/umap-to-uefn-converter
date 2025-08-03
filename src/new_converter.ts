@@ -56,7 +56,6 @@ export function isTerrain(meshName: string): boolean {
     if (typeof portedMesh !== "undefined") {
         return true;
     } else {
-        console.log("Couldnt find Ported mesh", tempMeshName);
         return false;
     }
 }
@@ -736,6 +735,7 @@ function processPropertiesObj(
     locationOffset: RelativeLocation | null,
     rotationOffset: RelativeRotation | null
 ) {
+    console.log("Processing OBJ", objData);
     const globalState: GlobalState = GlobalStore.getState();
     let completeActor: string = "";
     if (objData.mesh !== undefined) {
@@ -799,7 +799,7 @@ function processPropertiesObj(
         }
         if (
             !isTerrain(objData.template.ObjData.ObjectName) &&
-            globalState.currentSettings.usePortedModels
+            !globalState.currentSettings.exportOnlyTerrain
         ) {
             completeActor += objData.template.convertToUEFN();
             if (objData.type === "B_Athena_VendingMachine_C") {

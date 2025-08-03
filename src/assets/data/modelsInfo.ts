@@ -513,6 +513,8 @@ export const portedModelsPaths: any = {
         "/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Mansion_Path_2x2.Mansion_Path_2x2'",
     "S_Mansion_Path_2x1_EndCap'":
         "/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Mansion_Path_2x1_EndCap.Mansion_Path_2x1_EndCap'",
+    "S_TennisCourt'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Tennis_Court.Tennis_Court'",
 };
 
 export const portedMaterialsPaths: any = {
@@ -762,4 +764,8 @@ export const portedMaterialsPaths: any = {
         "/Ported_Assets_By_Sensei_Usagi/Materials/Water/Crater_LandWaterBorder.Crater_LandWaterBorder'",
     "M_Mansion_GravelPath'":
         "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Mansion_GravelPath.Mansion_GravelPath'",
+    "M_Terrain_Cliff_White_WorldBorder'":
+        "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Cliff_Biome_White.Cliff_Biome_White'",
+    "MI_TennisCourt'":
+        "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Tennis_Court.Tennis_Court'",
 };
