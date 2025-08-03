@@ -348,3 +348,18 @@ export interface RelaventObjectData {
     resourceType: ResourceType | undefined;
     mirrored: boolean;
 }
+
+export const linkReferences = {
+    collectionDownload:
+        "https://drive.google.com/file/d/1y18bVVeFw6JWXT2BEz-x1RHnWIcw1jWR/view?usp=sharing",
+    fmodelVertex:
+        "https://drive.google.com/file/d/1FxLy1LdTkFn7dHzAX-b8t1QRwH1lp4i6/view?usp=drive_link",
+    tutorial: "https://youtu.be/CbXhT5eRFr0",
+    githubIssues:
+        "https://github.com/SenseiUsagi/umap-to-uefn-converter/issues",
+    github: "https://github.com/SenseiUsagi/umap-to-uefn-converter",
+    ytChannel: "https://www.youtube.com/channel/UCbM-2vwIRZHfOxhVNU75bCQ",
+    itsNik: "https://itsnik.de/",
+    license:
+        "https://github.com/SenseiUsagi/umap-to-uefn-converter/blob/main/LICENSE",
+};

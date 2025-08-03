@@ -15,6 +15,7 @@ import {
     deepMerge,
     handleCopyClipboard,
     handleDownload,
+    linkReferences,
     processJSON,
 } from "../constants";
 import GlobalStore, { GlobalState } from "../state/globalstate";
@@ -216,7 +217,7 @@ function ConverterPage() {
                                 >
                                     Created By:{" "}
                                     <a
-                                        href="https://www.youtube.com/channel/UCbM-2vwIRZHfOxhVNU75bCQ"
+                                        href={linkReferences.ytChannel}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >
@@ -231,7 +232,7 @@ function ConverterPage() {
                                 >
                                     Workflow By:{" "}
                                     <a
-                                        href="https://itsnik.de/"
+                                        href={linkReferences.itsNik}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >
@@ -245,7 +246,7 @@ function ConverterPage() {
                                     }
                                 >
                                     <a
-                                        href="https://github.com/SenseiUsagi/umap-to-uefn-converter/blob/main/LICENSE"
+                                        href={linkReferences.license}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >

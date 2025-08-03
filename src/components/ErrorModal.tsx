@@ -1,7 +1,7 @@
 // Required
 import React from "react";
 import { Button, Modal, Header, Icon } from "semantic-ui-react";
-import { voidFunction } from "../constants";
+import { linkReferences, voidFunction } from "../constants";
 
 // General Error modal use in various places
 // (consider using the pop up intead of this)
@@ -41,7 +41,7 @@ function ErrorModal({
                 <Header size="medium" textAlign="center">
                     Please take a screanshot of this and create an issue on{" "}
                     <a
-                        href="https://github.com/SenseiUsagi/umap-to-uefn-converter/issues"
+                        href={linkReferences.githubIssues}
                         target="_blank"
                         rel="noopener noreferrer"
                     >

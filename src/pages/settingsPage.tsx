@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Checkbox, Header, Input, Segment } from "semantic-ui-react";
 import GlobalStore, { GlobalState } from "../state/globalstate";
 import { Column, Container, Row } from "../components/gridsystem";
+import { linkReferences } from "../constants";
 
 function SettingsPage() {
     const globalState: GlobalState = {
@@ -362,13 +363,13 @@ function SettingsPage() {
                                 little bit easier. You can find the recreated
                                 terrain{" "}
                                 <a
-                                    href="https://drive.google.com/file/d/1YFO-of1vaPCwAC-NF2x-eaIDx4G8IKY5/view?usp=sharing"
+                                    href={linkReferences.collectionDownload}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
                                     here
                                 </a>{" "}
-                                (only compatable with V3 of my ported models).
+                                (only compatable with V3.1 of my ported models).
                             </Header>
                             <Checkbox
                                 toggle
