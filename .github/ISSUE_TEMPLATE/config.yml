@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: "Support discussion"
+    url: "https://github.com/SenseiUsagi/umap-to-uefn-converter/discussions"
+    about: "🎒 Please ask usage questions or propose research ideas in Discussions."
