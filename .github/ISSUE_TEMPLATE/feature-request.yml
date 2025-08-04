@@ -1,0 +1,56 @@
+name: "✨ Feature request"
+description: "Suggest a new conversion feature or enhancement"
+title: "[ENHANCEMENT] "
+labels:
+  - enhancement
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping improve the Converter! Please describe what you’d like to see, use cases, and why.
+
+  - type: input
+    id: feature
+    attributes:
+      label: **Feature you’d like added**
+      description: e.g. "batch‑convert JSONs", "auto-generate Verse for spotlights"
+      placeholder: "Describe your desired feature"
+    validations:
+      required: true
+
+  - type: textarea
+    id: use_case
+    attributes:
+      label: **Use case**
+      description: Why do you need this feature? Where would it fit in your workflow?
+      placeholder: "e.g. I want to convert LevelSequence actors from film umaps"
+    validations:
+      required: true
+
+  - type: textarea
+    id: potential_solution
+    attributes:
+      label: **How it might be implemented (optional)**
+      description: Tech hints (this converter uses React + TypeScript; backend is Bun, Tailwind, Vite; Docker build)
+      placeholder: "Maybe add a tab with settings, a queue system…"
+    validations:
+      required: false
+
+  - type: textarea
+    id: accept_criteria
+    attributes:
+      label: **Acceptance criteria**
+      description: Conditions for this feature to be considered complete (e.g. ✅ able to convert 10 scenes at once, ✅ Verse compiles without errors)
+      placeholder: "Success criteria for the feature"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: cotc
+    attributes:
+      label: **Code of Conduct**
+      options:
+        - label: "I agree to follow the project’s Code of Conduct"
+          required: true

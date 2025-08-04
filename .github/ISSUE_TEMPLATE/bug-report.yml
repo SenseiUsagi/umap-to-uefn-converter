@@ -1,0 +1,91 @@
+name: "🐛 Bug report"
+description: "Report a failed or incorrect uMap → UEFN conversion"
+title: "[BUG] "
+labels:
+  - bug
+  - needs-triage
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for filing a bug report! Please try to include all information so we can reproduce and fix it quickly.
+
+  - type: input
+    id: summary
+    attributes:
+      label: **Short summary**
+      description: One-line description (e.g. "converted actor location is off by 50 cm").
+      placeholder: Scene name; actor types involved
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: **Steps to reproduce**
+      description: Step-by‑step actions like "1. Dump `.umap` via FModel… 2. Upload to converter… 3. Download and import into UEFN"
+      placeholder: "Install … → Dump … → Convert … → Open in UEFN"
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: **Expected behavior in UEFN**
+      description: What did you expect after conversion or validation?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: **Actual result / error logs**
+      description: Provide UEFN validation error, thrown Verse byte offset, or console / network logs
+    validations:
+      required: true
+
+  - type: input
+    id: fmodel_version
+    attributes:
+      label: **FModel version**
+      description: If you used FModel to export the `.json`, which version?
+      placeholder: e.g. 1.2.3
+    validations:
+      required: false
+
+  - type: input
+    id: converter_version
+    attributes:
+      label: **Converter version or site URL**
+      description: The deployed version, commit-sha, or npm package version
+      placeholder: "v1.x.y or https://umap.example"
+    validations:
+      required: false
+
+  - type: input
+    id: environment
+    attributes:
+      label: **Environment**
+      description: Eg. Windows 11 + Chrome 120, macOS Sonoma + Safari 17
+      placeholder: "Win 11 + Edge 125"
+    validations:
+      required: true
+
+  - type: textarea
+    id: minimal_example
+    attributes:
+      label: **Minimal reproducer (optional)**
+      description: Share a stripped‐down `.json` or link to a public file showing the issue
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: cotc
+    attributes:
+      label: **Code of Conduct**
+      description: Submit this issue only if you're fine with our [Code of Conduct](https://github.com/SenseiUsagi/umap-to-uefn-converter/blob/main/CODE_OF_CONDUCT.md)
+      options:
+        - label: "I agree to follow the project’s Code of Conduct"
+          required: true
