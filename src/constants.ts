@@ -56,7 +56,7 @@ export const UEFNLabelStrings = {
     beginLevel: `${tabIndent(1)}Begin Level\n\n`,
     beginActor: (objPath: string) =>
         `${tabIndent(2)}Begin Actor Class="${objPath}"\n`,
-    beginObject: (name: string | undefined) =>
+    beginObjectName: (name: string | undefined) =>
         `${tabIndent(3)}Begin Object Name="${
             name !== undefined ? name : "StaticMeshComponent0"
         }"\n`,
@@ -85,7 +85,60 @@ export const UEFNLabelStrings = {
         `${tabIndent(4)}Sound="/Script/Engine.SoundCue'${path}\n`,
     customMaterial: `${tabIndent(3)}bAllowCustomMaterial=False\n`,
     mirrored: `${tabIndent(3)}bMirrored=True\n`,
+    beginObject: (objClass: string) => `Begin Object ${objClass}\n`,
+    beginCurveEditorKey: (index: number) =>
+        `${tabIndent(
+            1
+        )}Begin Object Class=/Script/CurveEditor.CurveEditorCopyableCurveKeys Name="CurveEditorCopyableCurveKeys_${index}"\n`,
+    curveEditorPosition: (index: number, time: number, value: number) =>
+        `${tabIndent(
+            2
+        )}KeyPositions(${index})=(InputValue=${time},OutputValue=${value})\n`,
+    curveEditorLinear: (index: number) =>
+        `${tabIndent(2)}KeyAttributes(${index})=(bHasInterpMode=True)\n`,
+    curveEditorAuto: (index: number) =>
+        `${tabIndent(
+            2
+        )}KeyAttributes(${index})=(bHasArriveTangent=True,bHasLeaveTangent=True,bHasInterpMode=True,bHasTangentMode=True,bHasTangentWeightMode=True,InterpMode=RCIM_Cubic)\n`,
+    curveEditorEndObject: `${tabIndent(1)}End Object \n`,
+    curveEditorCurve: (index: number) =>
+        `${tabIndent(
+            1
+        )}Curves(${index})="/Script/CurveEditor.CurveEditorCopyableCurveKeys'CurveEditorCopyableCurveKeys_${index}'"`,
+    safeZoneCloudBias: `${tabIndent(
+        2
+    )}ShortDisplayName="CloudStartingBias"\n${tabIndent(
+        2
+    )}LongDisplayName=".SafeZoneClouds.CloudStartingBias"\n${tabIndent(
+        2
+    )}IntentionName="CloudStartingBias"\n${tabIndent(
+        2
+    )}LongIntentionName=".CloudStartingBias"\n`,
+    safeZoneScale: `${tabIndent(
+        2
+    )}ShortDisplayName="SafeZoneScale"\n${tabIndent(
+        2
+    )}LongDisplayName=".SafeZoneClouds.SafeZoneScale"\n${tabIndent(
+        2
+    )}IntentionName="SafeZoneScale"\n${tabIndent(
+        2
+    )}LongIntentionName=".SafeZoneScale"\n`,
+    safeZonePosX: `${tabIndent(2)}ShortDisplayName="R"\n${tabIndent(
+        2
+    )}LongDisplayName=".SafeZoneClouds.SafeZoneLoc.R"\n${tabIndent(
+        2
+    )}IntentionName="SafeZoneLoc.R"\n${tabIndent(
+        2
+    )}LongIntentionName=".SafeZoneLoc.R"\n`,
+    safeZonePosY: `${tabIndent(2)}ShortDisplayName="G"\n${tabIndent(
+        2
+    )}LongDisplayName=".SafeZoneClouds.SafeZoneLoc.G"\n${tabIndent(
+        2
+    )}IntentionName="SafeZoneLoc.G"\n${tabIndent(
+        2
+    )}LongIntentionName=".SafeZoneLoc.G"\n`,
 };
+// SafeZoneScale / 1900m (if input distance is less or equal to that)
 
 export function processJSON(rawJson: string): unknown[] {
     let counter = 1;
@@ -363,3 +416,11 @@ export const linkReferences = {
     license:
         "https://github.com/SenseiUsagi/umap-to-uefn-converter/blob/main/LICENSE",
 };
+
+export interface SafeZoneKeyFrame {
+    radius: number; // SafeZoneScale
+    resizeTime: number;
+    waitTime: number;
+    PosX: number;
+    PosY: number;
+}

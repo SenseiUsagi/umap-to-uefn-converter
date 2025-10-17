@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-import { Vector3d } from "open3d";
 import {
     Button,
     Form,
@@ -12,7 +11,6 @@ import { Column, Container, Row } from "../components/gridsystem";
 import {
     PopUpTypes,
     convertedLevel,
-    deepMerge,
     handleCopyClipboard,
     handleDownload,
     linkReferences,
@@ -22,7 +20,6 @@ import GlobalStore, { GlobalState } from "../state/globalstate";
 import ErrorModal from "../components/ErrorModal";
 import { convertToUEFN_NEW } from "../new_converter";
 import MoreWorldModal from "../components/AdditionalWorldsModal";
-import { RelativeLocation, RelativeRotation } from "../classes";
 
 function ConverterPage() {
     const [file, setFile] = useState<File>();
@@ -261,7 +258,7 @@ function ConverterPage() {
                                     }
                                 >
                                     {/* Ver. FullVersion.FeatureVersion.PatchVersion.ModelsInfoVersion */}
-                                    Ver. 1.2.0.16
+                                    Ver. 1.3.0.16
                                 </Header>
                             </div>
                         </Segment>

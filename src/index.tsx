@@ -11,6 +11,7 @@ import HelpPage from "./pages/helpPage";
 import AboutPage from "./pages/aboutPage";
 import ExamplesPage from "./pages/examplesPage";
 import Layout from "./pages/layout";
+import SafeZonePage from "./pages/safeZonePage";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
@@ -43,10 +44,14 @@ const router = createBrowserRouter(
                     path: "examples",
                     element: <ExamplesPage />,
                 },
+                {
+                    path: "safezone",
+                    element: <SafeZonePage />,
+                },
             ],
         },
-    ],
-    { basename: "/umap-to-uefn-converter" }
+    ]
+    // { basename: "/umap-to-uefn-converter" }
 );
 
 root.render(

@@ -515,7 +515,7 @@ export class UEFNObject {
         }
 
         let convertedObject: string = "";
-        convertedObject += UEFNLabelStrings.beginObject(this.objectName);
+        convertedObject += UEFNLabelStrings.beginObjectName(this.objectName);
         convertedObject += staticMeshPath;
         convertedObject += overrideMaterials;
         convertedObject += sound;

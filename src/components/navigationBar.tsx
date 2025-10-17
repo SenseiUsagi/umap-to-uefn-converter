@@ -18,6 +18,10 @@ function NavigationBar() {
                     <Icon name="file code outline" />
                     Converter
                 </MenuItem>
+                <MenuItem as={Link} to="safezone">
+                    <Icon name="cloud" />
+                    Safe Zone Sequencer
+                </MenuItem>
                 <MenuItem as={Link} to="imprint">
                     <Icon name="legal" />
                     Imprint

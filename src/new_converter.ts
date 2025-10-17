@@ -751,7 +751,7 @@ function processPropertiesObj(
                 "/Script/FortniteGame.FortStaticMeshActor"
             );
         }
-        completeActor += UEFNLabelStrings.beginObject(undefined);
+        completeActor += UEFNLabelStrings.beginObjectName(undefined);
         completeActor += objData.mesh.convertToUEFN();
         if (
             globalState.currentSettings.usePortedModels &&
@@ -772,7 +772,7 @@ function processPropertiesObj(
                     ObjectName: "BoxComponent'Athena_Water_C:Box_GEN_VARIABLE'",
                     ObjectPath: `/${globalState.currentSettings.portedModelsProjectName}/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Athena_Water.`,
                 }).convertToUEFN();
-                completeActor += UEFNLabelStrings.beginObject(undefined);
+                completeActor += UEFNLabelStrings.beginObjectName(undefined);
             } else if (objData.type === "BP_Waterfall_C") {
                 if (
                     globalState.currentSettings.portedModelsProjectName ===
@@ -786,7 +786,7 @@ function processPropertiesObj(
                         "/Script/FortniteGame.FortStaticMeshActor"
                     );
                 }
-                completeActor += UEFNLabelStrings.beginObject(undefined);
+                completeActor += UEFNLabelStrings.beginObjectName(undefined);
                 completeActor += new StaticMesh({
                     ObjectName: "StaticMesh'River_Cliff'",
                     ObjectPath: `/${globalState.currentSettings.portedModelsProjectName}/Ported_Assets_By_Sensei_Usagi/Models/Terrain/River/River_Cliff.0`,
@@ -804,13 +804,14 @@ function processPropertiesObj(
             completeActor += objData.template.convertToUEFN();
             if (objData.type === "B_Athena_VendingMachine_C") {
                 completeActor +=
-                    UEFNLabelStrings.beginObject("DefaultSceneRoot");
+                    UEFNLabelStrings.beginObjectName("DefaultSceneRoot");
             } else if (objData.type === "BP_Athena_Water_C") {
-                completeActor += UEFNLabelStrings.beginObject("Water_Base");
+                completeActor += UEFNLabelStrings.beginObjectName("Water_Base");
             } else if (objData.type === "BP_Waterfall_C") {
-                completeActor += UEFNLabelStrings.beginObject("StaticMesh1");
+                completeActor +=
+                    UEFNLabelStrings.beginObjectName("StaticMesh1");
             } else {
-                completeActor += UEFNLabelStrings.beginObject(undefined);
+                completeActor += UEFNLabelStrings.beginObjectName(undefined);
             }
         }
         completeActor += objData.materials?.convertToUEFN() ?? "";
