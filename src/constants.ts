@@ -104,7 +104,7 @@ export const UEFNLabelStrings = {
     curveEditorCurve: (index: number) =>
         `${tabIndent(
             1
-        )}Curves(${index})="/Script/CurveEditor.CurveEditorCopyableCurveKeys'CurveEditorCopyableCurveKeys_${index}'"`,
+        )}Curves(${index})="/Script/CurveEditor.CurveEditorCopyableCurveKeys'CurveEditorCopyableCurveKeys_${index}'"\n`,
     safeZoneCloudBias: `${tabIndent(
         2
     )}ShortDisplayName="CloudStartingBias"\n${tabIndent(

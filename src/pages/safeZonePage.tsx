@@ -13,6 +13,7 @@ import {
     TextArea,
 } from "semantic-ui-react";
 import GlobalStore, { GlobalState } from "../state/globalstate";
+import { generateSequence } from "../storm_sequencer";
 
 function SafeZonePage() {
     const globalState: GlobalState = {
@@ -25,22 +26,9 @@ function SafeZonePage() {
     const [initialPosX, setInitialPosX] = useState<number>(0);
     const [initialPosY, setInitialPosY] = useState<number>(0);
     const [lastSequence, setLastSequence] = useState<string | null>(null);
-    const [stormKeyFrames, setStormKeyFrames] = useState<SafeZoneKeyFrame[]>([
-        {
-            radius: 100,
-            waitTime: 45,
-            resizeTime: 30,
-            PosX: -15104.0,
-            PosY: -6528.0,
-        },
-        {
-            radius: 50,
-            waitTime: 30,
-            resizeTime: 15,
-            PosX: 0,
-            PosY: 0,
-        },
-    ]);
+    const [stormKeyFrames, setStormKeyFrames] = useState<SafeZoneKeyFrame[]>(
+        []
+    );
 
     // Delay time + wait time + resize time
 
@@ -62,7 +50,11 @@ function SafeZonePage() {
                 </Row>
                 <Row>
                     <Column size={6}>
-                        <Segment raised textAlign="center" inverted>
+                        <Segment
+                            raised
+                            textAlign="center"
+                            inverted={globalState.currentSettings.darkMode}
+                        >
                             <Header size="large">How to use:</Header>
                             <Header>
                                 Place an Advanced Storm Controller somewhere in
@@ -82,63 +74,107 @@ function SafeZonePage() {
                 </Row>
                 <Row>
                     <Column size={6}>
-                        <Segment raised textAlign="center" inverted>
+                        <Segment
+                            raised
+                            textAlign="center"
+                            inverted={globalState.currentSettings.darkMode}
+                        >
                             <Header size="large">Key Frames:</Header>
                         </Segment>
                     </Column>
                 </Row>
                 <Row>
                     <Column size={1.5}>
-                        <Segment raised textAlign="center" inverted padded>
+                        <Segment
+                            raised
+                            textAlign="center"
+                            inverted={globalState.currentSettings.darkMode}
+                            padded
+                        >
                             <Header size="medium">
                                 Initial Form Delay (in seconds)
                             </Header>
                             <Input
+                                type="number"
                                 value={formDelay}
                                 onChange={(event) => {
                                     setFormDelay(
-                                        Number.parseFloat(event.target.value)
+                                        event.target.value.trim().length !== 0
+                                            ? Number.parseFloat(
+                                                  event.target.value
+                                              )
+                                            : 0
                                     );
                                 }}
                             ></Input>
                         </Segment>
                     </Column>
                     <Column size={1.5}>
-                        <Segment raised textAlign="center" inverted padded>
+                        <Segment
+                            raised
+                            textAlign="center"
+                            inverted={globalState.currentSettings.darkMode}
+                            padded
+                        >
                             <Header size="medium">
                                 Initial Radius (in Meters)
                             </Header>
                             <Input
+                                type="number"
                                 value={initialRadius}
                                 onChange={(event) => {
                                     setInitialRadius(
-                                        Number.parseFloat(event.target.value)
+                                        event.target.value.trim().length !== 0
+                                            ? Number.parseFloat(
+                                                  event.target.value
+                                              )
+                                            : 0
                                     );
                                 }}
                             ></Input>
                         </Segment>
                     </Column>
                     <Column size={1.5}>
-                        <Segment raised textAlign="center" inverted padded>
+                        <Segment
+                            raised
+                            textAlign="center"
+                            inverted={globalState.currentSettings.darkMode}
+                            padded
+                        >
                             <Header size="medium">Initial X Position</Header>
                             <Input
+                                type="number"
                                 value={initialPosX}
                                 onChange={(event) => {
                                     setInitialPosX(
-                                        Number.parseFloat(event.target.value)
+                                        event.target.value.trim().length !== 0
+                                            ? Number.parseFloat(
+                                                  event.target.value
+                                              )
+                                            : 0
                                     );
                                 }}
                             ></Input>
                         </Segment>
                     </Column>
                     <Column size={1.5}>
-                        <Segment raised textAlign="center" inverted padded>
+                        <Segment
+                            raised
+                            textAlign="center"
+                            inverted={globalState.currentSettings.darkMode}
+                            padded
+                        >
                             <Header size="medium">Initial Y Position</Header>
                             <Input
+                                type="number"
                                 value={initialPosY}
                                 onChange={(event) => {
                                     setInitialPosY(
-                                        Number.parseFloat(event.target.value)
+                                        event.target.value.trim().length !== 0
+                                            ? Number.parseFloat(
+                                                  event.target.value
+                                              )
+                                            : 0
                                     );
                                 }}
                             ></Input>
@@ -150,7 +186,7 @@ function SafeZonePage() {
                         <Segment
                             raised
                             textAlign="center"
-                            inverted
+                            inverted={globalState.currentSettings.darkMode}
                             padded="very"
                         >
                             <Button
@@ -184,93 +220,183 @@ function SafeZonePage() {
                         <>
                             <Row>
                                 <Column size={6}>
-                                    <Segment textAlign="center" inverted>
+                                    <Segment
+                                        textAlign="center"
+                                        inverted={
+                                            globalState.currentSettings.darkMode
+                                        }
+                                    >
                                         <Header size="large">{`Storm Phase ${
                                             index + 1
                                         }`}</Header>
                                     </Segment>
                                 </Column>
                                 <Column size={3}>
-                                    <Segment raised inverted textAlign="center">
+                                    <Segment
+                                        raised
+                                        inverted={
+                                            globalState.currentSettings.darkMode
+                                        }
+                                        textAlign="center"
+                                    >
                                         <Header size="medium">
                                             X Position
                                         </Header>
                                         <Input
+                                            type="number"
                                             value={element.PosX}
                                             onChange={(event) => {
-                                                console.log(
-                                                    "Change X Pos for index",
-                                                    index,
-                                                    event.target.value
-                                                );
+                                                const copyFrames = [
+                                                    ...stormKeyFrames,
+                                                ];
+                                                copyFrames[index] = {
+                                                    ...copyFrames[index],
+                                                    PosX:
+                                                        event.target.value.trim()
+                                                            .length !== 0
+                                                            ? Number.parseFloat(
+                                                                  event.target
+                                                                      .value
+                                                              )
+                                                            : 0,
+                                                };
+                                                setStormKeyFrames(copyFrames);
                                             }}
                                         ></Input>
                                     </Segment>
                                 </Column>
                                 <Column size={3}>
-                                    <Segment raised inverted textAlign="center">
+                                    <Segment
+                                        raised
+                                        inverted={
+                                            globalState.currentSettings.darkMode
+                                        }
+                                        textAlign="center"
+                                    >
                                         <Header size="medium">
                                             Y Position
                                         </Header>
                                         <Input
+                                            type="number"
                                             value={element.PosY}
                                             onChange={(event) => {
-                                                console.log(
-                                                    "Change Y Pos for index",
-                                                    index,
-                                                    event.target.value
-                                                );
+                                                const copyFrames = [
+                                                    ...stormKeyFrames,
+                                                ];
+                                                copyFrames[index] = {
+                                                    ...copyFrames[index],
+                                                    PosY:
+                                                        event.target.value.trim()
+                                                            .length !== 0
+                                                            ? Number.parseFloat(
+                                                                  event.target
+                                                                      .value
+                                                              )
+                                                            : 0,
+                                                };
+                                                setStormKeyFrames(copyFrames);
                                             }}
                                         ></Input>
                                     </Segment>
                                 </Column>
                                 <Column size={2}>
-                                    <Segment raised inverted textAlign="center">
+                                    <Segment
+                                        raised
+                                        inverted={
+                                            globalState.currentSettings.darkMode
+                                        }
+                                        textAlign="center"
+                                    >
                                         <Header size="medium">
                                             Radius (in Meters)
                                         </Header>
                                         <Input
+                                            type="number"
                                             value={element.radius}
                                             onChange={(event) => {
-                                                console.log(
-                                                    "Change radius for index",
-                                                    index,
-                                                    event.target.value
-                                                );
+                                                const copyFrames = [
+                                                    ...stormKeyFrames,
+                                                ];
+                                                copyFrames[index] = {
+                                                    ...copyFrames[index],
+                                                    radius:
+                                                        event.target.value.trim()
+                                                            .length !== 0
+                                                            ? Number.parseFloat(
+                                                                  event.target
+                                                                      .value
+                                                              )
+                                                            : 0,
+                                                };
+                                                setStormKeyFrames(copyFrames);
                                             }}
                                         ></Input>
                                     </Segment>
                                 </Column>
                                 <Column size={2}>
-                                    <Segment raised inverted textAlign="center">
+                                    <Segment
+                                        raised
+                                        inverted={
+                                            globalState.currentSettings.darkMode
+                                        }
+                                        textAlign="center"
+                                    >
                                         <Header size="medium">
                                             Wait Time (in Seconds)
                                         </Header>
                                         <Input
+                                            type="number"
                                             value={element.waitTime}
                                             onChange={(event) => {
-                                                console.log(
-                                                    "Change wait time for index",
-                                                    index,
-                                                    event.target.value
-                                                );
+                                                const copyFrames = [
+                                                    ...stormKeyFrames,
+                                                ];
+                                                copyFrames[index] = {
+                                                    ...copyFrames[index],
+                                                    waitTime:
+                                                        event.target.value.trim()
+                                                            .length !== 0
+                                                            ? Number.parseFloat(
+                                                                  event.target
+                                                                      .value
+                                                              )
+                                                            : 0,
+                                                };
+                                                setStormKeyFrames(copyFrames);
                                             }}
                                         ></Input>
                                     </Segment>
                                 </Column>
                                 <Column size={2}>
-                                    <Segment raised inverted textAlign="center">
+                                    <Segment
+                                        raised
+                                        inverted={
+                                            globalState.currentSettings.darkMode
+                                        }
+                                        textAlign="center"
+                                    >
                                         <Header size="medium">
                                             Resize Time (in Seconds)
                                         </Header>
                                         <Input
+                                            type="number"
                                             value={element.resizeTime}
                                             onChange={(event) => {
-                                                console.log(
-                                                    "Change resize time for index",
-                                                    index,
-                                                    event.target.value
-                                                );
+                                                const copyFrames = [
+                                                    ...stormKeyFrames,
+                                                ];
+                                                copyFrames[index] = {
+                                                    ...copyFrames[index],
+                                                    resizeTime:
+                                                        event.target.value.trim()
+                                                            .length !== 0
+                                                            ? Number.parseFloat(
+                                                                  event.target
+                                                                      .value
+                                                              )
+                                                            : 0,
+                                                };
+                                                setStormKeyFrames(copyFrames);
                                             }}
                                         ></Input>
                                     </Segment>
@@ -318,7 +444,18 @@ function SafeZonePage() {
                                 primary
                                 disabled={stormKeyFrames.length === 0}
                                 onClick={() => {
-                                    console.log("Do shit");
+                                    console.log("started generating sequence");
+                                    try {
+                                        const generatedSequence =
+                                            generateSequence(
+                                                stormKeyFrames,
+                                                formDelay,
+                                                initialRadius,
+                                                initialPosX,
+                                                initialPosY
+                                            );
+                                        setLastSequence(generatedSequence);
+                                    } catch (error) {}
                                 }}
                                 size="big"
                                 icon
@@ -374,7 +511,7 @@ function SafeZonePage() {
                             <Form>
                                 <TextArea
                                     readOnly
-                                    placeholder="Copy the resulting text into your sequence"
+                                    placeholder="Copy the resulting text into your level sequence"
                                     value={
                                         lastSequence !== null
                                             ? lastSequence
