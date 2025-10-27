@@ -16,7 +16,7 @@ export default function ErrorPage() {
     useEffect(() => {
         document.body.style.backgroundColor = globalState.currentSettings
             .darkMode
-            ? "black"
+            ? "#0F0F0F"
             : "white";
     }, [globalState.currentSettings.darkMode]);
 

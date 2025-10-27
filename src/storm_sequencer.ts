@@ -113,7 +113,7 @@ export function generateSequence(
     keyPositionIndex = 0;
 
     // Pos Y
-    let previousPosY = initialPosY;
+    let previousPosY = initialPosY * -1;
     finalSequence += UEFNLabelStrings.beginCurveEditorKey(3);
     finalSequence += UEFNLabelStrings.curveEditorPosition(0, 0, previousPosY);
     finalSequence += UEFNLabelStrings.curveEditorLinear(0);
@@ -135,13 +135,13 @@ export function generateSequence(
         finalSequence += UEFNLabelStrings.curveEditorPosition(
             keyPositionIndex + 2,
             destinationResizeTime,
-            element.PosY
+            element.PosY * -1
         );
         finalSequence += UEFNLabelStrings.curveEditorLinear(
             keyPositionIndex + 2
         );
 
-        previousPosY = element.PosY;
+        previousPosY = element.PosY * -1;
         keyPositionIndex += 2;
     }
     finalSequence += UEFNLabelStrings.safeZonePosY;

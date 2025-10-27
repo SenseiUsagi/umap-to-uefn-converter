@@ -4,22 +4,23 @@ import NotifyPopUp from "../components/popUp";
 import GlobalStore, { GlobalState } from "../state/globalstate";
 
 function Layout() {
-	const globalState: GlobalState = {
-		...GlobalStore((state) => state),
-	};
+    const globalState: GlobalState = {
+        ...GlobalStore((state) => state),
+    };
 
-	useEffect(() => {
-		document.body.style.backgroundColor = globalState.currentSettings.darkMode
-			? "black"
-			: "white";
-	}, [globalState.currentSettings.darkMode]);
+    useEffect(() => {
+        document.body.style.backgroundColor = globalState.currentSettings
+            .darkMode
+            ? "#0F0F0F"
+            : "white";
+    }, [globalState.currentSettings.darkMode]);
 
-	return (
-		<>
-			<NavigationBar />
-			<NotifyPopUp />
-		</>
-	);
+    return (
+        <>
+            <NavigationBar />
+            <NotifyPopUp />
+        </>
+    );
 }
 
 export default Layout;
