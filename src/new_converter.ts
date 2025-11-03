@@ -433,7 +433,10 @@ export async function convertToUEFN_NEW(
                     elementProperties.push(dataObj);
                     if (
                         dataObj.Type === "StaticMeshComponent" ||
-                        dataObj.Type === "SceneComponent"
+                        dataObj.Type === "SceneComponent" ||
+                        dataObj.Type === "BaseBuildingStaticMeshComponent" ||
+                        dataObj.Type === "CreativeEditOnlyMeshComponent" ||
+                        dataObj.Type === "DecalComponent"
                     ) {
                         if (dataObj.Properties) {
                             if (
