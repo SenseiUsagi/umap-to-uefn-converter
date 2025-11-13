@@ -218,12 +218,30 @@ function SafeZonePage() {
                 {stormKeyFrames.map((element, index) => {
                     return (
                         <>
-                            <Row>
+                            <Row
+                                className={
+                                    globalState.currentSettings.darkMode
+                                        ? "stormPhaseRowDark"
+                                        : "stormPhaseRowLight"
+                                }
+                            >
                                 <Column size={6}>
+                                    <Icon
+                                        name="bars"
+                                        inverted={
+                                            globalState.currentSettings.darkMode
+                                        }
+                                        className="centerIcon"
+                                    />
                                     <Segment
                                         textAlign="center"
                                         inverted={
                                             globalState.currentSettings.darkMode
+                                        }
+                                        className={
+                                            globalState.currentSettings.darkMode
+                                                ? "stormPhaseSegmentDark"
+                                                : "stormPhaseSegmentLight"
                                         }
                                     >
                                         <Header size="large">{`Storm Phase ${
@@ -236,6 +254,11 @@ function SafeZonePage() {
                                         raised
                                         inverted={
                                             globalState.currentSettings.darkMode
+                                        }
+                                        className={
+                                            globalState.currentSettings.darkMode
+                                                ? "stormPhaseSegmentDark"
+                                                : "stormPhaseSegmentLight"
                                         }
                                         textAlign="center"
                                     >
@@ -271,6 +294,11 @@ function SafeZonePage() {
                                         inverted={
                                             globalState.currentSettings.darkMode
                                         }
+                                        className={
+                                            globalState.currentSettings.darkMode
+                                                ? "stormPhaseSegmentDark"
+                                                : "stormPhaseSegmentLight"
+                                        }
                                         textAlign="center"
                                     >
                                         <Header size="medium">
@@ -304,6 +332,11 @@ function SafeZonePage() {
                                         raised
                                         inverted={
                                             globalState.currentSettings.darkMode
+                                        }
+                                        className={
+                                            globalState.currentSettings.darkMode
+                                                ? "stormPhaseSegmentDark"
+                                                : "stormPhaseSegmentLight"
                                         }
                                         textAlign="center"
                                     >
@@ -339,6 +372,11 @@ function SafeZonePage() {
                                         inverted={
                                             globalState.currentSettings.darkMode
                                         }
+                                        className={
+                                            globalState.currentSettings.darkMode
+                                                ? "stormPhaseSegmentDark"
+                                                : "stormPhaseSegmentLight"
+                                        }
                                         textAlign="center"
                                     >
                                         <Header size="medium">
@@ -372,6 +410,11 @@ function SafeZonePage() {
                                         raised
                                         inverted={
                                             globalState.currentSettings.darkMode
+                                        }
+                                        className={
+                                            globalState.currentSettings.darkMode
+                                                ? "stormPhaseSegmentDark"
+                                                : "stormPhaseSegmentLight"
                                         }
                                         textAlign="center"
                                     >

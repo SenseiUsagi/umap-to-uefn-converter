@@ -2,15 +2,17 @@ import { childrenProps, childrenPropsOptional } from "../constants";
 
 // This file basically contains component versions of the normal grid system
 
-export function Container({ children }: childrenProps) {
-    return <div className="container">{children}</div>;
+type divAttributes = React.HTMLAttributes<HTMLDivElement>;
+
+export function Container({ className = "", children }: divAttributes) {
+    return <div className={`container ${className}`}>{children}</div>;
 }
 
-export function Row({ children }: childrenProps) {
-    return <div className="row">{children}</div>;
+export function Row({ className = "", children }: divAttributes) {
+    return <div className={`row ${className}`}>{children}</div>;
 }
 
-interface columnProps extends childrenPropsOptional {
+interface columnProps extends divAttributes {
     size: ColumnSizes;
 }
 
@@ -25,6 +27,6 @@ const ColumnSizeClass: Record<ColumnSizes, string> = {
     6: "col-6",
 };
 
-export function Column({ children, size }: columnProps) {
-    return <div className={ColumnSizeClass[size]}>{children}</div>;
+export function Column({ className = "", children, size }: columnProps) {
+    return <div className={`${ColumnSizeClass[size]} ${className}`}>{children}</div>;
 }
