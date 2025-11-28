@@ -258,7 +258,7 @@ function ConverterPage() {
                                     }
                                 >
                                     {/* Ver. FullVersion.FeatureVersion.PatchVersion.ModelsInfoVersion */}
-                                    Ver. 1.3.0.16
+                                    Ver. 1.3.0.17
                                 </Header>
                             </div>
                         </Segment>

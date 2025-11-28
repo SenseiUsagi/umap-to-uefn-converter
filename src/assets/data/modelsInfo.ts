@@ -434,7 +434,7 @@ export const portedModelsPaths: any = {
     "S_Shoreline_1W_BeachOuter_1L_2L_180'":
         "/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Beach_180_B.Beach_180_B'",
     "S_SoccerPitch'":
-        "/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Floor/Floor_Ground.Floor_Ground'",
+        "/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/SoccerPitch.SoccerPitch'",
     "S_Sidewalk_1x2_GrassTransition'":
         "/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Sidewalk_1x2_A.Sidewalk_1x2_A'",
     "S_Sidewalk_1x3_GrassTransition'":
@@ -515,6 +515,8 @@ export const portedModelsPaths: any = {
         "/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Mansion_Path_2x1_EndCap.Mansion_Path_2x1_EndCap'",
     "S_TennisCourt'":
         "/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Tennis_Court.Tennis_Court'",
+    "S_SoccerPitchLines'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/SoccerFieldLine.SoccerFieldLine'",
 };
 
 export const portedMaterialsPaths: any = {
@@ -768,4 +770,6 @@ export const portedMaterialsPaths: any = {
         "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Cliff_Biome_White.Cliff_Biome_White'",
     "MI_TennisCourt'":
         "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Tennis_Court.Tennis_Court'",
+    "MI_SoccerFieldLine'":
+        "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/SoccerFieldLine.SoccerFieldLine'",
 };

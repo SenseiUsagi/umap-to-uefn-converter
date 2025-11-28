@@ -602,11 +602,16 @@ export async function convertToUEFN_NEW(
                         combinedProperties.Properties.AdditionalWorlds[0].AssetPathName.split(
                             "."
                         )[0];
-                } else {
+                } else if (
+                    typeof combinedProperties.Properties.WorldAsset === "object"
+                ) {
                     filePathWorld =
                         combinedProperties.Properties.WorldAsset.AssetPathName.split(
                             "."
                         )[0];
+                } else {
+                    filePathWorld =
+                        combinedProperties.Properties.WorldAsset.split(".")[0];
                 }
                 const cachedFile = globalState.cachedJsonFiles.find(
                     (cachedJSON) => cachedJSON.filePath === filePathWorld
