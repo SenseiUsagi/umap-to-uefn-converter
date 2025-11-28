@@ -517,6 +517,40 @@ export const portedModelsPaths: any = {
         "/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/Tennis_Court.Tennis_Court'",
     "S_SoccerPitchLines'":
         "/Ported_Assets_By_Sensei_Usagi/Models/Sidewalks/SoccerFieldLine.SoccerFieldLine'",
+    "SM_Athena_Lake_M_Small_01'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Leaky_Lake/Lake_M_Small_01.Lake_M_Small_01'",
+    "SM_Athena_Lake_M_Small_01b'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Leaky_Lake/Lake_M_Small_01_Water.Lake_M_Small_01_Water'",
+    "SM_Athena_Lake_M_Small_02'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Leaky_Lake/Lake_M_Small_02.Lake_M_Small_02'",
+    "SM_Athena_Lake_M_Small_02b'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Leaky_Lake/Lake_M_Small_02_Water.Lake_M_Small_02_Water'",
+    "SM_Athena_Lake_M_Small_03'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Leaky_Lake/Lake_M_Small_03.Lake_M_Small_03'",
+    "SM_Athena_Lake_M_Small_03b'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Leaky_Lake/Lake_M_Small_03_Water.Lake_M_Small_03_Water'",
+    "SM_Loot_Lake_Floor'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Leaky_Lake/Loot_Lake_Base.Loot_Lake_Base'",
+    "SM_Loot_Lake_Water'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Leaky_Lake/Loot_Lake_Base_Water.Loot_Lake_Base_Water'",
+    "SM_Athena_Lake_Base_02'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Leaky_Lake/Loot_Lake_Base_03.Loot_Lake_Base_03'",
+    "SM_Athena_Lake_Base_01_Edge'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Leaky_Lake/Loot_Lake_Base_03_Edge.Loot_Lake_Base_03_Edge'",
+    "SM_Athena_Lake_Base_02b'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Leaky_Lake/Loot_Lake_Base_03b.Loot_Lake_Base_03b'",
+    "SM_Athena_Lake_M_01'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Leaky_Lake/Athena_Lake_Mound_01.Athena_Lake_Mound_01'",
+    "SM_Athena_Lake_M_02'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Leaky_Lake/Athena_Lake_Mound_02.Athena_Lake_Mound_02'",
+    "SM_Athena_Lake_M_03'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Leaky_Lake/Athena_Lake_Mound_03.Athena_Lake_Mound_03'",
+    "SM_Athena_Lake_M_01b'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Leaky_Lake/Athena_Lake_Mound_01_Water.Athena_Lake_Mound_01_Water'",
+    "SM_Athena_Lake_M_02b'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Leaky_Lake/Athena_Lake_Mound_02_Water.Athena_Lake_Mound_02_Water'",
+    "SM_Athena_Lake_M_03b'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Leaky_Lake/Athena_Lake_Mound_03_Water.Athena_Lake_Mound_03_Water'",
 };
 
 export const portedMaterialsPaths: any = {
@@ -772,4 +806,8 @@ export const portedMaterialsPaths: any = {
         "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Tennis_Court.Tennis_Court'",
     "MI_SoccerFieldLine'":
         "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/SoccerFieldLine.SoccerFieldLine'",
+    "M_Island_Lake_01'":
+        "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Island_Lake.Island_Lake'",
+    "M_Island_Lake_01b'":
+        "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Island_Lake_Inst.Island_Lake_Inst'",
 };
