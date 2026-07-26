@@ -20,14 +20,15 @@ export class RelativeLocation {
     Z: number;
 
     constructor(X: number = 0.0, Y: number = 0.0, Z: number = 0.0) {
-        this.X = X;
-        this.Y = Y;
-        this.Z = Z;
+        // Safety net to prevent crash when json exported as "Infinity" or "NaN"
+        this.X = typeof X === "number" ? parseFloat(X.toFixed(2)) : 0;
+        this.Y = typeof Y === "number" ? parseFloat(Y.toFixed(2)) : 0;
+        this.Z = typeof Z === "number" ? parseFloat(Z.toFixed(2)) : 0;
     }
 
     displace(
         position: RelativeLocation,
-        rotation: RelativeRotation | null
+        rotation: RelativeRotation | null,
     ): RelativeLocation {
         // pitch = x
         // yaw = z
@@ -40,20 +41,20 @@ export class RelativeLocation {
                 ? location
                       .VectorRotate(
                           rotation.Pitch * (Math.PI / 180),
-                          Vector3d.XAxis
+                          Vector3d.XAxis,
                       )
                       .VectorRotate(
                           rotation.Roll * (Math.PI / 180),
-                          Vector3d.YAxis
+                          Vector3d.YAxis,
                       )
                       .VectorRotate(
                           rotation.Yaw * (Math.PI / 180),
-                          Vector3d.ZAxis
+                          Vector3d.ZAxis,
                       )
                 : location;
 
         const finalLocation = angleAdjusted.Add(
-            new Vector3d(position.X, position.Y, position.Z)
+            new Vector3d(position.X, position.Y, position.Z),
         );
 
         this.X = finalLocation.X;
@@ -74,9 +75,11 @@ export class RelativeRotation {
     Yaw: number;
     Roll: number;
     constructor(Pitch: number = 0.0, Yaw: number = 0.0, Roll: number = 0.0) {
-        this.Pitch = parseFloat(Pitch.toFixed(2));
-        this.Yaw = parseFloat(Yaw.toFixed(2));
-        this.Roll = parseFloat(Roll.toFixed(2));
+        // Safety net to prevent crash when json exported as "Infinity" or "NaN"
+        this.Pitch =
+            typeof Pitch === "number" ? parseFloat(Pitch.toFixed(2)) : 0;
+        this.Yaw = typeof Yaw === "number" ? parseFloat(Yaw.toFixed(2)) : 0;
+        this.Roll = typeof Roll === "number" ? parseFloat(Roll.toFixed(2)) : 0;
     }
 
     add(rotation: RelativeRotation): RelativeRotation {
@@ -98,9 +101,10 @@ export class RelativeScale {
     Y: number;
     Z: number;
     constructor(X: number = 1.0, Y: number = 1.0, Z: number = 1.0) {
-        this.X = parseFloat(X.toFixed(2));
-        this.Y = parseFloat(Y.toFixed(2));
-        this.Z = parseFloat(Z.toFixed(2));
+        // Safety net to prevent crash when json exported as "Infinity" or "NaN"
+        this.X = typeof X === "number" ? parseFloat(X.toFixed(2)) : 0;
+        this.Y = typeof Y === "number" ? parseFloat(Y.toFixed(2)) : 0;
+        this.Z = typeof Z === "number" ? parseFloat(Z.toFixed(2)) : 0;
     }
 
     convertToUEFN(): string {
@@ -222,7 +226,7 @@ export class OverrideMaterials {
 
                 if (tempMeshName.includes("MaterialInstanceConstant'")) {
                     tempMeshName = tempMeshName.split(
-                        "MaterialInstanceConstant'"
+                        "MaterialInstanceConstant'",
                     )[1];
                 }
                 if (tempMeshName.includes("Material'")) {
@@ -231,7 +235,7 @@ export class OverrideMaterials {
 
                 tempMeshPath = tempMeshPath.replace(
                     "FortniteGame/Content",
-                    "/Game"
+                    "/Game",
                 );
                 tempMeshPath = tempMeshPath.replace(/\d+$/, "");
 
@@ -261,8 +265,8 @@ export class OverrideMaterials {
 
                 overrideMaterials.push(
                     `${tabIndent(
-                        4
-                    )}OverrideMaterials(${index})="/Script/Engine.MaterialInstanceConstant'${material}"\n`
+                        4,
+                    )}OverrideMaterials(${index})="/Script/Engine.MaterialInstanceConstant'${material}"\n`,
                 );
             }
         }
@@ -308,11 +312,11 @@ export class LODData {
                                             ? ","
                                             : ""
                                     }`;
-                                }
+                                },
                             );
 
                             tempLodData += `${tabIndent(
-                                4
+                                4,
                             )}CustomProperties CustomLODData LOD=${index} ColorVertexData(${numVertices})=(${colorData})\n`;
                         } else if (
                             typeof element.OverrideVertexColors.Data[0] ===
@@ -335,7 +339,7 @@ export class LODData {
                                                 color.R,
                                                 color.G,
                                                 color.B,
-                                                color.A
+                                                color.A,
                                             )}${
                                                 colorIndex !==
                                                 element.OverrideVertexColors!
@@ -346,10 +350,10 @@ export class LODData {
                                             }`;
                                         }
                                     }
-                                }
+                                },
                             );
                             tempLodData += `${tabIndent(
-                                4
+                                4,
                             )}CustomProperties CustomLODData LOD=${index} ColorVertexData(${numVertices})=(${colorData})\n`;
                         }
                     }
@@ -397,8 +401,8 @@ export class TextureData {
 
             textureData.push(
                 `${tabIndent(
-                    3
-                )}TextureData(${index})="/Script/FortniteGame.BuildingTextureData'${tempObjPath}${tempName}"\n`
+                    3,
+                )}TextureData(${index})="/Script/FortniteGame.BuildingTextureData'${tempObjPath}${tempName}"\n`,
             );
         }
 
@@ -461,7 +465,7 @@ export class UEFNObject {
     constructor(
         data: editorObject,
         endOfObject: boolean,
-        objectName: string | undefined = undefined
+        objectName: string | undefined = undefined,
     ) {
         this.data = data;
         this.endOfObject = endOfObject;
@@ -532,10 +536,10 @@ export class UEFNObject {
             convertedObject += UEFNLabelStrings.editorOnlyMesh;
             convertedObject += UEFNLabelStrings.rootComponent;
             convertedObject += UEFNLabelStrings.actorLabel(
-                this.data.actorLabel
+                this.data.actorLabel,
             );
             convertedObject += UEFNLabelStrings.folderPath(
-                this.data.folderPath
+                this.data.folderPath,
             );
         }
 

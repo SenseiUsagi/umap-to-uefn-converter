@@ -451,4 +451,5 @@ export const bannedObjectTypes: string[] = [
     "BP_Brimstone_RiverLightingAdjustable_C",
     "BP_MeshGrass_C",
     "BP_Athena_Environmental_ZipLine_Spline_C",
+    "CapsuleComponent",
 ];
