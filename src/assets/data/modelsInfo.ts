@@ -551,6 +551,8 @@ export const portedModelsPaths: any = {
         "/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Leaky_Lake/Athena_Lake_Mound_02_Water.Athena_Lake_Mound_02_Water'",
     "SM_Athena_Lake_M_03b'":
         "/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Beach/Leaky_Lake/Athena_Lake_Mound_03_Water.Athena_Lake_Mound_03_Water'",
+    "SM_Athena_Footprint_01'":
+        "/Ported_Assets_By_Sensei_Usagi/Models/Terrain/Floor/Footprint.Footprint'",
 };
 
 export const portedMaterialsPaths: any = {
@@ -810,4 +812,6 @@ export const portedMaterialsPaths: any = {
         "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Island_Lake.Island_Lake'",
     "M_Island_Lake_01b'":
         "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Island_Lake_Inst.Island_Lake_Inst'",
+    "M_Terrain_Z_Swamp'":
+        "/Ported_Assets_By_Sensei_Usagi/Materials/Terrain/Swamp/Terrain_Swamp_Old.Terrain_Swamp_Old'",
 };

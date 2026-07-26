@@ -56,6 +56,8 @@ export function generateSequence(
     // If actual y position is used the storm center will not be in the correct location
     // I am too lazy to change the material for it as it could break a lot of shit 
     // so I just change the y position here
+    // This is not true; Epics implementation of the LUF coordinates makes it 
+    // so that positive Y is shown as negative Y and vise versa
     let previousPosY = initialPosY * -1;
     let positionY: string = "";
     positionY += UEFNLabelStrings.beginCurveEditorKey(3);
