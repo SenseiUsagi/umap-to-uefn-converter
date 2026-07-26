@@ -62,16 +62,16 @@ export const UEFNLabelStrings = {
         }"\n`,
     staticMesh: (meshPathName: string) =>
         `${tabIndent(
-            4
+            4,
         )}StaticMesh="/Script/Engine.StaticMesh'${meshPathName}"\n`,
     endObject: `${tabIndent(3)}End Object\n`,
     fortFX: `${tabIndent(3)}FortFXCustomization="FortFXCustomization"\n`,
     boxComponent: `${tabIndent(3)}BoxComponent="BoundingBoxComponent"\n`,
     editorOnlyMesh: `${tabIndent(
-        3
+        3,
     )}EditorOnlyStaticMeshComponent="EditorOnlyStaticMeshComponent"\n`,
     meshComponent: `${tabIndent(
-        3
+        3,
     )}StaticMeshComponent="StaticMeshComponent0"\n`,
     rootComponent: `${tabIndent(3)}RootComponent="StaticMeshComponent0"\n`,
     actorLabel: (label: string) => `${tabIndent(3)}ActorLabel="${label}"\n`,
@@ -88,54 +88,54 @@ export const UEFNLabelStrings = {
     beginObject: (objClass: string) => `Begin Object ${objClass}\n`,
     beginCurveEditorKey: (index: number) =>
         `${tabIndent(
-            1
+            1,
         )}Begin Object Class=/Script/CurveEditor.CurveEditorCopyableCurveKeys Name="CurveEditorCopyableCurveKeys_${index}"\n`,
     curveEditorPosition: (index: number, time: number, value: number) =>
         `${tabIndent(
-            2
+            2,
         )}KeyPositions(${index})=(InputValue=${time},OutputValue=${value})\n`,
     curveEditorLinear: (index: number) =>
         `${tabIndent(2)}KeyAttributes(${index})=(bHasInterpMode=True)\n`,
     curveEditorAuto: (index: number) =>
         `${tabIndent(
-            2
+            2,
         )}KeyAttributes(${index})=(bHasArriveTangent=True,bHasLeaveTangent=True,bHasInterpMode=True,bHasTangentMode=True,bHasTangentWeightMode=True,InterpMode=RCIM_Cubic)\n`,
     curveEditorEndObject: `${tabIndent(1)}End Object \n`,
     curveEditorCurve: (index: number) =>
         `${tabIndent(
-            1
+            1,
         )}Curves(${index})="/Script/CurveEditor.CurveEditorCopyableCurveKeys'CurveEditorCopyableCurveKeys_${index}'"\n`,
     safeZoneCloudBias: `${tabIndent(
-        2
+        2,
     )}ShortDisplayName="CloudStartingBias"\n${tabIndent(
-        2
+        2,
     )}LongDisplayName=".SafeZoneClouds.CloudStartingBias"\n${tabIndent(
-        2
+        2,
     )}IntentionName="CloudStartingBias"\n${tabIndent(
-        2
+        2,
     )}LongIntentionName=".CloudStartingBias"\n`,
     safeZoneScale: `${tabIndent(
-        2
+        2,
     )}ShortDisplayName="SafeZoneScale"\n${tabIndent(
-        2
+        2,
     )}LongDisplayName=".SafeZoneClouds.SafeZoneScale"\n${tabIndent(
-        2
+        2,
     )}IntentionName="SafeZoneScale"\n${tabIndent(
-        2
+        2,
     )}LongIntentionName=".SafeZoneScale"\n`,
     safeZonePosX: `${tabIndent(2)}ShortDisplayName="R"\n${tabIndent(
-        2
+        2,
     )}LongDisplayName=".SafeZoneClouds.SafeZoneLoc.R"\n${tabIndent(
-        2
+        2,
     )}IntentionName="SafeZoneLoc.R"\n${tabIndent(
-        2
+        2,
     )}LongIntentionName=".SafeZoneLoc.R"\n`,
     safeZonePosY: `${tabIndent(2)}ShortDisplayName="G"\n${tabIndent(
-        2
+        2,
     )}LongDisplayName=".SafeZoneClouds.SafeZoneLoc.G"\n${tabIndent(
-        2
+        2,
     )}IntentionName="SafeZoneLoc.G"\n${tabIndent(
-        2
+        2,
     )}LongIntentionName=".SafeZoneLoc.G"\n`,
 };
 // SafeZoneScale / 1900m (if input distance is less or equal to that)
@@ -253,7 +253,7 @@ export interface booleanFunction {
 
 export function handleCopyClipboard(
     text: string,
-    copyFunction: React.Dispatch<React.SetStateAction<boolean>>
+    copyFunction: React.Dispatch<React.SetStateAction<boolean>>,
 ) {
     navigator.clipboard.writeText(text);
     copyFunction(true);
@@ -351,7 +351,7 @@ export interface Biome {
 }
 
 export function getAdditionalWorld(
-    filePath: string
+    filePath: string,
 ): Promise<File | undefined | null> {
     return new Promise((resolve) => {
         window.resolveUserInput = resolve;
@@ -424,3 +424,31 @@ export interface SafeZoneKeyFrame {
     PosX: number;
     PosY: number;
 }
+
+// List of object types that shouldnt be attempted to be converted
+// (Will result in broken or unneeded duplicate objects)
+export const bannedObjectTypes: string[] = [
+    "LODActor",
+    "BlockingVolume",
+    "BodySetup",
+    "BookMark",
+    "BoxComponent",
+    "BrushComponent",
+    "FoliageInstancedStaticMeshComponent",
+    "InstancedFoliageActor",
+    "ForceFeedbackComponent",
+    "LevelBounds",
+    "Model",
+    "TimelineComponent",
+    "SceneComponent",
+    "FortWorldSettings",
+    "ObjectProperty",
+    "BuildingActorLootDropOnDeathComponent_C",
+    "mToD_FoundMix_C",
+    "ActivityGenericPlacementActor_C",
+    "ShadowProxyMeshComponent_C",
+    "TODLightingComponent_C",
+    "BP_Brimstone_RiverLightingAdjustable_C",
+    "BP_MeshGrass_C",
+    "BP_Athena_Environmental_ZipLine_Spline_C",
+];

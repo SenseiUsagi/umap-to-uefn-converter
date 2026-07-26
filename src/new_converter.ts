@@ -20,6 +20,7 @@ import {
     TextureData,
 } from "./classes";
 import {
+    bannedObjectTypes,
     Biome,
     deepMerge,
     getAdditionalWorld,
@@ -223,7 +224,7 @@ export function findTerrainTypeBasedMaterial(material: ObjectData | null) {
 
 export function getBiomeToUse(
     staticMesh: StaticMesh,
-    overrideMaterials: OverrideMaterials | undefined
+    overrideMaterials: OverrideMaterials | undefined,
 ) {
     const globalState: GlobalState = GlobalStore.getState();
     const finalTypes: string[] = [];
@@ -352,7 +353,7 @@ export async function convertToUEFN_NEW(
     folderName: string,
     isLevel: boolean,
     locationOffset: RelativeLocation | null,
-    rotationOffset: RelativeRotation | null
+    rotationOffset: RelativeRotation | null,
 ): Promise<string> {
     let convertedMap: string = isLevel
         ? UEFNLabelStrings.beginMap + UEFNLabelStrings.beginLevel
@@ -372,49 +373,7 @@ export async function convertToUEFN_NEW(
         if (objName === "StaticMeshComponent0") {
             continue;
         }
-        if (objType === "LODActor") {
-            continue;
-        }
-        if (objType === "BlockingVolume") {
-            continue;
-        }
-        if (objType === "BodySetup") {
-            continue;
-        }
-        if (objType === "BookMark") {
-            continue;
-        }
-        if (objType === "BoxComponent") {
-            continue;
-        }
-        if (objType === "BrushComponent") {
-            continue;
-        }
-        if (objType === "FoliageInstancedStaticMeshComponent") {
-            continue;
-        }
-        if (objType === "InstancedFoliageActor") {
-            continue;
-        }
-        if (objType === "ForceFeedbackComponent") {
-            continue;
-        }
-        if (objType === "LevelBounds") {
-            continue;
-        }
-        if (objType === "Model") {
-            continue;
-        }
-        if (objType === "TimelineComponent") {
-            continue;
-        }
-        if (objType === "SceneComponent") {
-            continue;
-        }
-        if (objType === "FortWorldSettings") {
-            continue;
-        }
-        if (objType === "ObjectProperty") {
+        if (bannedObjectTypes.includes(objType)) {
             continue;
         }
 
@@ -429,38 +388,28 @@ export async function convertToUEFN_NEW(
         const elementProperties: any[] = [element];
         parsedJSON.forEach((dataObj) => {
             if (dataObj.Outer) {
-                if (dataObj.Outer === objName) {
+                if (
+                    (typeof dataObj.Outer === "string" &&
+                        dataObj.Outer === objName) ||
+                    (typeof dataObj.Outer === "object" &&
+                        dataObj.Outer.ObjectName.includes(`${objName}'`))
+                ) {
                     elementProperties.push(dataObj);
-                    if (
-                        dataObj.Type === "StaticMeshComponent" ||
-                        dataObj.Type === "SceneComponent" ||
-                        dataObj.Type === "BaseBuildingStaticMeshComponent" ||
-                        dataObj.Type === "CreativeEditOnlyMeshComponent" ||
-                        dataObj.Type === "DecalComponent"
-                    ) {
-                        if (dataObj.Properties) {
-                            if (
-                                dataObj.Properties.RelativeLocation !==
-                                undefined
-                            ) {
-                                actualLocation =
-                                    dataObj.Properties.RelativeLocation;
-                            }
-                            if (
-                                dataObj.Properties.RelativeRotation !==
-                                undefined
-                            ) {
-                                actualRotation =
-                                    dataObj.Properties.RelativeRotation;
-                            }
-                            if (
-                                dataObj.Properties.RelativeScale3D !== undefined
-                            ) {
-                                actualScale =
-                                    dataObj.Properties.RelativeScale3D;
-                            }
+                    // if (!fortObjectTypes.includes(dataObj.Type)) {
+                    if (dataObj.Properties) {
+                        if (dataObj.Properties.RelativeLocation !== undefined) {
+                            actualLocation =
+                                dataObj.Properties.RelativeLocation;
+                        }
+                        if (dataObj.Properties.RelativeRotation !== undefined) {
+                            actualRotation =
+                                dataObj.Properties.RelativeRotation;
+                        }
+                        if (dataObj.Properties.RelativeScale3D !== undefined) {
+                            actualScale = dataObj.Properties.RelativeScale3D;
                         }
                     }
+                    // }
                 }
             }
         });
@@ -474,7 +423,7 @@ export async function convertToUEFN_NEW(
                     textureData.push(combinedProperties.Properties[key]);
                 } else if (key.includes("TextureData")) {
                     console.warn(
-                        "Warning! JSON covertion for TextureData wasnt successful! TextureData will not be used!"
+                        "Warning! JSON covertion for TextureData wasnt successful! TextureData will not be used!",
                     );
                 }
             });
@@ -489,7 +438,7 @@ export async function convertToUEFN_NEW(
                     ? new RelativeLocation(
                           actualLocation.X,
                           actualLocation.Y,
-                          actualLocation.Z
+                          actualLocation.Z,
                       )
                     : new RelativeLocation(0, 0, 0),
             rotation:
@@ -497,7 +446,7 @@ export async function convertToUEFN_NEW(
                     ? new RelativeRotation(
                           actualRotation.Pitch,
                           actualRotation.Yaw,
-                          actualRotation.Roll
+                          actualRotation.Roll,
                       )
                     : new RelativeRotation(0, 0, 0),
             scale:
@@ -505,7 +454,7 @@ export async function convertToUEFN_NEW(
                     ? new RelativeScale(
                           actualScale.X,
                           actualScale.Y,
-                          actualScale.Z
+                          actualScale.Z,
                       )
                     : new RelativeScale(1, 1, 1),
             lodData: undefined,
@@ -514,7 +463,7 @@ export async function convertToUEFN_NEW(
                     ? combinedProperties.Properties.OverrideMaterials !==
                       undefined
                         ? new OverrideMaterials(
-                              combinedProperties.Properties.OverrideMaterials
+                              combinedProperties.Properties.OverrideMaterials,
                           )
                         : undefined
                     : undefined,
@@ -524,7 +473,7 @@ export async function convertToUEFN_NEW(
                 combinedProperties.Properties !== undefined
                     ? combinedProperties.Properties.ResourceType !== undefined
                         ? new ResourceType(
-                              combinedProperties.Properties.ResourceType
+                              combinedProperties.Properties.ResourceType,
                           )
                         : undefined
                     : undefined,
@@ -545,7 +494,7 @@ export async function convertToUEFN_NEW(
                 combinedProperties.Properties !== undefined
                     ? combinedProperties.Properties.StaticMesh !== undefined
                         ? new StaticMesh(
-                              combinedProperties.Properties.StaticMesh
+                              combinedProperties.Properties.StaticMesh,
                           )
                         : actualRelevantData.mesh
                     : actualRelevantData.mesh;
@@ -553,7 +502,7 @@ export async function convertToUEFN_NEW(
         if (combinedProperties.LODData !== undefined) {
             if (actualRelevantData.lodData === undefined) {
                 actualRelevantData.lodData = new LODData(
-                    combinedProperties.LODData
+                    combinedProperties.LODData,
                 );
             }
         }
@@ -600,21 +549,21 @@ export async function convertToUEFN_NEW(
                 ) {
                     filePathWorld =
                         combinedProperties.Properties.AdditionalWorlds[0].AssetPathName.split(
-                            "."
+                            ".",
                         )[0];
                 } else if (
                     typeof combinedProperties.Properties.WorldAsset === "object"
                 ) {
                     filePathWorld =
                         combinedProperties.Properties.WorldAsset.AssetPathName.split(
-                            "."
+                            ".",
                         )[0];
                 } else {
                     filePathWorld =
                         combinedProperties.Properties.WorldAsset.split(".")[0];
                 }
                 const cachedFile = globalState.cachedJsonFiles.find(
-                    (cachedJSON) => cachedJSON.filePath === filePathWorld
+                    (cachedJSON) => cachedJSON.filePath === filePathWorld,
                 );
                 if (cachedFile === undefined) {
                     const jsonFile: File | undefined | null =
@@ -638,16 +587,16 @@ export async function convertToUEFN_NEW(
                                 locationOffset !== null
                                     ? actualRelevantData.location.displace(
                                           locationOffset,
-                                          rotationOffset
+                                          rotationOffset,
                                       )
                                     : actualRelevantData.location,
                                 actualRelevantData.rotation !== undefined
                                     ? rotationOffset !== null
                                         ? actualRelevantData.rotation.add(
-                                              rotationOffset
+                                              rotationOffset,
                                           )
                                         : actualRelevantData.rotation
-                                    : null
+                                    : null,
                             );
                             convertedMap += insideLevel;
                         } catch (error) {
@@ -674,16 +623,16 @@ export async function convertToUEFN_NEW(
                             locationOffset !== null
                                 ? actualRelevantData.location.displace(
                                       locationOffset,
-                                      rotationOffset
+                                      rotationOffset,
                                   )
                                 : actualRelevantData.location,
                             actualRelevantData.rotation !== undefined
                                 ? rotationOffset !== null
                                     ? actualRelevantData.rotation.add(
-                                          rotationOffset
+                                          rotationOffset,
                                       )
                                     : actualRelevantData.rotation
-                                : null
+                                : null,
                         );
                         convertedMap += insideLevel;
                     } catch (error) {
@@ -722,7 +671,7 @@ export async function convertToUEFN_NEW(
             actualRelevantData,
             folderName,
             locationOffset,
-            rotationOffset
+            rotationOffset,
         );
 
         convertedMap += generatedActor;
@@ -741,7 +690,7 @@ function processPropertiesObj(
     objData: RelaventObjectData,
     folderName: string,
     locationOffset: RelativeLocation | null,
-    rotationOffset: RelativeRotation | null
+    rotationOffset: RelativeRotation | null,
 ) {
     console.log("Processing OBJ", objData);
     const globalState: GlobalState = GlobalStore.getState();
@@ -752,11 +701,11 @@ function processPropertiesObj(
             globalState.currentSettings.portedModelsProjectName === "Game"
         ) {
             completeActor += UEFNLabelStrings.beginActor(
-                "/Script/Engine.StaticMeshActor"
+                "/Script/Engine.StaticMeshActor",
             );
         } else {
             completeActor += UEFNLabelStrings.beginActor(
-                "/Script/FortniteGame.FortStaticMeshActor"
+                "/Script/FortniteGame.FortStaticMeshActor",
             );
         }
         completeActor += UEFNLabelStrings.beginObjectName(undefined);
@@ -767,7 +716,7 @@ function processPropertiesObj(
         ) {
             completeActor += getBiomeToUse(
                 objData.mesh,
-                objData.materials
+                objData.materials,
             ).convertToUEFN();
         } else {
             completeActor += objData.materials?.convertToUEFN() ?? "";
@@ -787,11 +736,11 @@ function processPropertiesObj(
                     "Game"
                 ) {
                     completeActor += UEFNLabelStrings.beginActor(
-                        "/Script/Engine.StaticMeshActor"
+                        "/Script/Engine.StaticMeshActor",
                     );
                 } else {
                     completeActor += UEFNLabelStrings.beginActor(
-                        "/Script/FortniteGame.FortStaticMeshActor"
+                        "/Script/FortniteGame.FortStaticMeshActor",
                     );
                 }
                 completeActor += UEFNLabelStrings.beginObjectName(undefined);
